@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrainBox Learning - Dashboard</title>
+    <title>Welcome | BrainBox Learning</title>
 
     <style>
         * {
@@ -14,166 +14,141 @@
         body {
             margin: 0;
             min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
             font-family: Arial, sans-serif;
             color: white;
             background: linear-gradient(135deg, #080d20, #171044, #101b3b);
         }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 22px 7%;
-            border-bottom: 1px solid #34345f;
-        }
-
-        header h2 {
-            color: #c4b5fd;
-            margin: 0;
-        }
-
-        header a {
-            color: #c4b5fd;
-            text-decoration: none;
-        }
-
-        main {
-            max-width: 1100px;
-            margin: auto;
-            padding: 55px 25px;
-        }
-
-        .intro {
+        .container {
+            width: 100%;
+            max-width: 440px;
+            padding: 35px;
             text-align: center;
-            margin-bottom: 40px;
+            background: rgba(18, 25, 55, 0.95);
+            border: 1px solid #6554d9;
+            border-radius: 20px;
+            box-shadow: 0 0 35px #6554d933;
         }
 
-        .intro h1 {
-            font-size: clamp(30px, 5vw, 44px);
+        .brain {
+            font-size: 55px;
+        }
+
+        h1 {
             color: #c4b5fd;
+            font-size: 30px;
         }
 
-        .intro p {
+        p {
             color: #cbd5ff;
             line-height: 1.6;
         }
 
-        .subjects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            padding: 25px;
-            border: 1px solid #5145a8;
-            border-radius: 16px;
-            background: rgba(23, 29, 65, 0.9);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 22px #7c5dfa40;
-        }
-
-        .icon {
-            font-size: 40px;
-        }
-
-        .card h3 {
-            color: #c4b5fd;
-        }
-
-        .card p {
-            min-height: 65px;
-            color: #cbd5ff;
-            line-height: 1.5;
-        }
-
-        .card button {
+        input {
+            display: block;
             width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            background: #6d5ce8;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #4e5681;
+            border-radius: 9px;
+            background: #0d1430;
             color: white;
+            font-size: 15px;
+        }
+
+        input::placeholder {
+            color: #a5afd3;
+        }
+
+        input:focus {
+            outline: 2px solid #a78bfa;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 9px;
+            background: linear-gradient(90deg, #6554e8, #9333ea);
+            color: white;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
         }
 
-        .card button:hover {
-            background: #8b5cf6;
+        button:hover {
+            filter: brightness(1.15);
         }
 
-        footer {
-            padding: 25px;
-            text-align: center;
-            color: #9ca8d4;
+        .back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #c4b5fd;
+            text-decoration: none;
+        }
+
+        #message {
+            color: #fca5a5;
+            font-size: 14px;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h2>🧠 BrainBox Learning</h2>
-        <a href="index.html">Back to Home</a>
-    </header>
+    <main class="container">
+        <div class="brain">🧠</div>
 
-    <main>
-        <section class="intro">
-            <h1>What Do You Want to Learn?</h1>
-            <p>Choose a subject and discover something new today.</p>
-        </section>
+        <h1>Welcome to BrainBox!</h1>
 
-        <section class="subjects">
-            <div class="card">
-                <div class="icon">🔬</div>
-                <h3>Science</h3>
-                <p>Discover nature, space, experiments, and how the world works.</p>
-                <button onclick="chooseSubject('Science')">Explore Science</button>
-            </div>
+        <p>Enter your details to continue learning.</p>
 
-            <div class="card">
-                <div class="icon">💻</div>
-                <h3>Technology</h3>
-                <p>Explore computers, coding, robotics, and artificial intelligence.</p>
-                <button onclick="chooseSubject('Technology')">Explore Technology</button>
-            </div>
+        <form id="loginForm">
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                autocomplete="email"
+                required
+            >
 
-            <div class="card">
-                <div class="icon">🌎</div>
-                <h3>Geography</h3>
-                <p>Discover countries, landmarks, oceans, and our planet.</p>
-                <button onclick="chooseSubject('Geography')">Explore Geography</button>
-            </div>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+            >
 
-            <div class="card">
-                <div class="icon">📚</div>
-                <h3>General Knowledge</h3>
-                <p>Learn fascinating facts about the world around you.</p>
-                <button onclick="chooseSubject('General Knowledge')">Explore Facts</button>
-            </div>
+            <button type="submit">Continue</button>
 
-            <div class="card">
-                <div class="icon">🔢</div>
-                <h3>Math</h3>
-                <p>Practice numbers, patterns, logic, and problem-solving.</p>
-                <button onclick="chooseSubject('Math')">Explore Math</button>
-            </div>
-        </section>
+            <p id="message"></p>
+        </form>
+
+        <a class="back" href="index.html">← Back to Home</a>
     </main>
 
-    <footer>
-        BrainBox Learning — Think Big. Learn More.
-    </footer>
-
     <script>
-        function chooseSubject(subject) {
-            alert("You selected " + subject + "! Lessons coming soon.");
-        }
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("message");
+
+            if (!email || !password) {
+                message.textContent = "Please enter your email and password.";
+                return;
+            }
+
+            // Demo only: credentials are not verified or saved.
+            // Replace this with secure authentication before using real accounts.
+            window.location.href = "dashboard.html";
+        });
     </script>
 </body>
 </html>
