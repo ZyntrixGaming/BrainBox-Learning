@@ -1,292 +1,163 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BrainBox Learning</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainBox Learning</title>
 
-<style>
-* {
-    box-sizing: border-box;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: white;
-    background-color: #080b20;
-    background-image:
-        radial-gradient(circle, #b5b5ff 2px, transparent 3px),
-        radial-gradient(circle, #7777ff 2px, transparent 3px),
-        radial-gradient(circle, #ffffff 1px, transparent 2px),
-        linear-gradient(135deg, #050816, #101642, #24104b);
-    background-size:
-        100px 100px,
-        150px 150px,
-        65px 65px,
-        100% 100%;
-    background-position:
-        0 0,
-        35px 50px,
-        20px 15px,
-        center;
-    background-repeat: repeat, repeat, repeat, no-repeat;
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #080d20, #171044, #101b3b);
+            padding: 20px;
+        }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+        .container {
+            width: 100%;
+            max-width: 430px;
+            padding: 35px;
+            text-align: center;
+            background: rgba(18, 25, 55, 0.9);
+            border: 1px solid #6554d9;
+            border-radius: 20px;
+            box-shadow: 0 0 35px rgba(104, 80, 255, 0.25);
+        }
 
-.container {
-    width: 100%;
-    max-width: 850px;
-    padding: 30px 20px;
-    position: relative;
-}
+        .brain {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
 
-.brain-icon {
-    width: 170px;
-    height: 170px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 15px #6b5cff);
-}
+        h1 {
+            font-size: 32px;
+            margin: 5px 0 12px;
+            color: #c4b5fd;
+        }
 
-h1 {
-    font-size: clamp(38px, 7vw, 68px);
-    margin: 10px 0 15px;
-    font-weight: 800;
-    background: linear-gradient(90deg, white, #a9b7ff, #c8a5ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
+        .subtitle {
+            font-size: 12px;
+            letter-spacing: 2px;
+            line-height: 1.8;
+            color: #cbd5ff;
+            margin-bottom: 28px;
+        }
 
-.subtitle {
-    color: #c4c9e8;
-    font-size: 16px;
-    letter-spacing: 3px;
-    line-height: 1.8;
-    margin-bottom: 35px;
-}
+        input {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            margin: 13px 0;
+            border: 1px solid #4e5681;
+            border-radius: 9px;
+            background: #0d1430;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
 
-.start-button {
-    padding: 17px 38px;
-    border: none;
-    border-radius: 40px;
-    background: linear-gradient(90deg, #4169ff, #9655ff);
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 25px #695bff80;
-}
+        input:focus {
+            border-color: #a78bfa;
+        }
 
-.start-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 35px #895bffcc;
-}
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 9px;
+            background: linear-gradient(90deg, #6554e8, #9333ea);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-.footer {
-    margin-top: 45px;
-    color: #9299c7;
-    font-size: 12px;
-    letter-spacing: 1px;
-}
+        button:hover {
+            opacity: 0.9;
+        }
 
-/* Email popup */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    inset: 0;
-    padding: 20px;
-    background: #000000bf;
-    justify-content: center;
-    align-items: center;
-}
+        #message {
+            color: #fca5a5;
+            font-size: 14px;
+            margin-top: 15px;
+        }
 
-.modal-content {
-    position: relative;
-    width: 100%;
-    max-width: 420px;
-    padding: 35px 25px;
-    border: 1px solid #655cff;
-    border-radius: 20px;
-    background: linear-gradient(145deg, #111936, #241447);
-    box-shadow: 0 0 35px #655cff59;
-}
-
-.modal-content h2 {
-    margin-top: 0;
-    font-size: 28px;
-}
-
-.modal-content p {
-    color: #c4c9e8;
-    line-height: 1.6;
-}
-
-.email-input {
-    display: block;
-    width: 100%;
-    margin: 25px 0 15px;
-    padding: 15px;
-    border: 1px solid #555c91;
-    border-radius: 10px;
-    background: #080d23;
-    color: white;
-    font-size: 16px;
-}
-
-.continue-button {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #4169ff, #9655ff);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close-button {
-    position: absolute;
-    top: 12px;
-    right: 17px;
-    border: none;
-    background: transparent;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-#message {
-    margin-top: 18px;
-    color: #b9ffda;
-    font-size: 14px;
-    overflow-wrap: anywhere;
-}
-
-@media (max-width: 600px) {
-    .brain-icon {
-        width: 135px;
-        height: 135px;
-    }
-
-    .subtitle {
-        font-size: 12px;
-        letter-spacing: 2px;
-    }
-}
-</style>
+        .note {
+            color: #9ca8d4;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
+        <div class="brain">🧠</div>
 
-<main class="container">
+        <h1>BrainBox Learning</h1>
 
-    <!-- Brain icon -->
-    <svg class="brain-icon" viewBox="0 0 200 200"
-         xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="brainGradient" x1="0%" y1="0%"
-                            x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#38d9ff"/>
-                <stop offset="50%" stop-color="#7465ff"/>
-                <stop offset="100%" stop-color="#d45bff"/>
-            </linearGradient>
-        </defs>
+        <p class="subtitle">
+            THINK BIG. LEARN MORE.<br>
+            DISCOVER EVERYTHING.
+        </p>
 
-        <g fill="none" stroke="url(#brainGradient)" stroke-width="4"
-           stroke-linecap="round" stroke-linejoin="round">
-            <path d="M96 35 C82 17 57 27 57 47 C36 44 27 67 39 81 C20 96 32 120 47 124 C40 145 59 161 77 150 C84 169 101 161 101 145 L101 43 C101 37 99 35 96 35 Z"/>
-            <path d="M104 35 C118 17 143 27 143 47 C164 44 173 67 161 81 C180 96 168 120 153 124 C160 145 141 161 123 150 C116 169 99 161 99 145 L99 43 C99 37 101 35 104 35 Z"/>
-            <path d="M57 49 C75 49 79 65 69 76"/>
-            <path d="M39 81 C56 78 64 91 57 104"/>
-            <path d="M47 124 C63 117 76 128 75 143"/>
-            <path d="M143 49 C125 49 121 65 131 76"/>
-            <path d="M161 81 C144 78 136 91 143 104"/>
-            <path d="M153 124 C137 117 124 128 125 143"/>
-            <path d="M73 94 C84 88 90 96 89 108"/>
-            <path d="M127 94 C116 88 110 96 111 108"/>
-        </g>
-        <circle cx="100" cy="92" r="5" fill="white"/>
-        <circle cx="100" cy="92" r="11" fill="none"
-                stroke="#7b77ff" stroke-width="2"/>
-    </svg>
+        <form id="signupForm">
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your email address"
+                autocomplete="email"
+                required
+            >
 
-    <h1>BrainBox Learning</h1>
+            <input
+                type="password"
+                id="password"
+                placeholder="Create a password (8+ characters)"
+                autocomplete="new-password"
+                minlength="8"
+                required
+            >
 
-    <p class="subtitle">
-        THINK BIG. LEARN MORE. DISCOVER EVERYTHING.
-    </p>
+            <button type="submit">Sign Up / Get Started</button>
 
-    <button class="start-button" onclick="openEmailForm()">
-        Get Started →
-    </button>
-
-    <div class="footer">
-        YOUR JOURNEY TO KNOWLEDGE STARTS HERE
-    </div>
-</main>
-
-<!-- Email popup -->
-<div id="emailModal" class="modal">
-    <div class="modal-content">
-        <button class="close-button" onclick="closeEmailForm()"
-                aria-label="Close popup">&times;</button>
-
-        <h2>Let's Get Started!</h2>
-        <p>Enter your email to begin your BrainBox Learning journey.</p>
-
-        <form id="emailForm">
-            <input type="email" id="email" class="email-input"
-                   placeholder="Enter your email address" required>
-
-            <button type="submit" class="continue-button">
-                Continue →
-            </button>
+            <p id="message"></p>
         </form>
 
-        <div id="message" role="status"></div>
+        <p class="note">
+            Start exploring. Keep discovering.
+        </p>
     </div>
-</div>
 
-<script>
-function openEmailForm() {
-    document.getElementById("emailModal").style.display = "flex";
-    document.getElementById("message").textContent = "";
-}
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
 
-function closeEmailForm() {
-    document.getElementById("emailModal").style.display = "none";
-}
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("message");
 
-document.getElementById("emailModal").addEventListener("click", function(event) {
-    if (event.target === this) {
-        closeEmailForm();
-    }
-});
+            if (!email || password.length < 8) {
+                message.textContent = "Enter a valid email and a password with at least 8 characters.";
+                return;
+            }
 
-document.getElementById("emailForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const email = document.getElementById("email").value.trim();
-
-    document.getElementById("message").textContent =
-        "Thanks! Your email is " + email + ". More features are coming soon!";
-});
-
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-        closeEmailForm();
-    }
-});
-</script>
-
+            // Demo only: this does not create or save a real account.
+            // A secure authentication service is needed for real sign-ups.
+            window.location.href = "page2.html";
+        });
+    </script>
 </body>
 </html>
+```
