@@ -8,115 +8,91 @@
 
     <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
         body {
+            margin: 0;
             min-height: 100vh;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             color: white;
-            background:
-                radial-gradient(circle at 20% 20%, #123b80 0%, transparent 40%),
-                radial-gradient(circle at 85% 80%, #35116e 0%, transparent 40%),
-                linear-gradient(135deg, #020817, #071632, #030615);
-            overflow-x: hidden;
-        }
-
-        .glow {
-            position: fixed;
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.4;
-            pointer-events: none;
-            animation: float 7s ease-in-out infinite alternate;
-        }
-
-        .blue {
-            background: #0077ff;
-            top: -120px;
-            left: -100px;
-        }
-
-        .purple {
-            background: #792cff;
-            bottom: -150px;
-            right: -80px;
-            animation-delay: 2s;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
+            background: linear-gradient(
+                135deg,
+                #050816,
+                #101642,
+                #24104b
+            );
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
             padding: 30px 20px;
         }
 
-        .brain {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 22px;
-            filter: drop-shadow(0 0 15px #00cfff);
-            animation: float 3s ease-in-out infinite alternate;
+        .brain-icon {
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 20px;
+            filter: drop-shadow(0 0 15px #6b5cff);
         }
 
         h1 {
-            font-size: clamp(38px, 7vw, 76px);
-            letter-spacing: 1px;
-        }
-
-        h1 span {
-            background: linear-gradient(90deg, #25d9ff, #7375ff);
+            font-size: clamp(38px, 7vw, 68px);
+            margin: 10px 0 15px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ffffff, #a9b7ff, #c8a5ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
         .subtitle {
-            margin-top: 20px;
-            margin-bottom: 35px;
-            color: #b7c9e8;
-            font-size: 14px;
-            letter-spacing: 2px;
+            color: #c4c9e8;
+            font-size: 16px;
+            letter-spacing: 3px;
             line-height: 1.8;
+            margin-bottom: 35px;
         }
 
+        /* Get Started button */
         .start-button {
-            padding: 16px 38px;
-            border: 1px solid #46d9ff;
-            border-radius: 30px;
+            display: inline-block;
+            visibility: visible;
+            opacity: 1;
+            padding: 17px 38px;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(90deg, #4169ff, #9655ff);
             color: white;
-            background: linear-gradient(90deg, #087cff, #604bff);
-            font-size: 17px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 0 22px #087cff66;
-            transition: 0.25s;
+            box-shadow: 0 0 25px rgba(105, 91, 255, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .start-button:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 0 35px #1688ffbb;
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(137, 91, 255, 0.8);
         }
 
-        /* Email form popup */
+        /* Email popup background */
         .modal {
             display: none;
             position: fixed;
+            z-index: 1000;
             inset: 0;
-            z-index: 5;
-            background: #000000bb;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.75);
             justify-content: center;
             align-items: center;
-            padding: 20px;
         }
 
         .modal-content {
@@ -124,55 +100,49 @@
             width: 100%;
             max-width: 420px;
             padding: 35px 25px;
-            border: 1px solid #315da4;
+            border: 1px solid #655cff;
             border-radius: 20px;
-            text-align: center;
-            background: linear-gradient(145deg, #101e3b, #090f20);
-            box-shadow: 0 0 40px #087cff44;
+            background: linear-gradient(145deg, #111936, #241447);
+            box-shadow: 0 0 35px rgba(101, 92, 255, 0.35);
         }
 
         .modal-content h2 {
-            font-size: 27px;
-            margin-bottom: 12px;
+            margin-top: 0;
+            font-size: 28px;
         }
 
         .modal-content p {
-            color: #bdcbe3;
+            color: #c4c9e8;
             line-height: 1.6;
-            margin-bottom: 22px;
         }
 
         .email-input {
+            display: block;
             width: 100%;
-            padding: 14px;
-            margin-bottom: 18px;
-            border: 1px solid #42618f;
-            border-radius: 9px;
+            margin: 25px 0 15px;
+            padding: 15px;
+            border: 1px solid #555c91;
+            border-radius: 10px;
             outline: none;
-            background: #080f20;
+            background: #080d23;
             color: white;
             font-size: 16px;
         }
 
         .email-input:focus {
-            border-color: #28cfff;
-            box-shadow: 0 0 10px #1688ff44;
+            border-color: #8b70ff;
         }
 
         .continue-button {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             border: none;
-            border-radius: 9px;
-            background: #1688ff;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #4169ff, #9655ff);
             color: white;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-        }
-
-        .continue-button:hover {
-            background: #0066d6;
         }
 
         .close-button {
@@ -181,138 +151,174 @@
             right: 17px;
             border: none;
             background: transparent;
-            color: #bdcbe3;
+            color: white;
             font-size: 28px;
             cursor: pointer;
         }
 
         #message {
-            color: #54dcff;
-            font-size: 14px;
             margin-top: 18px;
-            overflow-wrap: anywhere;
+            color: #b9ffda;
+            font-size: 14px;
         }
 
-        @keyframes float {
-            from { transform: translateY(0); }
-            to { transform: translateY(-12px); }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .glow, .brain {
-                animation: none;
-            }
+        .footer {
+            margin-top: 45px;
+            color: #777fae;
+            font-size: 12px;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="glow blue"></div>
-    <div class="glow purple"></div>
-
     <main class="container">
 
-        <svg class="brain" viewBox="0 0 100 100"
-             xmlns="http://www.w3.org/2000/svg" fill="none"
-             role="img" aria-label="Blue brain logo">
-            <g stroke="#20cfff" stroke-width="4"
-               stroke-linecap="round" stroke-linejoin="round">
-                <path d="M48 22 C44 10 29 12 26 24 C14 22 10 37 18 45 C9 55 16 67 25 69 C21 81 34 88 44 80 C48 76 48 70 48 64 Z"/>
-                <path d="M52 22 C56 10 71 12 74 24 C86 22 90 37 82 45 C91 55 84 67 75 69 C79 81 66 88 56 80 C52 76 52 70 52 64 Z"/>
-                <path d="M50 21 V81"/>
-                <path d="M27 30 Q40 29 35 42"/>
-                <path d="M20 49 Q34 45 37 57"/>
-                <path d="M30 70 Q40 65 44 77"/>
-                <path d="M73 30 Q60 29 65 42"/>
-                <path d="M80 49 Q66 45 63 57"/>
-                <path d="M70 70 Q60 65 56 77"/>
+        <!-- Neon brain icon -->
+        <svg class="brain-icon"
+             viewBox="0 0 200 200"
+             xmlns="http://www.w3.org/2000/svg"
+             aria-label="Neon brain icon"
+             role="img">
+
+            <defs>
+                <linearGradient id="brainGradient"
+                                x1="0%" y1="0%"
+                                x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#38d9ff"/>
+                    <stop offset="50%" stop-color="#7465ff"/>
+                    <stop offset="100%" stop-color="#d45bff"/>
+                </linearGradient>
+            </defs>
+
+            <g fill="none"
+               stroke="url(#brainGradient)"
+               stroke-width="4"
+               stroke-linecap="round"
+               stroke-linejoin="round">
+
+                <path d="M96 35
+                         C82 17 57 27 57 47
+                         C36 44 27 67 39 81
+                         C20 96 32 120 47 124
+                         C40 145 59 161 77 150
+                         C84 169 101 161 101 145
+                         L101 43
+                         C101 37 99 35 96 35 Z"/>
+
+                <path d="M104 35
+                         C118 17 143 27 143 47
+                         C164 44 173 67 161 81
+                         C180 96 168 120 153 124
+                         C160 145 141 161 123 150
+                         C116 169 99 161 99 145
+                         L99 43
+                         C99 37 101 35 104 35 Z"/>
+
+                <path d="M57 49 C75 49 79 65 69 76"/>
+                <path d="M39 81 C56 78 64 91 57 104"/>
+                <path d="M47 124 C63 117 76 128 75 143"/>
+                <path d="M143 49 C125 49 121 65 131 76"/>
+                <path d="M161 81 C144 78 136 91 143 104"/>
+                <path d="M153 124 C137 117 124 128 125 143"/>
+                <path d="M73 94 C84 88 90 96 89 108"/>
+                <path d="M127 94 C116 88 110 96 111 108"/>
             </g>
+
+            <circle cx="100" cy="92" r="5" fill="#ffffff"/>
+            <circle cx="100" cy="92" r="11"
+                    fill="none" stroke="#7b77ff" stroke-width="2"/>
         </svg>
 
-        <h1>BrainBox <span>Learning</span></h1>
+        <h1>BrainBox Learning</h1>
 
         <p class="subtitle">
             THINK BIG. LEARN MORE. DISCOVER EVERYTHING.
         </p>
 
-        <button class="start-button" onclick="openEmailForm()">
+        <!-- Get Started button -->
+        <button type="button"
+                class="start-button"
+                onclick="openEmailForm()">
             Get Started →
         </button>
 
+        <div class="footer">
+            YOUR JOURNEY TO KNOWLEDGE STARTS HERE
+        </div>
+
     </main>
 
-    <div class="modal" id="emailModal" role="dialog"
-         aria-modal="true" aria-labelledby="formTitle">
-        <div class="modal-content">
-            <button class="close-button" onclick="closeEmailForm()"
-                    aria-label="Close">&times;</button>
+    <!-- Email popup -->
+    <div id="emailModal" class="modal">
 
-            <h2 id="formTitle">Welcome to BrainBox!</h2>
-            <p>Enter your email address to get started.</p>
+        <div class="modal-content">
+
+            <button type="button"
+                    class="close-button"
+                    onclick="closeEmailForm()"
+                    aria-label="Close popup">
+                &times;
+            </button>
+
+            <h2>Let's Get Started!</h2>
+
+            <p>Enter your email to begin your BrainBox Learning journey.</p>
 
             <form id="emailForm">
                 <input
-                    class="email-input"
                     type="email"
                     id="email"
+                    class="email-input"
                     placeholder="Enter your email address"
-                    autocomplete="email"
                     required
                 >
 
-                <button class="continue-button" type="submit">
+                <button type="submit" class="continue-button">
                     Continue →
                 </button>
             </form>
 
-            <p id="message" aria-live="polite"></p>
+            <div id="message" role="status"></div>
+
         </div>
     </div>
 
     <script>
-        const modal = document.getElementById("emailModal");
+        const emailModal = document.getElementById("emailModal");
+        const emailForm = document.getElementById("emailForm");
         const emailInput = document.getElementById("email");
         const message = document.getElementById("message");
 
         function openEmailForm() {
-            modal.style.display = "flex";
+            emailModal.style.display = "flex";
             message.textContent = "";
             emailInput.focus();
         }
 
         function closeEmailForm() {
-            modal.style.display = "none";
+            emailModal.style.display = "none";
         }
 
-        modal.addEventListener("click", function(event) {
-            if (event.target === modal) {
+        // Close popup if the user clicks outside it
+        emailModal.addEventListener("click", function(event) {
+            if (event.target === emailModal) {
                 closeEmailForm();
             }
         });
 
-        document.addEventListener("keydown", function(event) {
-            if (event.key === "Escape") {
-                closeEmailForm();
-            }
-        });
+        // Handle email form submission
+        emailForm.addEventListener("submit", function(event) {
+            event.preventDefault();
 
-        document.getElementById("emailForm").addEventListener(
-            "submit", function(event) {
-                event.preventDefault();
+            const email = emailInput.value.trim();
 
-                const email = emailInput.value.trim();
-
-                if (!emailInput.checkValidity() || !email) {
-                    emailInput.reportValidity();
-                    return;
-                }
-
+            if (email) {
                 message.textContent =
                     "Thanks! Your email is " + email +
-                    ". The next step is coming soon!";
+                    ". More features are coming soon!";
             }
-        );
+        });
     </script>
 
 </body>
