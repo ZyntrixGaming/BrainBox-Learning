@@ -17,63 +17,60 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
             font-family: Arial, sans-serif;
             color: white;
             background: linear-gradient(135deg, #080d20, #171044, #101b3b);
-            padding: 20px;
         }
 
         .container {
             width: 100%;
-            max-width: 430px;
+            max-width: 440px;
             padding: 35px;
             text-align: center;
-            background: rgba(18, 25, 55, 0.9);
+            background: rgba(18, 25, 55, 0.95);
             border: 1px solid #6554d9;
             border-radius: 20px;
-            box-shadow: 0 0 35px rgba(104, 80, 255, 0.25);
+            box-shadow: 0 0 35px #6554d933;
         }
 
         .brain {
             font-size: 60px;
-            margin-bottom: 10px;
         }
 
         h1 {
-            font-size: 32px;
-            margin: 5px 0 12px;
             color: #c4b5fd;
+            font-size: 32px;
+            margin: 10px 0;
         }
 
         .subtitle {
+            color: #cbd5ff;
             font-size: 12px;
             letter-spacing: 2px;
             line-height: 1.8;
-            color: #cbd5ff;
             margin-bottom: 28px;
         }
 
         input {
-            display: block;
             width: 100%;
             padding: 14px;
-            margin: 13px 0;
+            margin: 10px 0;
             border: 1px solid #4e5681;
             border-radius: 9px;
             background: #0d1430;
             color: white;
             font-size: 15px;
-            outline: none;
         }
 
         input:focus {
-            border-color: #a78bfa;
+            outline: 2px solid #a78bfa;
         }
 
         button {
             width: 100%;
             padding: 15px;
-            margin-top: 12px;
+            margin-top: 14px;
             border: none;
             border-radius: 9px;
             background: linear-gradient(90deg, #6554e8, #9333ea);
@@ -84,19 +81,18 @@
         }
 
         button:hover {
-            opacity: 0.9;
+            filter: brightness(1.15);
         }
 
         #message {
             color: #fca5a5;
             font-size: 14px;
-            margin-top: 15px;
         }
 
         .note {
+            margin-top: 22px;
             color: #9ca8d4;
             font-size: 12px;
-            margin-top: 20px;
         }
     </style>
 </head>
@@ -131,29 +127,28 @@
             >
 
             <button type="submit">Sign Up / Get Started</button>
-
             <p id="message"></p>
         </form>
 
-        <p class="note">
-            Start exploring. Keep discovering.
-        </p>
+        <p class="note">Start exploring. Keep discovering.</p>
     </div>
 
     <script>
-        document.getElementById("signupForm").addEventListener("submit", function(event) {
+        const form = document.getElementById("signupForm");
+
+        form.addEventListener("submit", function(event) {
             event.preventDefault();
 
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value;
-            const message = document.getElementById("message");
 
             if (!email || password.length < 8) {
-                message.textContent = "Enter a valid email and a password with at least 8 characters.";
+                document.getElementById("message").textContent =
+                    "Enter an email and a password with at least 8 characters.";
                 return;
             }
 
-            // Demo only: this does not create or save a real account.
+            // Demo only: this does not create a real account.
             // A secure authentication service is needed for real sign-ups.
             window.location.href = "page2.html";
         });
