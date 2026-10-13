@@ -16,19 +16,52 @@
             min-height: 100vh;
             font-family: Arial, Helvetica, sans-serif;
             color: white;
-            background: linear-gradient(
-                135deg,
-                #050816,
-                #101642,
-                #24104b
-            );
+            background: linear-gradient(135deg, #050816, #101642, #24104b);
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
+            overflow-x: hidden;
         }
 
+        /* Animated background dots */
+        #background-dots {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .dot {
+            position: absolute;
+            border-radius: 50%;
+            background: #a5a5ff;
+            box-shadow: 0 0 8px #7465ff, 0 0 18px #7465ff;
+            animation: floatDot 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatDot {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0.25;
+            }
+            50% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-30px) scale(1.2);
+                opacity: 0.45;
+            }
+        }
+
+        /* Main content */
         .container {
+            position: relative;
+            z-index: 1;
             width: 100%;
             max-width: 850px;
             padding: 30px 20px;
@@ -62,8 +95,6 @@
         /* Get Started button */
         .start-button {
             display: inline-block;
-            visibility: visible;
-            opacity: 1;
             padding: 17px 38px;
             border: none;
             border-radius: 40px;
@@ -81,7 +112,14 @@
             box-shadow: 0 0 35px rgba(137, 91, 255, 0.8);
         }
 
-        /* Email popup background */
+        .footer {
+            margin-top: 45px;
+            color: #777fae;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        /* Email popup */
         .modal {
             display: none;
             position: fixed;
@@ -160,18 +198,60 @@
             margin-top: 18px;
             color: #b9ffda;
             font-size: 14px;
+            overflow-wrap: anywhere;
         }
 
-        .footer {
-            margin-top: 45px;
-            color: #777fae;
-            font-size: 12px;
+        @media (max-width: 600px) {
+            .brain-icon {
+                width: 135px;
+                height: 135px;
+            }
+
+            .subtitle {
+                font-size: 12px;
+                letter-spacing: 2px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .dot {
+                animation: none;
+            }
+
+            .start-button {
+                transition: none;
+            }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- Background dots -->
+    <div id="background-dots" aria-hidden="true">
+        <span class="dot" style="left:5%;top:15%;width:4px;height:4px;animation-delay:0s"></span>
+        <span class="dot" style="left:12%;top:65%;width:6px;height:6px;animation-delay:1s"></span>
+        <span class="dot" style="left:20%;top:35%;width:3px;height:3px;animation-delay:2s"></span>
+        <span class="dot" style="left:27%;top:85%;width:5px;height:5px;animation-delay:.5s"></span>
+        <span class="dot" style="left:35%;top:18%;width:6px;height:6px;animation-delay:1.5s"></span>
+        <span class="dot" style="left:42%;top:60%;width:4px;height:4px;animation-delay:2.5s"></span>
+        <span class="dot" style="left:50%;top:8%;width:5px;height:5px;animation-delay:1s"></span>
+        <span class="dot" style="left:58%;top:82%;width:6px;height:6px;animation-delay:2s"></span>
+        <span class="dot" style="left:65%;top:28%;width:3px;height:3px;animation-delay:3s"></span>
+        <span class="dot" style="left:72%;top:65%;width:5px;height:5px;animation-delay:1.5s"></span>
+        <span class="dot" style="left:80%;top:12%;width:4px;height:4px;animation-delay:2.5s"></span>
+        <span class="dot" style="left:88%;top:42%;width:6px;height:6px;animation-delay:.5s"></span>
+        <span class="dot" style="left:95%;top:78%;width:4px;height:4px;animation-delay:2s"></span>
+        <span class="dot" style="left:8%;top:92%;width:3px;height:3px;animation-delay:3s"></span>
+        <span class="dot" style="left:32%;top:48%;width:4px;height:4px;animation-delay:1s"></span>
+        <span class="dot" style="left:62%;top:48%;width:3px;height:3px;animation-delay:2s"></span>
+        <span class="dot" style="left:91%;top:92%;width:5px;height:5px;animation-delay:1.5s"></span>
+        <span class="dot" style="left:17%;top:8%;width:4px;height:4px;animation-delay:2.5s"></span>
+        <span class="dot" style="left:76%;top:90%;width:3px;height:3px;animation-delay:.8s"></span>
+        <span class="dot" style="left:45%;top:93%;width:5px;height:5px;animation-delay:1.8s"></span>
+    </div>
+
+    <!-- Main page -->
     <main class="container">
 
         <!-- Neon brain icon -->
@@ -236,7 +316,6 @@
             THINK BIG. LEARN MORE. DISCOVER EVERYTHING.
         </p>
 
-        <!-- Get Started button -->
         <button type="button"
                 class="start-button"
                 onclick="openEmailForm()">
@@ -251,7 +330,6 @@
 
     <!-- Email popup -->
     <div id="emailModal" class="modal">
-
         <div class="modal-content">
 
             <button type="button"
@@ -271,6 +349,7 @@
                     id="email"
                     class="email-input"
                     placeholder="Enter your email address"
+                    autocomplete="email"
                     required
                 >
 
@@ -280,7 +359,6 @@
             </form>
 
             <div id="message" role="status"></div>
-
         </div>
     </div>
 
@@ -300,14 +378,14 @@
             emailModal.style.display = "none";
         }
 
-        // Close popup if the user clicks outside it
+        // Close the popup when clicking outside it
         emailModal.addEventListener("click", function(event) {
             if (event.target === emailModal) {
                 closeEmailForm();
             }
         });
 
-        // Handle email form submission
+        // Display a confirmation message
         emailForm.addEventListener("submit", function(event) {
             event.preventDefault();
 
@@ -317,6 +395,13 @@
                 message.textContent =
                     "Thanks! Your email is " + email +
                     ". More features are coming soon!";
+            }
+        });
+
+        // Allow Escape to close the popup
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeEmailForm();
             }
         });
     </script>
