@@ -1,1 +1,180 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainBox Learning - Dashboard</title>
 
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #080d20, #171044, #101b3b);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 22px 7%;
+            border-bottom: 1px solid #34345f;
+        }
+
+        header h2 {
+            color: #c4b5fd;
+            margin: 0;
+        }
+
+        header a {
+            color: #c4b5fd;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 55px 25px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro h1 {
+            font-size: clamp(30px, 5vw, 44px);
+            color: #c4b5fd;
+        }
+
+        .intro p {
+            color: #cbd5ff;
+            line-height: 1.6;
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            padding: 25px;
+            border: 1px solid #5145a8;
+            border-radius: 16px;
+            background: rgba(23, 29, 65, 0.9);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 22px #7c5dfa40;
+        }
+
+        .icon {
+            font-size: 40px;
+        }
+
+        .card h3 {
+            color: #c4b5fd;
+        }
+
+        .card p {
+            min-height: 65px;
+            color: #cbd5ff;
+            line-height: 1.5;
+        }
+
+        .card button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #6d5ce8;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background: #8b5cf6;
+        }
+
+        footer {
+            padding: 25px;
+            text-align: center;
+            color: #9ca8d4;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>🧠 BrainBox Learning</h2>
+        <a href="index.html">Back to Home</a>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h1>What Do You Want to Learn?</h1>
+            <p>Choose a subject and discover something new today.</p>
+        </section>
+
+        <section class="subjects">
+            <div class="card">
+                <div class="icon">🔬</div>
+                <h3>Science</h3>
+                <p>Discover nature, space, experiments, and how the world works.</p>
+                <button onclick="chooseSubject('Science')">Explore Science</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">💻</div>
+                <h3>Technology</h3>
+                <p>Explore computers, coding, robotics, and artificial intelligence.</p>
+                <button onclick="chooseSubject('Technology')">Explore Technology</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">🌎</div>
+                <h3>Geography</h3>
+                <p>Discover countries, landmarks, oceans, and our planet.</p>
+                <button onclick="chooseSubject('Geography')">Explore Geography</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">📚</div>
+                <h3>General Knowledge</h3>
+                <p>Learn fascinating facts about the world around you.</p>
+                <button onclick="chooseSubject('General Knowledge')">Explore Facts</button>
+            </div>
+
+            <div class="card">
+                <div class="icon">🔢</div>
+                <h3>Math</h3>
+                <p>Practice numbers, patterns, logic, and problem-solving.</p>
+                <button onclick="chooseSubject('Math')">Explore Math</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        BrainBox Learning — Think Big. Learn More.
+    </footer>
+
+    <script>
+        function chooseSubject(subject) {
+            alert("You selected " + subject + "! Lessons coming soon.");
+        }
+    </script>
+</body>
+</html>
+```
