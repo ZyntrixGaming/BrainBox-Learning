@@ -1,105 +1,131 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrainBox Learning</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            color: white;
-            background: linear-gradient(135deg, #080d20, #171044, #101b3b);
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: white;
+      min-height: 100vh;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 500px;
-            padding: 45px 30px;
-            text-align: center;
-            background: rgba(18, 25, 55, 0.95);
-            border: 1px solid #6554d9;
-            border-radius: 22px;
-            box-shadow: 0 0 35px #6554d933;
-        }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 8%;
+    }
 
-        .brain {
-            font-size: 70px;
-            margin-bottom: 10px;
-        }
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #7c83ff;
+    }
 
-        h1 {
-            color: #c4b5fd;
-            font-size: 36px;
-            margin: 10px 0;
-        }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 24px;
+    }
 
-        .subtitle {
-            color: #cbd5ff;
-            font-size: 12px;
-            letter-spacing: 2px;
-            line-height: 1.9;
-            margin: 20px 0 30px;
-        }
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px 20px;
+    }
 
-        .button {
-            display: inline-block;
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(90deg, #6554e8, #9333ea);
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-            transition: transform 0.2s, filter 0.2s;
-        }
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      margin-bottom: 20px;
+    }
 
-        .button:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.15);
-        }
+    .hero h1 span {
+      color: #818cf8;
+    }
 
-        .note {
-            color: #9ca8d4;
-            font-size: 13px;
-            margin-top: 25px;
-        }
-    </style>
+    .hero p {
+      color: #b8bfd3;
+      font-size: 18px;
+      max-width: 550px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 32px;
+      background: #6366f1;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #818cf8;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #8991a8;
+    }
+  </style>
 </head>
 
 <body>
-    <main class="container">
-        <div class="brain">🧠</div>
+  <header>
+    <div class="logo">MY WEBSITE</div>
 
-        <h1>BrainBox Learning</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
 
-        <p class="subtitle">
-            THINK BIG. LEARN MORE.<br>
-            DISCOVER EVERYTHING.
-        </p>
+  <main>
+    <section class="hero" id="home">
+      <h1>Welcome to <span>My Website</span></h1>
 
-        <a class="button" href="page2.html">
-            Get Started
-        </a>
+      <p>
+        Discover something new. Explore our website
+        and get started on your next adventure.
+      </p>
 
-        <p class="note">
-            Start exploring. Keep discovering.
-        </p>
-    </main>
+      <a href="page2.html" class="btn">Get Started</a>
+    </section>
+
+    <section class="hero" id="about" style="min-height: 35vh;">
+      <h1 style="font-size: 36px;">About Us</h1>
+      <p>
+        This is your website. Customize it with your
+        own ideas, features, and design.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 My Website. All rights reserved.
+  </footer>
 </body>
 </html>
-```
