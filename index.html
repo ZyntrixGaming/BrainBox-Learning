@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>BrainBox Learning</title>
 
     <style>
@@ -21,106 +20,69 @@
             padding: 20px;
             font-family: Arial, sans-serif;
             color: white;
-            background: linear-gradient(
-                135deg,
-                #080d20,
-                #171044,
-                #101b3b
-            );
+            background: linear-gradient(135deg, #080d20, #171044, #101b3b);
         }
 
         .container {
             width: 100%;
-            max-width: 440px;
-            padding: 35px;
+            max-width: 500px;
+            padding: 45px 30px;
             text-align: center;
             background: rgba(18, 25, 55, 0.95);
             border: 1px solid #6554d9;
-            border-radius: 20px;
+            border-radius: 22px;
             box-shadow: 0 0 35px #6554d933;
         }
 
         .brain {
-            font-size: 60px;
+            font-size: 70px;
             margin-bottom: 10px;
         }
 
         h1 {
             color: #c4b5fd;
-            font-size: 32px;
+            font-size: 36px;
             margin: 10px 0;
-        }
-
-        h2 {
-            color: #c4b5fd;
         }
 
         .subtitle {
             color: #cbd5ff;
             font-size: 12px;
             letter-spacing: 2px;
-            line-height: 1.8;
-            margin-bottom: 28px;
+            line-height: 1.9;
+            margin: 20px 0 30px;
         }
 
-        input {
-            display: block;
+        .button {
+            display: inline-block;
             width: 100%;
-            padding: 14px;
-            margin: 12px 0;
-            border: 1px solid #4e5681;
-            border-radius: 9px;
-            background: #0d1430;
-            color: white;
-            font-size: 15px;
-        }
-
-        input::placeholder {
-            color: #a5afd3;
-        }
-
-        input:focus {
-            outline: 2px solid #a78bfa;
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            margin-top: 14px;
+            padding: 16px;
             border: none;
-            border-radius: 9px;
+            border-radius: 10px;
             background: linear-gradient(90deg, #6554e8, #9333ea);
             color: white;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: bold;
+            text-decoration: none;
             cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
         }
 
-        button:hover {
+        .button:hover {
+            transform: translateY(-3px);
             filter: brightness(1.15);
         }
 
         .note {
-            margin-top: 22px;
             color: #9ca8d4;
-            font-size: 12px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        #message {
-            color: #fca5a5;
-            font-size: 14px;
+            font-size: 13px;
+            margin-top: 25px;
         }
     </style>
 </head>
 
 <body>
-
-    <div class="container">
-
+    <main class="container">
         <div class="brain">🧠</div>
 
         <h1>BrainBox Learning</h1>
@@ -130,115 +92,14 @@
             DISCOVER EVERYTHING.
         </p>
 
-        <!-- Welcome screen -->
-        <div id="welcomeScreen">
+        <a class="button" href="page2.html">
+            Get Started
+        </a>
 
-            <button id="getStarted" type="button">
-                Get Started
-            </button>
-
-            <p class="note">
-                Start exploring. Keep discovering.
-            </p>
-
-        </div>
-
-        <!-- Email and password screen -->
-        <div id="signupScreen" class="hidden">
-
-            <h2>Welcome!</h2>
-
-            <p class="subtitle">
-                ENTER YOUR DETAILS TO CONTINUE
-            </p>
-
-            <form id="signupForm">
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter your email"
-                    autocomplete="email"
-                    required
-                >
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter your password"
-                    autocomplete="current-password"
-                    required
-                >
-
-                <button type="submit">
-                    Continue
-                </button>
-
-                <p id="message"></p>
-
-            </form>
-
-            <button id="backButton" type="button">
-                Back
-            </button>
-
-        </div>
-
-    </div>
-
-    <script>
-        const welcomeScreen =
-            document.getElementById("welcomeScreen");
-
-        const signupScreen =
-            document.getElementById("signupScreen");
-
-        const getStartedButton =
-            document.getElementById("getStarted");
-
-        const backButton =
-            document.getElementById("backButton");
-
-        const signupForm =
-            document.getElementById("signupForm");
-
-        const message =
-            document.getElementById("message");
-
-        // Show email and password when Get Started is clicked
-        getStartedButton.addEventListener("click", function() {
-            welcomeScreen.classList.add("hidden");
-            signupScreen.classList.remove("hidden");
-        });
-
-        // Return to the welcome screen
-        backButton.addEventListener("click", function() {
-            signupScreen.classList.add("hidden");
-            welcomeScreen.classList.remove("hidden");
-            message.textContent = "";
-        });
-
-        // Continue to the second page
-        signupForm.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const email =
-                document.getElementById("email").value.trim();
-
-            const password =
-                document.getElementById("password").value;
-
-            if (!email || !password) {
-                message.textContent =
-                    "Please enter your email and password.";
-                return;
-            }
-
-            // Demo navigation only; no real account is verified.
-            window.location.href = "page2.html";
-        });
-    </script>
-
+        <p class="note">
+            Start exploring. Keep discovering.
+        </p>
+    </main>
 </body>
 </html>
 ```
