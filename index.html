@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>BrainBox Learning</title>
 
     <style>
@@ -20,7 +21,12 @@
             padding: 20px;
             font-family: Arial, sans-serif;
             color: white;
-            background: linear-gradient(135deg, #080d20, #171044, #101b3b);
+            background: linear-gradient(
+                135deg,
+                #080d20,
+                #171044,
+                #101b3b
+            );
         }
 
         .container {
@@ -36,12 +42,17 @@
 
         .brain {
             font-size: 60px;
+            margin-bottom: 10px;
         }
 
         h1 {
             color: #c4b5fd;
             font-size: 32px;
             margin: 10px 0;
+        }
+
+        h2 {
+            color: #c4b5fd;
         }
 
         .subtitle {
@@ -53,14 +64,19 @@
         }
 
         input {
+            display: block;
             width: 100%;
             padding: 14px;
-            margin: 10px 0;
+            margin: 12px 0;
             border: 1px solid #4e5681;
             border-radius: 9px;
             background: #0d1430;
             color: white;
             font-size: 15px;
+        }
+
+        input::placeholder {
+            color: #a5afd3;
         }
 
         input:focus {
@@ -102,7 +118,9 @@
 </head>
 
 <body>
+
     <div class="container">
+
         <div class="brain">🧠</div>
 
         <h1>BrainBox Learning</h1>
@@ -114,20 +132,32 @@
 
         <!-- Welcome screen -->
         <div id="welcomeScreen">
-            <button id="getStarted">Get Started</button>
-            <p class="note">Start exploring. Keep discovering.</p>
+
+            <button id="getStarted" type="button">
+                Get Started
+            </button>
+
+            <p class="note">
+                Start exploring. Keep discovering.
+            </p>
+
         </div>
 
         <!-- Email and password screen -->
         <div id="signupScreen" class="hidden">
-            <h2>Join BrainBox!</h2>
-            <p class="subtitle">CREATE YOUR ACCOUNT TO CONTINUE</p>
+
+            <h2>Welcome!</h2>
+
+            <p class="subtitle">
+                ENTER YOUR DETAILS TO CONTINUE
+            </p>
 
             <form id="signupForm">
+
                 <input
                     type="email"
                     id="email"
-                    placeholder="Enter your email address"
+                    placeholder="Enter your email"
                     autocomplete="email"
                     required
                 >
@@ -135,51 +165,80 @@
                 <input
                     type="password"
                     id="password"
-                    placeholder="Create a password (8+ characters)"
-                    autocomplete="new-password"
-                    minlength="8"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
                     required
                 >
 
-                <button type="submit">Continue</button>
+                <button type="submit">
+                    Continue
+                </button>
+
                 <p id="message"></p>
+
             </form>
 
-            <button id="backButton" type="button">Back</button>
+            <button id="backButton" type="button">
+                Back
+            </button>
+
         </div>
+
     </div>
 
     <script>
-        const welcomeScreen = document.getElementById("welcomeScreen");
-        const signupScreen = document.getElementById("signupScreen");
+        const welcomeScreen =
+            document.getElementById("welcomeScreen");
 
-        document.getElementById("getStarted").addEventListener("click", function() {
+        const signupScreen =
+            document.getElementById("signupScreen");
+
+        const getStartedButton =
+            document.getElementById("getStarted");
+
+        const backButton =
+            document.getElementById("backButton");
+
+        const signupForm =
+            document.getElementById("signupForm");
+
+        const message =
+            document.getElementById("message");
+
+        // Show email and password when Get Started is clicked
+        getStartedButton.addEventListener("click", function() {
             welcomeScreen.classList.add("hidden");
             signupScreen.classList.remove("hidden");
         });
 
-        document.getElementById("backButton").addEventListener("click", function() {
+        // Return to the welcome screen
+        backButton.addEventListener("click", function() {
             signupScreen.classList.add("hidden");
             welcomeScreen.classList.remove("hidden");
-            document.getElementById("message").textContent = "";
+            message.textContent = "";
         });
 
-        document.getElementById("signupForm").addEventListener("submit", function(event) {
+        // Continue to the second page
+        signupForm.addEventListener("submit", function(event) {
             event.preventDefault();
 
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
+            const email =
+                document.getElementById("email").value.trim();
 
-            if (!email || password.length < 8) {
-                document.getElementById("message").textContent =
-                    "Enter a valid email and a password with at least 8 characters.";
+            const password =
+                document.getElementById("password").value;
+
+            if (!email || !password) {
+                message.textContent =
+                    "Please enter your email and password.";
                 return;
             }
 
-            // Demo only: this does not create a real account.
+            // Demo navigation only; no real account is verified.
             window.location.href = "page2.html";
         });
     </script>
+
 </body>
 </html>
 ```
