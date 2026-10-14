@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrainBox Plus | BrainBox Learning</title>
+
+  <title>BrainBox Plus</title>
 
   <style>
     * {
@@ -14,97 +15,91 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Arial, sans-serif;
       min-height: 100vh;
       color: white;
-      background:
-        radial-gradient(
-          circle at 50% 35%,
-          rgba(0, 110, 255, 0.22),
-          transparent 55%
-        ),
-        linear-gradient(135deg, #020611, #061633, #020817);
+      background: radial-gradient(
+        circle at top,
+        #103d79,
+        #061633 45%,
+        #020611 100%
+      );
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 24px;
+      padding: 25px;
       position: relative;
-      overflow-x: hidden;
     }
 
-    /* Futuristic digital grid */
+    /* Background grid */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(41, 168, 255, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(41, 168, 255, 0.045) 1px, transparent 1px);
-      background-size: 40px 40px;
+        linear-gradient(rgba(65, 160, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(65, 160, 255, 0.06) 1px, transparent 1px);
+      background-size: 35px 35px;
       pointer-events: none;
     }
 
-    .container {
+    .card {
       position: relative;
-      z-index: 1;
       width: 100%;
-      max-width: 500px;
-      padding: 40px 32px;
+      max-width: 510px;
+      padding: 38px 30px;
       text-align: center;
-      background: rgba(7, 23, 52, 0.95);
-      border: 1px solid rgba(41, 168, 255, 0.4);
-      border-radius: 22px;
-      box-shadow: 0 0 45px rgba(0, 91, 255, 0.15);
+      background: rgba(5, 18, 43, 0.97);
+      border: 1px solid #247bce;
+      border-radius: 20px;
+      box-shadow: 0 0 35px rgba(0, 119, 255, 0.2);
     }
 
-    .logo {
+    .brand {
+      color: #75c8ff;
       font-size: 23px;
       font-weight: bold;
-      color: #75c8ff;
-      margin-bottom: 25px;
+      margin-bottom: 26px;
     }
 
-    .plus-label {
+    .badge {
       display: inline-block;
-      padding: 7px 15px;
-      border: 1px solid #42baff;
-      border-radius: 20px;
       color: #75c8ff;
-      font-size: 13px;
+      border: 1px solid #368bff;
+      border-radius: 30px;
+      padding: 8px 15px;
+      font-size: 12px;
       font-weight: bold;
       letter-spacing: 2px;
       margin-bottom: 20px;
-      box-shadow: 0 0 15px rgba(41, 168, 255, 0.15);
     }
 
     h1 {
       font-size: 42px;
       margin-bottom: 15px;
-      background: linear-gradient(90deg, #ffffff, #75c8ff, #368bff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(54, 139, 255, 0.45);
     }
 
-    .description {
+    .intro {
       color: #b8cbe8;
       line-height: 1.7;
       margin-bottom: 25px;
     }
 
     .features {
+      padding: 22px;
+      background: #08152d;
+      border: 1px solid #24436b;
+      border-radius: 13px;
       text-align: left;
-      background: rgba(4, 15, 36, 0.75);
-      border: 1px solid #203c61;
-      border-radius: 14px;
-      padding: 20px;
       margin-bottom: 25px;
     }
 
     .features h2 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: #ffffff;
+      font-size: 19px;
+      margin-bottom: 17px;
+      color: white;
     }
 
     .features ul {
@@ -113,21 +108,20 @@
 
     .features li {
       color: #d0e2ff;
-      margin: 12px 0;
-      line-height: 1.5;
+      margin: 15px 0;
+      font-size: 16px;
     }
 
     .check {
       color: #42baff;
       font-weight: bold;
-      margin-right: 8px;
+      margin-right: 10px;
     }
 
-    .price {
-      font-size: 28px;
+    .price-title {
+      font-size: 23px;
       font-weight: bold;
-      margin-bottom: 5px;
-      color: white;
+      margin-bottom: 8px;
     }
 
     .price-note {
@@ -140,44 +134,42 @@
       display: block;
       width: 100%;
       padding: 15px;
+      margin-top: 13px;
       border-radius: 9px;
       font-size: 16px;
       font-weight: bold;
       text-decoration: none;
-      cursor: pointer;
-      transition: 0.25s;
+      transition: 0.2s;
     }
 
     .signup {
-      color: white;
       background: linear-gradient(135deg, #0878f9, #1743bd);
       border: 1px solid #42baff;
-      box-shadow: 0 0 18px rgba(0, 119, 255, 0.2);
+      color: white;
+      box-shadow: 0 0 15px rgba(0, 119, 255, 0.2);
     }
 
     .signup:hover {
       background: linear-gradient(135deg, #168cff, #2864e8);
       transform: translateY(-2px);
-      box-shadow: 0 0 25px rgba(0, 153, 255, 0.3);
     }
 
     .skip {
-      margin-top: 14px;
-      color: #b8cbe8;
-      background: transparent;
+      color: #c4d6f0;
       border: 1px solid #24436b;
+      background: transparent;
     }
 
     .skip:hover {
       color: white;
-      border-color: #29a8ff;
+      border-color: #42baff;
     }
 
     .back {
       display: inline-block;
-      margin-top: 24px;
       color: #75c8ff;
       text-decoration: none;
+      margin-top: 24px;
       font-size: 14px;
     }
 
@@ -186,8 +178,8 @@
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 30px 22px;
+      .card {
+        padding: 30px 20px;
       }
 
       h1 {
@@ -198,17 +190,18 @@
 </head>
 
 <body>
-  <main class="container">
 
-    <div class="logo">BrainBox Learning</div>
+  <main class="card">
 
-    <div class="plus-label">PREMIUM MEMBERSHIP</div>
+    <div class="brand">BrainBox Learning</div>
+
+    <div class="badge">PREMIUM MEMBERSHIP</div>
 
     <h1>BrainBox Plus</h1>
 
-    <p class="description">
-      Unlock more ways to learn, explore new ideas,
-      and take your learning journey to the next level.
+    <p class="intro">
+      Take your learning journey to the next level
+      with more tools, more lessons, and smarter learning.
     </p>
 
     <section class="features">
@@ -222,10 +215,10 @@
       </ul>
     </section>
 
-    <div class="price">BrainBox Plus</div>
+    <div class="price-title">BrainBox Plus</div>
 
     <p class="price-note">
-      Choose your subscription on the sign-up page.
+      Sign up to continue to the next step.
     </p>
 
     <a href="page4.html" class="button signup">
@@ -236,9 +229,12 @@
       Skip for Now
     </a>
 
-    <a href="page2.html" class="back">← Back</a>
+    <a href="page2.html" class="back">
+      ← Back
+    </a>
 
   </main>
+
 </body>
 </html>
 ```
