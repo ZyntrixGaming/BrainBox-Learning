@@ -25,7 +25,6 @@
       background-size: 35px 35px;
     }
 
-    /* Old glass-style box design */
     .container {
       width: 90%;
       max-width: 650px;
@@ -40,19 +39,23 @@
 
     .logo {
       color: #65a0ff;
-      font-size: 22px;
+      font-size: 32px;
       font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 25px;
+      text-shadow: 0 0 18px rgba(65, 140, 255, 0.35);
     }
 
     .tag {
-      margin-top: 30px;
+      margin-top: 15px;
       color: #8db5ff;
-      letter-spacing: 3px;
-      font-size: 13px;
+      letter-spacing: 4px;
+      font-size: 19px;
+      font-weight: bold;
     }
 
     h1 {
-      margin: 12px 0;
+      margin: 15px 0;
       font-size: 42px;
     }
 
@@ -131,6 +134,15 @@
     @media (max-width: 480px) {
       .container {
         padding: 30px 20px;
+      }
+
+      .logo {
+        font-size: 27px;
+      }
+
+      .tag {
+        font-size: 15px;
+        letter-spacing: 3px;
       }
 
       h1 {
