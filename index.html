@@ -30,10 +30,8 @@
           #061633 50%,
           #020817 100%
         );
-      overflow-x: hidden;
     }
 
-    /* Main page */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -73,7 +71,7 @@
       z-index: -1;
     }
 
-    /* Ambient blue glow */
+    /* Blue glowing background effect */
     .glow {
       position: absolute;
       width: 320px;
@@ -86,7 +84,6 @@
       animation: pulse 5s ease-in-out infinite alternate;
     }
 
-    /* Main title */
     h1 {
       font-size: clamp(42px, 8vw, 84px);
       font-weight: 800;
@@ -107,7 +104,6 @@
       animation: fadeIn 1.2s ease;
     }
 
-    /* Glowing cyan divider */
     .line {
       width: 100px;
       height: 4px;
@@ -119,7 +115,6 @@
       margin-bottom: 28px;
     }
 
-    /* Subtitle */
     p {
       max-width: 650px;
       color: #c5d9f5;
@@ -129,7 +124,47 @@
       animation: fadeIn 1.8s ease;
     }
 
-    /* Animations */
+    /* Get Started button */
+    .get-started {
+      display: inline-block;
+      margin-top: 45px;
+      padding: 16px 42px;
+      border: 1px solid #42baff;
+      border-radius: 10px;
+      background: linear-gradient(
+        135deg,
+        #0878f9,
+        #1743bd
+      );
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow:
+        0 0 15px rgba(0, 119, 255, 0.35),
+        inset 0 0 10px rgba(255, 255, 255, 0.08);
+      transition: 0.3s ease;
+      animation: fadeIn 2.2s ease;
+    }
+
+    .get-started:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(
+        135deg,
+        #168cff,
+        #2864e8
+      );
+      box-shadow:
+        0 0 20px rgba(0, 153, 255, 0.7),
+        0 0 40px rgba(0, 119, 255, 0.3);
+    }
+
+    .get-started:focus-visible {
+      outline: 3px solid white;
+      outline-offset: 5px;
+    }
+
     @keyframes pulse {
       from {
         transform: scale(0.9);
@@ -154,7 +189,6 @@
       }
     }
 
-    /* Mobile adjustments */
     @media (max-width: 600px) {
       h1 {
         letter-spacing: -1px;
@@ -186,6 +220,10 @@
       An inspiring journey for students to learn,
       explore, and discover.
     </p>
+
+    <a href="page2.html" class="get-started">
+      Get Started
+    </a>
 
   </main>
 
