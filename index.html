@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+  <title>BrainBox Learning</title>
 
   <style>
     * {
@@ -15,117 +15,102 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: #0b1020;
-      color: white;
+      background: #f4f7ff;
+      color: #172554;
       min-height: 100vh;
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 8%;
+      padding: 25px 8%;
+      background: white;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
     }
 
     .logo {
-      font-size: 25px;
+      font-size: 28px;
       font-weight: bold;
-      color: #7c83ff;
+      color: #3156d8;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 24px;
+    main {
+      min-height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+      text-align: center;
     }
 
     .hero {
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 30px 20px;
+      max-width: 750px;
     }
 
     .hero h1 {
-      font-size: clamp(42px, 7vw, 76px);
+      font-size: clamp(42px, 7vw, 72px);
       margin-bottom: 20px;
     }
 
     .hero h1 span {
-      color: #818cf8;
+      color: #3156d8;
     }
 
     .hero p {
-      color: #b8bfd3;
-      font-size: 18px;
-      max-width: 550px;
+      font-size: 19px;
       line-height: 1.7;
-      margin-bottom: 32px;
+      color: #64748b;
+      margin-bottom: 35px;
     }
 
-    .btn {
+    .get-started {
       display: inline-block;
-      padding: 15px 32px;
-      background: #6366f1;
+      padding: 16px 38px;
+      background: #3156d8;
       color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 17px;
-      font-weight: bold;
       text-decoration: none;
-      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(49, 86, 216, 0.25);
       transition: 0.2s;
     }
 
-    .btn:hover {
-      background: #818cf8;
-      transform: translateY(-2px);
+    .get-started:hover {
+      background: #2444b8;
+      transform: translateY(-3px);
     }
 
     footer {
       text-align: center;
-      padding: 25px;
-      color: #8991a8;
+      padding: 20px;
+      color: #94a3b8;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="logo">MY WEBSITE</div>
 
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-    </nav>
+  <header>
+    <div class="logo">BrainBox Learning</div>
   </header>
 
   <main>
-    <section class="hero" id="home">
-      <h1>Welcome to <span>My Website</span></h1>
+    <section class="hero">
+      <h1>Welcome to <span>BrainBox Learning</span></h1>
 
       <p>
-        Discover something new. Explore our website
-        and get started on your next adventure.
+        Learn something new, explore your interests,
+        and unlock your potential. Your learning
+        journey starts here!
       </p>
 
-      <a href="page2.html" class="btn">Get Started</a>
-    </section>
-
-    <section class="hero" id="about" style="min-height: 35vh;">
-      <h1 style="font-size: 36px;">About Us</h1>
-      <p>
-        This is your website. Customize it with your
-        own ideas, features, and design.
-      </p>
+      <a href="#" class="get-started">Get Started</a>
     </section>
   </main>
 
   <footer>
-    © 2026 My Website. All rights reserved.
+    © 2026 BrainBox Learning
   </footer>
+
 </body>
 </html>
