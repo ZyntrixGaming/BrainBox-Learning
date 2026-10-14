@@ -1,1 +1,149 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrainBox Learning - Choose Your Role</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      background-color: #050b1b;
+      background-image:
+        linear-gradient(#14234455 1px, transparent 1px),
+        linear-gradient(90deg, #14234455 1px, transparent 1px);
+      background-size: 35px 35px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 750px;
+      padding: 50px 35px;
+      background: rgba(7, 23, 52, 0.82);
+      border: 1px solid rgba(41, 168, 255, 0.35);
+      border-radius: 20px;
+      box-shadow: 0 0 35px rgba(0, 110, 255, 0.18);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      color: #65a0ff;
+      font-size: 48px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 0 0 25px rgba(65, 140, 255, 0.5);
+    }
+
+    h1 {
+      margin: 35px 0 12px;
+      font-size: 36px;
+    }
+
+    .description {
+      color: #c4d0e8;
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    .role-button {
+      display: block;
+      width: 100%;
+      max-width: 420px;
+      margin: 18px auto;
+      padding: 20px;
+      border: 1px solid rgba(100, 160, 255, 0.35);
+      border-radius: 12px;
+      font-size: 21px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      background: #15366e;
+      box-shadow: 0 0 18px rgba(52, 120, 255, 0.15);
+      transition: 0.2s;
+    }
+
+    .role-button:hover {
+      background: #2863bd;
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba(52, 120, 255, 0.35);
+    }
+
+    .student {
+      background: #2468dc;
+    }
+
+    .teacher {
+      background: #15366e;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 25px;
+      color: #9dbbff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .back:hover {
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 35px 20px;
+      }
+
+      .logo {
+        font-size: 34px;
+      }
+
+      h1 {
+        font-size: 29px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="logo">BrainBox Learning</div>
+
+    <h1>Are You a Student or Teacher?</h1>
+
+    <p class="description">
+      Choose your role to get started with your BrainBox Learning experience.
+    </p>
+
+    <button
+      class="role-button student"
+      onclick="window.location.href='page6.html'">
+      🎓 I am a Student
+    </button>
+
+    <button
+      class="role-button teacher"
+      onclick="window.location.href='page7.html'">
+      👩‍🏫 I am a Teacher
+    </button>
+
+    <a class="back" href="page3.html">← Back</a>
+
+  </div>
+</body>
+</html>
+```
