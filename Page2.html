@@ -1,1 +1,239 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sign In | BrainBox Learning</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      color: white;
+      background:
+        radial-gradient(
+          ellipse at 50% 40%,
+          rgba(0, 91, 255, 0.20),
+          transparent 55%
+        ),
+        linear-gradient(
+          135deg,
+          #020611,
+          #061633 50%,
+          #020817
+        );
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+      padding: 40px 32px;
+      text-align: center;
+      background: rgba(7, 23, 52, 0.82);
+      border: 1px solid rgba(41, 168, 255, 0.35);
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(0, 91, 255, 0.12);
+      backdrop-filter: blur(12px);
+    }
+
+    .logo {
+      font-size: 29px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #75c8ff,
+        #368bff
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .description {
+      color: #b8cbe8;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .field {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      color: #d7e8ff;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      background: #08152d;
+      color: white;
+      border: 1px solid #24436b;
+      border-radius: 9px;
+      outline: none;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    input::placeholder {
+      color: #778ba9;
+    }
+
+    input:focus {
+      border-color: #29a8ff;
+      box-shadow: 0 0 12px rgba(41, 168, 255, 0.2);
+    }
+
+    .button {
+      width: 100%;
+      display: block;
+      padding: 15px;
+      border-radius: 9px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.25s;
+    }
+
+    .continue {
+      margin-top: 8px;
+      color: white;
+      background: linear-gradient(135deg, #0878f9, #1743bd);
+      border: 1px solid #42baff;
+      box-shadow: 0 0 16px rgba(0, 119, 255, 0.2);
+    }
+
+    .continue:hover {
+      background: linear-gradient(135deg, #168cff, #2864e8);
+      box-shadow: 0 0 22px rgba(0, 153, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .skip {
+      margin-top: 14px;
+      color: #b8cbe8;
+      background: transparent;
+      border: 1px solid #24436b;
+    }
+
+    .skip:hover {
+      color: white;
+      border-color: #29a8ff;
+      background: rgba(41, 168, 255, 0.08);
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 24px;
+      color: #75c8ff;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .back:hover {
+      color: white;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 32px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <div class="logo">BrainBox Learning</div>
+
+    <h1>Welcome Back!</h1>
+
+    <p class="description">
+      Enter your email and password to continue
+      your learning journey, or skip this step.
+    </p>
+
+    <form id="loginForm">
+
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        >
+      </div>
+
+      <button type="submit" class="button continue">
+        Continue
+      </button>
+
+    </form>
+
+    <a href="page3.html" class="button skip">
+      Skip
+    </a>
+
+    <a href="index.html" class="back">
+      ← Back to Home
+    </a>
+
+  </main>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+
+    loginForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      if (loginForm.checkValidity()) {
+        window.location.href = "page3.html";
+      } else {
+        loginForm.reportValidity();
+      }
+    });
+  </script>
+
+</body>
+</html>
