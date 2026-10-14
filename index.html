@@ -15,17 +15,25 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
-      background: linear-gradient(
-        135deg,
-        #061a40,
-        #0353a4,
-        #4cc9f0
-      );
       color: white;
+      background:
+        radial-gradient(
+          ellipse at 50% 45%,
+          rgba(0, 91, 255, 0.22),
+          transparent 55%
+        ),
+        linear-gradient(
+          135deg,
+          #020611 0%,
+          #061633 50%,
+          #020817 100%
+        );
+      overflow-x: hidden;
     }
 
+    /* Main page */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -33,30 +41,133 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 30px;
+      padding: 30px 20px;
+      position: relative;
+      isolation: isolate;
     }
 
+    /* Futuristic digital grid */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(
+          rgba(36, 119, 255, 0.08) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(36, 119, 255, 0.08) 1px,
+          transparent 1px
+        );
+      background-size: 50px 50px;
+      mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 25%,
+        black 80%,
+        transparent
+      );
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Ambient blue glow */
+    .glow {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      background: #075bff;
+      filter: blur(140px);
+      opacity: 0.24;
+      border-radius: 50%;
+      z-index: -1;
+      animation: pulse 5s ease-in-out infinite alternate;
+    }
+
+    /* Main title */
     h1 {
-      font-size: clamp(42px, 8vw, 82px);
+      font-size: clamp(42px, 8vw, 84px);
       font-weight: 800;
       letter-spacing: -2px;
-      margin-bottom: 22px;
-      text-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+      margin-bottom: 25px;
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #75c8ff,
+        #368bff
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(
+        0 0 22px rgba(0, 119, 255, 0.3)
+      );
+      animation: fadeIn 1.2s ease;
     }
 
-    p {
-      font-size: clamp(17px, 2.5vw, 23px);
-      line-height: 1.7;
-      max-width: 650px;
-      color: #e0f2fe;
-    }
-
+    /* Glowing cyan divider */
     .line {
-      width: 90px;
-      height: 5px;
+      width: 100px;
+      height: 4px;
+      background: #29a8ff;
       border-radius: 10px;
-      background: #7df9ff;
+      box-shadow:
+        0 0 10px #168bff,
+        0 0 25px rgba(22, 139, 255, 0.7);
       margin-bottom: 28px;
+    }
+
+    /* Subtitle */
+    p {
+      max-width: 650px;
+      color: #c5d9f5;
+      font-size: clamp(17px, 2.5vw, 23px);
+      line-height: 1.8;
+      letter-spacing: 0.3px;
+      animation: fadeIn 1.8s ease;
+    }
+
+    /* Animations */
+    @keyframes pulse {
+      from {
+        transform: scale(0.9);
+        opacity: 0.16;
+      }
+
+      to {
+        transform: scale(1.15);
+        opacity: 0.3;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      h1 {
+        letter-spacing: -1px;
+      }
+
+      .hero::before {
+        background-size: 32px 32px;
+      }
+
+      .glow {
+        width: 220px;
+        height: 220px;
+      }
     }
   </style>
 </head>
@@ -64,6 +175,9 @@
 <body>
 
   <main class="hero">
+
+    <div class="glow"></div>
+
     <h1>BrainBox Learning</h1>
 
     <div class="line"></div>
@@ -72,6 +186,7 @@
       An inspiring journey for students to learn,
       explore, and discover.
     </p>
+
   </main>
 
 </body>
