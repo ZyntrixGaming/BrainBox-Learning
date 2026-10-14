@@ -18,7 +18,7 @@
       font-family: Arial, sans-serif;
       color: white;
       text-align: center;
-      background: #050b1b;
+      background-color: #050b1b;
       background-image:
         linear-gradient(#14234455 1px, transparent 1px),
         linear-gradient(90deg, #14234455 1px, transparent 1px);
@@ -138,11 +138,11 @@
   </div>
 
   <script>
-    document.getElementById("signupButton").addEventListener("click", function() {
-      const signedIn =
-        sessionStorage.getItem("brainboxSignedIn") === "true";
+    document.getElementById("signupButton").addEventListener("click", function () {
+      const email = sessionStorage.getItem("brainboxEmail");
+      const password = sessionStorage.getItem("brainboxPassword");
 
-      if (signedIn) {
+      if (email && password) {
         window.location.href = "page4.html";
       } else {
         alert("Please enter your email and password first.");
@@ -150,8 +150,9 @@
       }
     });
 
-    document.getElementById("skipButton").addEventListener("click", function() {
-      sessionStorage.removeItem("brainboxSignedIn");
+    document.getElementById("skipButton").addEventListener("click", function () {
+      sessionStorage.removeItem("brainboxEmail");
+      sessionStorage.removeItem("brainboxPassword");
       window.location.href = "page5.html";
     });
   </script>
