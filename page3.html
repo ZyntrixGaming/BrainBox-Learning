@@ -25,14 +25,17 @@
       background-size: 35px 35px;
     }
 
+    /* Old glass-style box design */
     .container {
+      width: 90%;
       max-width: 650px;
       margin: 30px auto;
-      padding: 35px;
-      background: #0b1530;
-      border: 1px solid #2864ff;
-      border-radius: 18px;
-      box-shadow: 0 0 30px #1765ff33;
+      padding: 40px 32px;
+      background: rgba(7, 23, 52, 0.82);
+      border: 1px solid rgba(41, 168, 255, 0.35);
+      border-radius: 20px;
+      box-shadow: 0 0 35px rgba(0, 110, 255, 0.18);
+      backdrop-filter: blur(12px);
     }
 
     .logo {
@@ -55,15 +58,16 @@
 
     .description {
       color: #c4d0e8;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     .features {
       margin: 30px 0;
       padding: 22px;
       text-align: left;
-      background: #101e3d;
-      border-radius: 12px;
+      background: rgba(16, 30, 61, 0.65);
+      border: 1px solid rgba(65, 119, 210, 0.2);
+      border-radius: 14px;
     }
 
     .features h2 {
@@ -76,32 +80,62 @@
       border-bottom: 1px solid #26385e;
     }
 
+    .features p:last-child {
+      border-bottom: none;
+    }
+
     button, .back {
       display: block;
       width: 100%;
       padding: 14px;
       margin-top: 14px;
       border: none;
-      border-radius: 8px;
+      border-radius: 9px;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       text-decoration: none;
+      transition: 0.2s;
     }
 
     .signup {
       background: #3478ff;
       color: white;
+      box-shadow: 0 0 18px rgba(52, 120, 255, 0.25);
+    }
+
+    .signup:hover {
+      background: #5590ff;
+      transform: translateY(-2px);
     }
 
     .skip {
-      background: #1a2949;
+      background: rgba(26, 41, 73, 0.85);
       color: white;
+      border: 1px solid rgba(100, 150, 230, 0.2);
+    }
+
+    .skip:hover {
+      background: #263b65;
     }
 
     .back {
       color: #9dbbff;
       background: transparent;
+    }
+
+    .back:hover {
+      color: white;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
     }
   </style>
 </head>
