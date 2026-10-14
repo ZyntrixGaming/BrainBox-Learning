@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>BrainBox Learning</title>
 
   <style>
@@ -15,102 +16,63 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: #f4f7ff;
-      color: #172554;
       min-height: 100vh;
-    }
-
-    header {
-      padding: 25px 8%;
-      background: white;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-      color: #3156d8;
-    }
-
-    main {
-      min-height: 80vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px 20px;
-      text-align: center;
+      background: linear-gradient(
+        135deg,
+        #061a40,
+        #0353a4,
+        #4cc9f0
+      );
+      color: white;
     }
 
     .hero {
-      max-width: 750px;
-    }
-
-    .hero h1 {
-      font-size: clamp(42px, 7vw, 72px);
-      margin-bottom: 20px;
-    }
-
-    .hero h1 span {
-      color: #3156d8;
-    }
-
-    .hero p {
-      font-size: 19px;
-      line-height: 1.7;
-      color: #64748b;
-      margin-bottom: 35px;
-    }
-
-    .get-started {
-      display: inline-block;
-      padding: 16px 38px;
-      background: #3156d8;
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(49, 86, 216, 0.25);
-      transition: 0.2s;
-    }
-
-    .get-started:hover {
-      background: #2444b8;
-      transform: translateY(-3px);
-    }
-
-    footer {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 20px;
-      color: #94a3b8;
-      font-size: 14px;
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 8vw, 82px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+      text-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    p {
+      font-size: clamp(17px, 2.5vw, 23px);
+      line-height: 1.7;
+      max-width: 650px;
+      color: #e0f2fe;
+    }
+
+    .line {
+      width: 90px;
+      height: 5px;
+      border-radius: 10px;
+      background: #7df9ff;
+      margin-bottom: 28px;
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">BrainBox Learning</div>
-  </header>
+  <main class="hero">
+    <h1>BrainBox Learning</h1>
 
-  <main>
-    <section class="hero">
-      <h1>Welcome to <span>BrainBox Learning</span></h1>
+    <div class="line"></div>
 
-      <p>
-        Learn something new, explore your interests,
-        and unlock your potential. Your learning
-        journey starts here!
-      </p>
-
-      <a href="#" class="get-started">Get Started</a>
-    </section>
+    <p>
+      An inspiring journey for students to learn,
+      explore, and discover.
+    </p>
   </main>
-
-  <footer>
-    © 2026 BrainBox Learning
-  </footer>
 
 </body>
 </html>
