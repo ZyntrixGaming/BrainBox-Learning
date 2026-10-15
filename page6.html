@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrainBox Learning - Student Dashboard</title>
+  <title>BrainBox Learning - Student</title>
 
   <style>
     * {
@@ -13,11 +13,12 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
       padding: 30px 15px;
+      min-height: 100vh;
       font-family: Arial, sans-serif;
       color: white;
-      background-color: #050b1b;
+      text-align: center;
+      background: #050b1b;
       background-image:
         linear-gradient(#14234455 1px, transparent 1px),
         linear-gradient(90deg, #14234455 1px, transparent 1px);
@@ -25,129 +26,83 @@
     }
 
     .container {
-      width: 95%;
-      max-width: 1100px;
-      margin: 20px auto;
-    }
-
-    .header {
-      padding: 35px 25px;
-      text-align: center;
-      background: rgba(7, 23, 52, 0.82);
-      border: 1px solid rgba(41, 168, 255, 0.35);
+      width: 90%;
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 40px 25px;
+      background: rgba(7, 23, 52, 0.95);
+      border: 1px solid #2864ff;
       border-radius: 20px;
-      box-shadow: 0 0 35px rgba(0, 110, 255, 0.18);
-      backdrop-filter: blur(12px);
+      box-shadow: 0 0 30px #1765ff33;
     }
 
     .logo {
       color: #65a0ff;
-      font-size: 48px;
+      font-size: 44px;
       font-weight: bold;
-      letter-spacing: 1px;
-      text-shadow: 0 0 25px rgba(65, 140, 255, 0.5);
-    }
-
-    .subtitle {
-      color: #c4d0e8;
-      font-size: 17px;
-      line-height: 1.6;
+      margin-bottom: 25px;
     }
 
     h1 {
-      margin-top: 30px;
-      font-size: 34px;
+      font-size: 32px;
     }
 
-    .section-title {
-      margin: 35px 0 20px;
-      font-size: 26px;
+    p {
+      color: #c4d0e8;
+      line-height: 1.7;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
+      gap: 18px;
+      margin-top: 30px;
     }
 
     .card {
-      padding: 28px;
-      background: rgba(7, 23, 52, 0.88);
-      border: 1px solid rgba(41, 168, 255, 0.3);
-      border-radius: 17px;
-      box-shadow: 0 0 22px rgba(0, 110, 255, 0.1);
+      padding: 25px 18px;
+      background: #101e3d;
+      border: 1px solid #263f70;
+      border-radius: 14px;
     }
 
     .icon {
-      font-size: 42px;
+      font-size: 40px;
     }
 
-    .card h3 {
+    h2 {
       font-size: 22px;
-      margin: 15px 0 10px;
-    }
-
-    .card p {
-      color: #c4d0e8;
-      line-height: 1.6;
-      min-height: 50px;
     }
 
     .button {
       display: block;
-      width: 100%;
-      margin-top: 20px;
-      padding: 14px;
-      border: none;
-      border-radius: 9px;
-      background: #3478ff;
+      margin-top: 18px;
+      padding: 13px;
       color: white;
-      font-size: 16px;
-      font-weight: bold;
-      text-align: center;
+      background: #3478ff;
+      border-radius: 8px;
       text-decoration: none;
-      cursor: pointer;
-      transition: 0.2s;
+      font-weight: bold;
     }
 
     .button:hover {
       background: #5590ff;
-      transform: translateY(-2px);
-    }
-
-    .secondary {
-      background: #15366e;
-    }
-
-    .footer {
-      margin-top: 35px;
-      text-align: center;
     }
 
     .back {
+      display: inline-block;
+      margin-top: 30px;
       color: #9dbbff;
       text-decoration: none;
     }
 
-    .back:hover {
-      color: white;
-    }
-
-    @media (max-width: 650px) {
+    @media (max-width: 600px) {
       .grid {
         grid-template-columns: 1fr;
       }
 
       .logo {
-        font-size: 34px;
-      }
-
-      h1 {
-        font-size: 28px;
-      }
-
-      .card p {
-        min-height: auto;
+        font-size: 32px;
       }
     }
   </style>
@@ -155,100 +110,56 @@
 
 <body>
   <div class="container">
+    <div class="logo">BrainBox Learning</div>
 
-    <header class="header">
-      <div class="logo">BrainBox Learning</div>
-
-      <h1>Welcome, Student! 🎓</h1>
-
-      <p class="subtitle">
-        Your learning journey starts here.
-        Explore new subjects, practice your skills, and discover something amazing.
-      </p>
-    </header>
-
-    <h2 class="section-title">📚 Your Learning Hub</h2>
+    <h1>Welcome, Student! 🎓</h1>
+    <p>Your learning journey starts here. Choose a subject to explore!</p>
 
     <div class="grid">
-
       <div class="card">
         <div class="icon">🔬</div>
-        <h3>Science</h3>
-        <p>
-          Explore nature, space, experiments, and the world around you.
-        </p>
-        <a class="button" href="#" onclick="alert('Science lessons are coming soon!'); return false;">
-          Explore Science
-        </a>
+        <h2>Science</h2>
+        <p>Explore nature, space, experiments, and the world around you.</p>
+        <a class="button" href="#" onclick="alert('Science lessons coming soon!'); return false;">Explore Science</a>
       </div>
 
       <div class="card">
         <div class="icon">➗</div>
-        <h3>Math</h3>
-        <p>
-          Practice math problems and build your problem-solving skills.
-        </p>
-        <a class="button" href="#" onclick="alert('Math lessons are coming soon!'); return false;">
-          Practice Math
-        </a>
+        <h2>Math</h2>
+        <p>Practice math problems and build your problem-solving skills.</p>
+        <a class="button" href="#" onclick="alert('Math lessons coming soon!'); return false;">Practice Math</a>
       </div>
 
       <div class="card">
         <div class="icon">📖</div>
-        <h3>Reading & Writing</h3>
-        <p>
-          Improve your reading, vocabulary, grammar, and writing skills.
-        </p>
-        <a class="button" href="#" onclick="alert('Reading and writing lessons are coming soon!'); return false;">
-          Start Reading
-        </a>
+        <h2>Reading & Writing</h2>
+        <p>Improve your reading, vocabulary, grammar, and writing.</p>
+        <a class="button" href="#" onclick="alert('Reading lessons coming soon!'); return false;">Start Reading</a>
       </div>
 
       <div class="card">
         <div class="icon">🤖</div>
-        <h3>AI Learning Assistant</h3>
-        <p>
-          Get help understanding difficult topics and exploring new ideas.
-        </p>
-        <a class="button" href="#" onclick="alert('The AI Learning Assistant is coming soon!'); return false;">
-          Meet Your AI
-        </a>
+        <h2>AI Learning Assistant</h2>
+        <p>Get help understanding topics and exploring new ideas.</p>
+        <a class="button" href="#" onclick="alert('AI Assistant coming soon!'); return false;">Meet Your AI</a>
       </div>
-
-    </div>
-
-    <h2 class="section-title">✨ Keep Exploring</h2>
-
-    <div class="grid">
 
       <div class="card">
         <div class="icon">🎯</div>
-        <h3>Learning Goals</h3>
-        <p>
-          Choose a topic to study and set a goal for your next learning session.
-        </p>
-        <a class="button secondary" href="#" onclick="alert('Learning goals are coming soon!'); return false;">
-          Set a Goal
-        </a>
+        <h2>Learning Goals</h2>
+        <p>Choose a topic and set a goal for your next study session.</p>
+        <a class="button" href="#" onclick="alert('Learning goals coming soon!'); return false;">Set a Goal</a>
       </div>
 
       <div class="card">
         <div class="icon">⭐</div>
-        <h3>BrainBox Plus</h3>
-        <p>
-          Discover premium lessons, AI tutoring, and extra learning tools.
-        </p>
-        <a class="button secondary" href="page3.html">
-          Explore Plus
-        </a>
+        <h2>BrainBox Plus</h2>
+        <p>Discover premium lessons and extra learning tools.</p>
+        <a class="button" href="page3.html">Explore Plus</a>
       </div>
-
     </div>
 
-    <div class="footer">
-      <a class="back" href="page5.html">← Back to Role Selection</a>
-    </div>
-
+    <a class="back" href="page5.html">← Back to Role Selection</a>
   </div>
 </body>
 </html>
