@@ -68,6 +68,7 @@
     }
 
     input {
+      display: block;
       width: 100%;
       padding: 14px;
       border: 1px solid #36558c;
@@ -101,13 +102,7 @@
       opacity: 0.9;
     }
 
-    .skip {
-      display: inline-block;
-      margin-top: 20px;
-      color: #9dbbff;
-      text-decoration: none;
-    }
-
+    .skip,
     .back {
       display: block;
       margin-top: 22px;
@@ -134,7 +129,6 @@
 </head>
 
 <body>
-
   <main class="container">
     <div class="logo">BrainBox Learning</div>
 
@@ -162,7 +156,6 @@
           name="password"
           placeholder="Enter your password"
           autocomplete="new-password"
-          minlength="6"
           required
         >
       </div>
@@ -177,16 +170,18 @@
   </main>
 
   <script>
-    const signupForm = document.getElementById("signupForm");
+    const form = document.getElementById("signupForm");
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
     const message = document.getElementById("message");
 
-    signupForm.addEventListener("submit", function(event) {
+    form.addEventListener("submit", function(event) {
       event.preventDefault();
 
       const email = emailInput.value.trim();
       const password = passwordInput.value;
+
+      message.textContent = "";
 
       if (!email || !password) {
         message.textContent = "Please enter your email and password.";
@@ -198,18 +193,11 @@
         return;
       }
 
-      if (password.length < 6) {
-        message.textContent = "Your password must be at least 6 characters.";
-        return;
-      }
-
-      // Demo only: stores information for the next page in this tab.
-      // Do not use browser storage for real passwords or authentication.
+      // DEMO ONLY: Match the keys checked by page3.html.
       sessionStorage.setItem("brainboxEmail", email);
+      sessionStorage.setItem("brainboxPassword", password);
 
-      // Remove any old demo password value.
-      sessionStorage.removeItem("brainboxPassword");
-
+      // Open Page 3 after saving the values.
       window.location.href = "page3.html";
     });
 
@@ -218,7 +206,6 @@
       sessionStorage.removeItem("brainboxPassword");
     });
   </script>
-
 </body>
 </html>
 ```
