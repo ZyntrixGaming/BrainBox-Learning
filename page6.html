@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>BrainBox Learning - Student Dashboard</title>
 
   <style>
@@ -13,11 +14,10 @@
 
     body {
       margin: 0;
-      padding: 30px 15px;
+      padding: 25px 15px;
       min-height: 100vh;
       font-family: Arial, sans-serif;
       color: white;
-      text-align: center;
       background: #050b1b;
       background-image:
         linear-gradient(#14234455 1px, transparent 1px),
@@ -25,11 +25,91 @@
       background-size: 35px 35px;
     }
 
+    /* TOP LEFT PROFILE */
+    .profile-area {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 10;
+    }
+
+    .profile-button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      background: #101e3d;
+      color: white;
+      border: 1px solid #3478ff;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3478ff, #7155ff);
+      font-size: 20px;
+    }
+
+    .profile-name {
+      font-weight: bold;
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .profile-panel {
+      display: none;
+      width: 270px;
+      margin-top: 10px;
+      padding: 20px;
+      background: #101e3d;
+      border: 1px solid #3478ff;
+      border-radius: 14px;
+      box-shadow: 0 0 25px #1765ff44;
+    }
+
+    .profile-panel.open {
+      display: block;
+    }
+
+    .profile-panel h3 {
+      margin-top: 0;
+      color: #65a0ff;
+    }
+
+    .profile-email {
+      overflow-wrap: anywhere;
+      color: #c4d0e8;
+      font-size: 14px;
+    }
+
+    .signout {
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #3478ff;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* DASHBOARD */
     .container {
       width: 90%;
       max-width: 1000px;
-      margin: 30px auto;
-      padding: 40px 25px;
+      margin: 70px auto 30px;
+      padding: 35px 25px;
+      text-align: center;
       background: rgba(7, 23, 52, 0.95);
       border: 1px solid #2864ff;
       border-radius: 20px;
@@ -38,13 +118,13 @@
 
     .logo {
       color: #65a0ff;
-      font-size: 44px;
+      font-size: 40px;
       font-weight: bold;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 32px;
+      font-size: 30px;
     }
 
     p {
@@ -91,8 +171,8 @@
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 15px;
       cursor: pointer;
+      font-size: 15px;
     }
 
     .button:hover {
@@ -103,6 +183,12 @@
       background: linear-gradient(90deg, #7155ff, #3478ff);
     }
 
+    .lock {
+      color: #ffd76a;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
     .back {
       display: inline-block;
       margin-top: 30px;
@@ -110,23 +196,28 @@
       text-decoration: none;
     }
 
-    .lock {
-      color: #ffd76a;
-      font-size: 14px;
-      margin-top: 8px;
-    }
-
     @media (max-width: 600px) {
       .grid {
         grid-template-columns: 1fr;
       }
 
-      .logo {
-        font-size: 32px;
+      .container {
+        width: 100%;
+        margin-top: 80px;
+        padding: 25px 16px;
       }
 
-      h1 {
-        font-size: 26px;
+      .logo {
+        font-size: 30px;
+      }
+
+      .profile-area {
+        top: 10px;
+        left: 10px;
+      }
+
+      .profile-name {
+        max-width: 145px;
       }
     }
   </style>
@@ -134,7 +225,33 @@
 
 <body>
 
-  <div class="container">
+  <!-- PROFILE IN TOP LEFT CORNER -->
+  <div class="profile-area">
+    <button
+      class="profile-button"
+      type="button"
+      onclick="toggleProfile()"
+      aria-expanded="false"
+      id="profileButton"
+    >
+      <span class="avatar">👤</span>
+      <span class="profile-name" id="profileName">My Profile</span>
+      <span>⌄</span>
+    </button>
+
+    <div class="profile-panel" id="profilePanel">
+      <h3>My Student Profile</h3>
+      <p><strong>Email address</strong></p>
+      <p class="profile-email" id="profileEmail">No email found</p>
+
+      <button class="signout" onclick="signOut()">
+        Sign Out
+      </button>
+    </div>
+  </div>
+
+  <!-- STUDENT DASHBOARD -->
+  <main class="container">
 
     <div class="logo">BrainBox Learning</div>
 
@@ -143,7 +260,6 @@
 
     <div class="grid">
 
-      <!-- SCIENCE -->
       <div class="card">
         <div class="icon">🔬</div>
         <h2>Science</h2>
@@ -153,7 +269,6 @@
         </button>
       </div>
 
-      <!-- MATH -->
       <div class="card">
         <div class="icon">➗</div>
         <h2>Math</h2>
@@ -163,7 +278,6 @@
         </button>
       </div>
 
-      <!-- READING AND WRITING -->
       <div class="card">
         <div class="icon">📖</div>
         <h2>Reading & Writing</h2>
@@ -173,7 +287,6 @@
         </button>
       </div>
 
-      <!-- AI LEARNING ASSISTANT: PLUS REQUIRED -->
       <div class="card">
         <div class="icon">🤖</div>
         <h2>AI Learning Assistant</h2>
@@ -184,7 +297,6 @@
         </button>
       </div>
 
-      <!-- LEARNING GOALS -->
       <div class="card">
         <div class="icon">🎯</div>
         <h2>Learning Goals</h2>
@@ -194,7 +306,6 @@
         </button>
       </div>
 
-      <!-- BRAINBOX PLUS: MEMBERSHIP REQUIRED -->
       <div class="card">
         <div class="icon">⭐</div>
         <h2>BrainBox Plus</h2>
@@ -209,9 +320,38 @@
 
     <a class="back" href="page5.html">← Back to Role Selection</a>
 
-  </div>
+  </main>
 
   <script>
+    // Read the email saved by page2.html.
+    const studentEmail = sessionStorage.getItem("brainboxEmail");
+
+    const profileName = document.getElementById("profileName");
+    const profileEmail = document.getElementById("profileEmail");
+
+    if (studentEmail) {
+      profileName.textContent = studentEmail;
+      profileEmail.textContent = studentEmail;
+    } else {
+      profileName.textContent = "Guest Student";
+      profileEmail.textContent = "No email provided";
+    }
+
+    function toggleProfile() {
+      const panel = document.getElementById("profilePanel");
+      const button = document.getElementById("profileButton");
+      const isOpen = panel.classList.toggle("open");
+
+      button.setAttribute("aria-expanded", String(isOpen));
+    }
+
+    function signOut() {
+      sessionStorage.removeItem("brainboxEmail");
+      sessionStorage.removeItem("brainboxPassword");
+
+      window.location.href = "index.html";
+    }
+
     function requirePlus(feature) {
       const hasPlus =
         localStorage.getItem("brainboxPlusActive") === "true";
