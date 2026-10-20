@@ -321,6 +321,19 @@
         </button>
       </div>
 
+      <!-- GEOGRAPHY: BELOW READING & WRITING IN THE GRID -->
+      <div class="card">
+        <div class="icon">🌎</div>
+        <h2>Geography</h2>
+        <p>
+          Explore countries, continents, oceans, maps,
+          landmarks, and amazing places around the world.
+        </p>
+        <button class="button" onclick="comingSoon('Geography lessons')">
+          Explore Geography
+        </button>
+      </div>
+
       <!-- AI LEARNING ASSISTANT -->
       <div class="card">
         <div class="icon">🤖</div>
@@ -366,7 +379,7 @@
         </button>
       </div>
 
-      <!-- AVATAR: SEPARATE BOX -->
+      <!-- AVATAR -->
       <div class="card">
         <div class="icon">🧑‍🎨</div>
         <h2>Avatar</h2>
@@ -431,7 +444,7 @@
       }
     }
 
-    // INTERESTS AND CAREERS IN ONE FEATURE
+    // INTERESTS AND CAREERS
     function openInterestsCareers() {
       const savedInterests =
         localStorage.getItem("brainboxInterests") || "";
@@ -474,7 +487,8 @@
         "🧑‍🎨", "🦊", "🐼", "🐱", "🦄"
       ];
 
-      const savedAvatar = localStorage.getItem("brainboxAvatar") || "👤";
+      const savedAvatar =
+        localStorage.getItem("brainboxAvatar") || "👤";
 
       const chosen = prompt(
         "Choose an emoji for your avatar by copying one below:\n\n" +
@@ -492,7 +506,7 @@
       alert("Your avatar has been saved!");
     }
 
-    // PLACEHOLDER LESSONS
+    // LESSON PLACEHOLDERS
     function comingSoon(feature) {
       alert(feature + " are coming soon to BrainBox Learning!");
     }
