@@ -24,7 +24,7 @@
       background-size: 35px 35px;
     }
 
-    /* BIG SQUARE PROFILE */
+    /* SQUARE PROFILE BUTTON */
     .profile-area {
       position: relative;
       z-index: 100;
@@ -52,7 +52,6 @@
     }
 
     .profile-button:hover {
-      background: linear-gradient(135deg, #2457a8, #45308e);
       box-shadow: 0 0 32px #3478ff;
     }
 
@@ -66,11 +65,7 @@
       border: 3px solid white;
       border-radius: 50%;
       font-size: 48px;
-    }
-
-    .profile-name {
-      font-size: 20px;
-      letter-spacing: 1px;
+      flex-shrink: 0;
     }
 
     .profile-panel {
@@ -92,7 +87,6 @@
     }
 
     .profile-panel h3 {
-      margin-top: 0;
       color: #65a0ff;
     }
 
@@ -118,7 +112,7 @@
     /* DASHBOARD */
     .container {
       width: 100%;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 35px 25px;
       text-align: center;
@@ -146,20 +140,30 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
       margin-top: 30px;
     }
 
     .card {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
       padding: 25px 18px;
       background: #101e3d;
       border: 1px solid #263f70;
       border-radius: 14px;
+      min-width: 0;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #65a0ff;
     }
 
     .icon {
-      font-size: 40px;
+      font-size: 44px;
     }
 
     h2 {
@@ -169,7 +173,7 @@
     .button {
       display: block;
       width: 100%;
-      margin-top: 18px;
+      margin-top: auto;
       padding: 13px;
       color: white;
       background: #3478ff;
@@ -179,6 +183,7 @@
       font-weight: bold;
       cursor: pointer;
       font-size: 15px;
+      line-height: 1.4;
     }
 
     .button:hover,
@@ -192,6 +197,7 @@
 
     .lock {
       margin-top: 8px;
+      margin-bottom: 15px;
       color: #ffd76a;
       font-size: 14px;
     }
@@ -203,28 +209,35 @@
       text-decoration: none;
     }
 
-    @media (max-width: 600px) {
+    .back:hover {
+      color: white;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
       body {
         padding: 12px;
-      }
-
-      .profile-button {
-        width: 150px;
-        height: 150px;
       }
 
       .profile-area {
         width: 150px;
       }
 
+      .profile-button {
+        width: 150px;
+        height: 150px;
+        font-size: 17px;
+      }
+
       .avatar {
         width: 68px;
         height: 68px;
         font-size: 38px;
-      }
-
-      .profile-name {
-        font-size: 17px;
       }
 
       .grid {
@@ -244,11 +257,17 @@
 
 <body>
 
-  <!-- SQUARE PROFILE BUTTON -->
+  <!-- SQUARE PROFILE -->
   <div class="profile-area">
-    <button type="button" class="profile-button" id="profileButton">
-      <span class="avatar">👤</span>
-      <span class="profile-name">MY PROFILE</span>
+    <button
+      type="button"
+      class="profile-button"
+      id="profileButton"
+      aria-expanded="false"
+      aria-controls="profilePanel"
+    >
+      <span class="avatar" id="profileAvatar">👤</span>
+      <span>MY PROFILE</span>
     </button>
 
     <div class="profile-panel" id="profilePanel">
@@ -261,86 +280,140 @@
     </div>
   </div>
 
+  <!-- MAIN DASHBOARD -->
   <main class="container">
+
     <div class="logo">BrainBox Learning</div>
+
     <h1>Welcome, Student! 🎓</h1>
-    <p>Your learning journey starts here. Choose a subject to explore!</p>
+
+    <p>Your learning journey starts here. Choose a box to explore!</p>
 
     <div class="grid">
+
+      <!-- SCIENCE -->
       <div class="card">
         <div class="icon">🔬</div>
         <h2>Science</h2>
         <p>Explore nature, space, experiments, and the world around you.</p>
-        <button class="button" onclick="comingSoon('Science lessons')">Explore Science</button>
+        <button class="button" onclick="comingSoon('Science lessons')">
+          Explore Science
+        </button>
       </div>
 
+      <!-- MATH -->
       <div class="card">
         <div class="icon">➗</div>
         <h2>Math</h2>
         <p>Practice math problems and build your problem-solving skills.</p>
-        <button class="button" onclick="comingSoon('Math lessons')">Practice Math</button>
+        <button class="button" onclick="comingSoon('Math lessons')">
+          Practice Math
+        </button>
       </div>
 
+      <!-- READING AND WRITING -->
       <div class="card">
         <div class="icon">📖</div>
         <h2>Reading &amp; Writing</h2>
         <p>Improve your reading, vocabulary, grammar, and writing.</p>
-        <button class="button" onclick="comingSoon('Reading and Writing lessons')">Start Reading</button>
+        <button class="button" onclick="comingSoon('Reading and Writing lessons')">
+          Start Reading
+        </button>
       </div>
 
+      <!-- AI LEARNING ASSISTANT -->
       <div class="card">
         <div class="icon">🤖</div>
         <h2>AI Learning Assistant</h2>
         <p>Get help understanding topics and exploring new ideas.</p>
         <div class="lock">🔒 BrainBox Plus required</div>
-        <button class="button plus-button" onclick="requirePlus('ai')">Unlock AI Tutor</button>
+        <button class="button plus-button" onclick="requirePlus('ai')">
+          Unlock AI Tutor
+        </button>
       </div>
 
+      <!-- LEARNING GOALS -->
       <div class="card">
         <div class="icon">🎯</div>
         <h2>Learning Goals</h2>
         <p>Choose a topic and set a goal for your next study session.</p>
-        <button class="button" onclick="comingSoon('Learning Goals')">Set a Goal</button>
+        <button class="button" onclick="comingSoon('Learning Goals')">
+          Set a Goal
+        </button>
       </div>
 
+      <!-- BRAINBOX PLUS -->
       <div class="card">
         <div class="icon">⭐</div>
         <h2>BrainBox Plus</h2>
         <p>Unlock premium lessons, AI tutoring, and extra learning tools.</p>
         <div class="lock">🔒 BrainBox Plus required</div>
-        <button class="button plus-button" onclick="requirePlus('plus')">Unlock BrainBox Plus</button>
+        <button class="button plus-button" onclick="requirePlus('plus')">
+          Unlock BrainBox Plus
+        </button>
       </div>
+
+      <!-- INTERESTS AND CAREERS: ONE BOX -->
+      <div class="card">
+        <div class="icon">🌟</div>
+        <h2>Interests &amp; Careers</h2>
+        <p>
+          Discover your interests, explore exciting careers,
+          and find jobs that match the things you love.
+        </p>
+        <button class="button" onclick="openInterestsCareers()">
+          Explore Interests &amp; Careers
+        </button>
+      </div>
+
+      <!-- AVATAR: SEPARATE BOX -->
+      <div class="card">
+        <div class="icon">🧑‍🎨</div>
+        <h2>Avatar</h2>
+        <p>
+          Choose an avatar to represent you on your
+          BrainBox Learning dashboard.
+        </p>
+        <button class="button" onclick="openAvatar()">
+          Customize Avatar
+        </button>
+      </div>
+
     </div>
 
     <a class="back" href="page5.html">← Back to Role Selection</a>
+
   </main>
 
   <script>
-    // Read the email saved on Page 2
+    // PROFILE EMAIL
     const savedEmail = sessionStorage.getItem("brainboxEmail");
     const profileEmailElement = document.getElementById("profileEmail");
-    const profileButton = document.getElementById("profileButton");
-    const profilePanel = document.getElementById("profilePanel");
 
-    if (savedEmail && savedEmail.trim() !== "") {
+    if (savedEmail && savedEmail.trim()) {
       profileEmailElement.textContent = savedEmail;
     } else {
       profileEmailElement.textContent =
-        "No email found. Please go back to Page 2 and enter your email.";
+        "No email found. Please sign in again.";
     }
 
-    // Open and close the profile
+    // OPEN AND CLOSE PROFILE
+    const profileButton = document.getElementById("profileButton");
+    const profilePanel = document.getElementById("profilePanel");
+
     profileButton.addEventListener("click", function () {
-      profilePanel.classList.toggle("open");
+      const isOpen = profilePanel.classList.toggle("open");
+      profileButton.setAttribute("aria-expanded", String(isOpen));
     });
 
-    // Sign out
+    // SIGN OUT
     document.getElementById("signoutButton").addEventListener("click", function () {
       sessionStorage.removeItem("brainboxEmail");
       sessionStorage.removeItem("brainboxPassword");
       window.location.href = "index.html";
     });
 
+    // BRAINBOX PLUS DEMO ACCESS
     function requirePlus(feature) {
       const hasPlus =
         localStorage.getItem("brainboxPlusActive") === "true";
@@ -358,8 +431,77 @@
       }
     }
 
+    // INTERESTS AND CAREERS IN ONE FEATURE
+    function openInterestsCareers() {
+      const savedInterests =
+        localStorage.getItem("brainboxInterests") || "";
+
+      const interests = prompt(
+        "What are your interests? Examples: science, art, sports, technology, music, or nature.",
+        savedInterests
+      );
+
+      if (interests === null) return;
+
+      localStorage.setItem("brainboxInterests", interests.trim());
+
+      const savedCareer =
+        localStorage.getItem("brainboxCareer") || "";
+
+      const career = prompt(
+        "What career would you like to explore? Examples: scientist, engineer, doctor, teacher, or game developer.",
+        savedCareer
+      );
+
+      if (career === null) {
+        alert("Your interests have been saved!");
+        return;
+      }
+
+      localStorage.setItem("brainboxCareer", career.trim());
+
+      alert(
+        "Your choices have been saved!\n\n" +
+        "Interests: " + (interests.trim() || "Not entered") +
+        "\nCareer: " + (career.trim() || "Not entered")
+      );
+    }
+
+    // AVATAR CUSTOMIZATION
+    function openAvatar() {
+      const choices = [
+        "😀", "😎", "🤓", "😊", "🧑‍🚀",
+        "🧑‍🎨", "🦊", "🐼", "🐱", "🦄"
+      ];
+
+      const savedAvatar = localStorage.getItem("brainboxAvatar") || "👤";
+
+      const chosen = prompt(
+        "Choose an emoji for your avatar by copying one below:\n\n" +
+        choices.join(" "),
+        savedAvatar
+      );
+
+      if (chosen === null || !chosen.trim()) return;
+
+      localStorage.setItem("brainboxAvatar", chosen.trim());
+
+      document.getElementById("profileAvatar").textContent =
+        chosen.trim();
+
+      alert("Your avatar has been saved!");
+    }
+
+    // PLACEHOLDER LESSONS
     function comingSoon(feature) {
       alert(feature + " are coming soon to BrainBox Learning!");
+    }
+
+    // RESTORE SAVED AVATAR
+    const savedAvatar = localStorage.getItem("brainboxAvatar");
+
+    if (savedAvatar) {
+      document.getElementById("profileAvatar").textContent = savedAvatar;
     }
   </script>
 
