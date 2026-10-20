@@ -24,6 +24,7 @@
       background-size: 35px 35px;
     }
 
+    /* PROFILE BUTTON */
     .profile-area {
       position: relative;
       z-index: 100;
@@ -108,6 +109,7 @@
       cursor: pointer;
     }
 
+    /* MAIN DASHBOARD */
     .container {
       width: 100%;
       max-width: 1100px;
@@ -136,16 +138,27 @@
       line-height: 1.7;
     }
 
+    /* DASHBOARD GRID */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       grid-template-areas:
         "science math reading"
-        "ai goals social"
+        "social ai goals"
         "plus interests avatar";
       gap: 18px;
       margin-top: 30px;
     }
+
+    .science-card { grid-area: science; }
+    .math-card { grid-area: math; }
+    .reading-card { grid-area: reading; }
+    .social-card { grid-area: social; }
+    .ai-card { grid-area: ai; }
+    .goals-card { grid-area: goals; }
+    .plus-card { grid-area: plus; }
+    .interests-card { grid-area: interests; }
+    .avatar-card { grid-area: avatar; }
 
     .card {
       display: flex;
@@ -163,16 +176,6 @@
       transform: translateY(-4px);
       border-color: #65a0ff;
     }
-
-    .science-card { grid-area: science; }
-    .math-card { grid-area: math; }
-    .reading-card { grid-area: reading; }
-    .ai-card { grid-area: ai; }
-    .goals-card { grid-area: goals; }
-    .social-card { grid-area: social; }
-    .plus-card { grid-area: plus; }
-    .interests-card { grid-area: interests; }
-    .avatar-card { grid-area: avatar; }
 
     .icon {
       font-size: 44px;
@@ -225,18 +228,20 @@
       color: white;
     }
 
+    /* TABLETS */
     @media (max-width: 800px) {
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-template-areas:
           "science math"
-          "reading social"
+          "social reading"
           "ai goals"
           "plus interests"
           "avatar avatar";
       }
     }
 
+    /* PHONES */
     @media (max-width: 520px) {
       body {
         padding: 12px;
@@ -262,9 +267,9 @@
         grid-template-columns: 1fr;
         grid-template-areas:
           "science"
+          "social"
           "math"
           "reading"
-          "social"
           "ai"
           "goals"
           "plus"
@@ -285,7 +290,7 @@
 
 <body>
 
-  <!-- PROFILE -->
+  <!-- SQUARE PROFILE BUTTON -->
   <div class="profile-area">
     <button
       type="button"
@@ -308,7 +313,7 @@
     </div>
   </div>
 
-  <!-- DASHBOARD -->
+  <!-- DASHBOARD CONTENT -->
   <main class="container">
 
     <div class="logo">BrainBox Learning</div>
@@ -347,7 +352,7 @@
         </button>
       </div>
 
-      <!-- SOCIAL STUDIES -->
+      <!-- SOCIAL STUDIES: DIRECTLY BELOW SCIENCE -->
       <div class="card social-card">
         <div class="icon">🏛️</div>
         <h2>Social Studies</h2>
