@@ -24,7 +24,6 @@
       background-size: 35px 35px;
     }
 
-    /* SQUARE PROFILE BUTTON */
     .profile-area {
       position: relative;
       z-index: 100;
@@ -109,7 +108,6 @@
       cursor: pointer;
     }
 
-    /* DASHBOARD */
     .container {
       width: 100%;
       max-width: 1100px;
@@ -141,6 +139,10 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-areas:
+        "science math reading"
+        "ai goals social"
+        "plus interests avatar";
       gap: 18px;
       margin-top: 30px;
     }
@@ -161,6 +163,16 @@
       transform: translateY(-4px);
       border-color: #65a0ff;
     }
+
+    .science-card { grid-area: science; }
+    .math-card { grid-area: math; }
+    .reading-card { grid-area: reading; }
+    .ai-card { grid-area: ai; }
+    .goals-card { grid-area: goals; }
+    .social-card { grid-area: social; }
+    .plus-card { grid-area: plus; }
+    .interests-card { grid-area: interests; }
+    .avatar-card { grid-area: avatar; }
 
     .icon {
       font-size: 44px;
@@ -216,6 +228,12 @@
     @media (max-width: 800px) {
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+          "science math"
+          "reading social"
+          "ai goals"
+          "plus interests"
+          "avatar avatar";
       }
     }
 
@@ -242,6 +260,16 @@
 
       .grid {
         grid-template-columns: 1fr;
+        grid-template-areas:
+          "science"
+          "math"
+          "reading"
+          "social"
+          "ai"
+          "goals"
+          "plus"
+          "interests"
+          "avatar";
       }
 
       .container {
@@ -257,7 +285,7 @@
 
 <body>
 
-  <!-- SQUARE PROFILE -->
+  <!-- PROFILE -->
   <div class="profile-area">
     <button
       type="button"
@@ -280,19 +308,17 @@
     </div>
   </div>
 
-  <!-- MAIN DASHBOARD -->
+  <!-- DASHBOARD -->
   <main class="container">
 
     <div class="logo">BrainBox Learning</div>
-
     <h1>Welcome, Student! 🎓</h1>
-
     <p>Your learning journey starts here. Choose a box to explore!</p>
 
     <div class="grid">
 
       <!-- SCIENCE -->
-      <div class="card">
+      <div class="card science-card">
         <div class="icon">🔬</div>
         <h2>Science</h2>
         <p>Explore nature, space, experiments, and the world around you.</p>
@@ -302,7 +328,7 @@
       </div>
 
       <!-- MATH -->
-      <div class="card">
+      <div class="card math-card">
         <div class="icon">➗</div>
         <h2>Math</h2>
         <p>Practice math problems and build your problem-solving skills.</p>
@@ -312,7 +338,7 @@
       </div>
 
       <!-- READING AND WRITING -->
-      <div class="card">
+      <div class="card reading-card">
         <div class="icon">📖</div>
         <h2>Reading &amp; Writing</h2>
         <p>Improve your reading, vocabulary, grammar, and writing.</p>
@@ -321,21 +347,21 @@
         </button>
       </div>
 
-      <!-- GEOGRAPHY: BELOW READING & WRITING IN THE GRID -->
-      <div class="card">
-        <div class="icon">🌎</div>
-        <h2>Geography</h2>
+      <!-- SOCIAL STUDIES -->
+      <div class="card social-card">
+        <div class="icon">🏛️</div>
+        <h2>Social Studies</h2>
         <p>
-          Explore countries, continents, oceans, maps,
-          landmarks, and amazing places around the world.
+          Explore history, cultures, communities, government,
+          and how people shape the world.
         </p>
-        <button class="button" onclick="comingSoon('Geography lessons')">
-          Explore Geography
+        <button class="button" onclick="comingSoon('Social Studies lessons')">
+          Explore Social Studies
         </button>
       </div>
 
       <!-- AI LEARNING ASSISTANT -->
-      <div class="card">
+      <div class="card ai-card">
         <div class="icon">🤖</div>
         <h2>AI Learning Assistant</h2>
         <p>Get help understanding topics and exploring new ideas.</p>
@@ -346,7 +372,7 @@
       </div>
 
       <!-- LEARNING GOALS -->
-      <div class="card">
+      <div class="card goals-card">
         <div class="icon">🎯</div>
         <h2>Learning Goals</h2>
         <p>Choose a topic and set a goal for your next study session.</p>
@@ -356,7 +382,7 @@
       </div>
 
       <!-- BRAINBOX PLUS -->
-      <div class="card">
+      <div class="card plus-card">
         <div class="icon">⭐</div>
         <h2>BrainBox Plus</h2>
         <p>Unlock premium lessons, AI tutoring, and extra learning tools.</p>
@@ -366,8 +392,8 @@
         </button>
       </div>
 
-      <!-- INTERESTS AND CAREERS: ONE BOX -->
-      <div class="card">
+      <!-- INTERESTS AND CAREERS -->
+      <div class="card interests-card">
         <div class="icon">🌟</div>
         <h2>Interests &amp; Careers</h2>
         <p>
@@ -380,7 +406,7 @@
       </div>
 
       <!-- AVATAR -->
-      <div class="card">
+      <div class="card avatar-card">
         <div class="icon">🧑‍🎨</div>
         <h2>Avatar</h2>
         <p>
