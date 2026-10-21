@@ -290,7 +290,7 @@
 
 <body>
 
-  <!-- SQUARE PROFILE BUTTON -->
+  <!-- PROFILE -->
   <div class="profile-area">
     <button
       type="button"
@@ -313,7 +313,7 @@
     </div>
   </div>
 
-  <!-- DASHBOARD CONTENT -->
+  <!-- DASHBOARD -->
   <main class="container">
 
     <div class="logo">BrainBox Learning</div>
@@ -430,14 +430,14 @@
   </main>
 
   <script>
-    // SHOW SAVED EMAIL, OR NOTHING IF THERE IS NO EMAIL
+    // DISPLAY SAVED EMAIL OR "NO EMAIL FOUND" WITHOUT A PERIOD
     const savedEmail = sessionStorage.getItem("brainboxEmail");
     const profileEmailElement = document.getElementById("profileEmail");
 
     if (savedEmail && savedEmail.trim()) {
       profileEmailElement.textContent = savedEmail;
     } else {
-      profileEmailElement.textContent = "";
+      profileEmailElement.textContent = "No email found";
     }
 
     // OPEN AND CLOSE PROFILE
