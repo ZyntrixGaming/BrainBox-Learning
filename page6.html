@@ -91,7 +91,7 @@
 
     .profile-panel {
       display: none;
-      background: white;
+      background: #ffffff;
       border: 1px solid #dce6f3;
       border-radius: 16px;
       padding: 20px;
@@ -113,6 +113,21 @@
     .profile-email {
       overflow-wrap: anywhere;
       color: #53647b;
+    }
+
+    .signout-button {
+      border: none;
+      border-radius: 9px;
+      padding: 10px 15px;
+      background: #eaf0f9;
+      color: #315db5;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .signout-button:hover {
+      background: #dce7f8;
     }
 
     /* Welcome banner */
@@ -213,6 +228,7 @@
     .interests-card { grid-area: interests; }
     .avatar-card { grid-area: avatar; }
 
+    /* Card icons */
     .card-icon {
       width: 58px;
       height: 58px;
@@ -249,6 +265,7 @@
       flex-grow: 1;
     }
 
+    /* All standard buttons are blue */
     .card-button {
       border: none;
       background: #416fc4;
@@ -259,21 +276,25 @@
       font-weight: bold;
       cursor: pointer;
       font-family: inherit;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.2s;
     }
 
     .card-button:hover {
       background: #2d55a1;
+      transform: translateY(-2px);
     }
 
-    .science-card .card-button { background: #3a9468; }
-    .science-card .card-button:hover { background: #28774f; }
+    /* BrainBox Plus-required buttons are gold */
+    .plus-card .card-button,
+    .ai-card .card-button {
+      background: #c28b20;
+      color: #ffffff;
+    }
 
-    .plus-card .card-button { background: #c28b20; }
-    .plus-card .card-button:hover { background: #9d6d10; }
-
-    .ai-card .card-button { background: #7464c5; }
-    .ai-card .card-button:hover { background: #5b4aa8; }
+    .plus-card .card-button:hover,
+    .ai-card .card-button:hover {
+      background: #9d6d10;
+    }
 
     /* Bottom message */
     .footer-note {
@@ -291,22 +312,7 @@
       color: #315db5;
     }
 
-    .signout-button {
-      border: none;
-      border-radius: 9px;
-      padding: 10px 15px;
-      background: #eaf0f9;
-      color: #315db5;
-      font-weight: bold;
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    .signout-button:hover {
-      background: #dce7f8;
-    }
-
-    /* Tablet */
+    /* Tablet layout */
     @media (max-width: 850px) {
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -323,7 +329,7 @@
       }
     }
 
-    /* Phone */
+    /* Phone layout */
     @media (max-width: 540px) {
       .navbar {
         padding: 15px 5%;
@@ -407,7 +413,7 @@
       <div class="profile-panel" id="profilePanel">
         <h3>Your Profile 👋</h3>
         <p><strong>Email address:</strong></p>
-        <p class="profile-email" id="profileEmail">No email found</p>
+        <p class="profile-email" id="profileEmail">No email found:</p>
         <button class="signout-button" type="button" onclick="signOut()">
           Sign Out
         </button>
@@ -428,7 +434,7 @@
       <div class="welcome-art" aria-hidden="true">📚</div>
     </section>
 
-    <!-- Subjects -->
+    <!-- Learning subjects -->
     <section class="section-heading">
       <h2>What would you like to learn today?</h2>
       <p>Pick a subject to start exploring. Your next discovery is waiting!</p>
@@ -494,7 +500,7 @@
           new ways to learn with AI.
         </p>
         <button class="card-button" onclick="requirePlus('ai')">
-          Try AI Assistant
+          Try AI Assistant ⭐
         </button>
       </article>
 
@@ -557,7 +563,7 @@
   </main>
 
   <script>
-    // Show the saved email address
+    // Display the saved email
     const savedEmail = sessionStorage.getItem("brainboxEmail");
     const profileEmailElement = document.getElementById("profileEmail");
 
@@ -586,7 +592,7 @@
       window.location.href = "index.html";
     }
 
-    // Temporary message for features that are not built yet
+    // Show a message for features not built yet
     function comingSoon(feature) {
       alert(feature + " are coming soon to BrainBox Learning!");
     }
