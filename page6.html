@@ -306,7 +306,7 @@
     <div class="profile-panel" id="profilePanel">
       <h3>My Student Profile</h3>
       <p>Email address:</p>
-      <p class="profile-email" id="profileEmail">Loading...</p>
+      <p class="profile-email" id="profileEmail"></p>
       <button type="button" class="signout" id="signoutButton">
         Sign Out
       </button>
@@ -352,7 +352,7 @@
         </button>
       </div>
 
-      <!-- SOCIAL STUDIES: DIRECTLY BELOW SCIENCE -->
+      <!-- SOCIAL STUDIES BELOW SCIENCE -->
       <div class="card social-card">
         <div class="icon">🏛️</div>
         <h2>Social Studies</h2>
@@ -430,15 +430,14 @@
   </main>
 
   <script>
-    // PROFILE EMAIL
+    // SHOW SAVED EMAIL, OR NOTHING IF THERE IS NO EMAIL
     const savedEmail = sessionStorage.getItem("brainboxEmail");
     const profileEmailElement = document.getElementById("profileEmail");
 
     if (savedEmail && savedEmail.trim()) {
       profileEmailElement.textContent = savedEmail;
     } else {
-      profileEmailElement.textContent =
-        "No email found. Please sign in again.";
+      profileEmailElement.textContent = "";
     }
 
     // OPEN AND CLOSE PROFILE
