@@ -1,231 +1,112 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>BrainBox Learning</title>
 
   <style>
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
 
     body {
+      margin: 0;
+      min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
-      min-height: 100vh;
-      color: white;
-      background:
-        radial-gradient(
-          ellipse at 50% 45%,
-          rgba(0, 91, 255, 0.22),
-          transparent 55%
-        ),
-        linear-gradient(
-          135deg,
-          #020611 0%,
-          #061633 50%,
-          #020817 100%
-        );
-    }
-
-    .hero {
-      min-height: 100vh;
+      background: linear-gradient(135deg, #eaf3ff, #e9f8ef);
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      padding: 20px;
+      color: #24324a;
+    }
+
+    .container {
+      background: white;
+      width: 100%;
+      max-width: 750px;
+      padding: 55px 35px;
+      border-radius: 22px;
+      box-shadow: 0 8px 30px rgba(40, 75, 120, 0.12);
       text-align: center;
-      padding: 30px 20px;
-      position: relative;
-      isolation: isolate;
     }
 
-    /* Futuristic digital grid */
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(
-          rgba(36, 119, 255, 0.08) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(36, 119, 255, 0.08) 1px,
-          transparent 1px
-        );
-      background-size: 50px 50px;
-      mask-image: linear-gradient(
-        to bottom,
-        transparent,
-        black 25%,
-        black 80%,
-        transparent
-      );
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* Blue glowing background effect */
-    .glow {
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      background: #075bff;
-      filter: blur(140px);
-      opacity: 0.24;
-      border-radius: 50%;
-      z-index: -1;
-      animation: pulse 5s ease-in-out infinite alternate;
+    .logo {
+      font-size: 65px;
+      margin-bottom: 15px;
     }
 
     h1 {
-      font-size: clamp(42px, 8vw, 84px);
-      font-weight: 800;
-      letter-spacing: -2px;
-      margin-bottom: 25px;
-      background: linear-gradient(
-        90deg,
-        #ffffff,
-        #75c8ff,
-        #368bff
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      filter: drop-shadow(
-        0 0 22px rgba(0, 119, 255, 0.3)
-      );
-      animation: fadeIn 1.2s ease;
+      color: #2d5fa8;
+      font-size: 46px;
+      margin: 0 0 18px;
     }
 
-    .line {
-      width: 100px;
-      height: 4px;
-      background: #29a8ff;
-      border-radius: 10px;
-      box-shadow:
-        0 0 10px #168bff,
-        0 0 25px rgba(22, 139, 255, 0.7);
-      margin-bottom: 28px;
+    .tagline {
+      color: #64748b;
+      font-size: 19px;
+      line-height: 1.7;
+      margin: 0 auto 32px;
+      max-width: 550px;
     }
 
-    p {
-      max-width: 650px;
-      color: #c5d9f5;
-      font-size: clamp(17px, 2.5vw, 23px);
-      line-height: 1.8;
-      letter-spacing: 0.3px;
-      animation: fadeIn 1.8s ease;
-    }
-
-    /* Get Started button */
     .get-started {
       display: inline-block;
-      margin-top: 45px;
-      padding: 16px 42px;
-      border: 1px solid #42baff;
-      border-radius: 10px;
-      background: linear-gradient(
-        135deg,
-        #0878f9,
-        #1743bd
-      );
+      background: #416fc4;
       color: white;
       text-decoration: none;
+      padding: 16px 38px;
+      border-radius: 10px;
       font-size: 18px;
       font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow:
-        0 0 15px rgba(0, 119, 255, 0.35),
-        inset 0 0 10px rgba(255, 255, 255, 0.08);
-      transition: 0.3s ease;
-      animation: fadeIn 2.2s ease;
+      transition: background 0.2s, transform 0.2s;
     }
 
     .get-started:hover {
-      transform: translateY(-4px);
-      background: linear-gradient(
-        135deg,
-        #168cff,
-        #2864e8
-      );
-      box-shadow:
-        0 0 20px rgba(0, 153, 255, 0.7),
-        0 0 40px rgba(0, 119, 255, 0.3);
+      background: #2d55a1;
+      transform: translateY(-2px);
     }
 
-    .get-started:focus-visible {
-      outline: 3px solid white;
-      outline-offset: 5px;
+    .footer {
+      color: #8793a4;
+      font-size: 13px;
+      margin-top: 35px;
     }
 
-    @keyframes pulse {
-      from {
-        transform: scale(0.9);
-        opacity: 0.16;
+    @media (max-width: 500px) {
+      .container {
+        padding: 40px 22px;
       }
 
-      to {
-        transform: scale(1.15);
-        opacity: 0.3;
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 600px) {
       h1 {
-        letter-spacing: -1px;
+        font-size: 34px;
       }
 
-      .hero::before {
-        background-size: 32px 32px;
-      }
-
-      .glow {
-        width: 220px;
-        height: 220px;
+      .tagline {
+        font-size: 17px;
       }
     }
   </style>
 </head>
 
 <body>
-
-  <main class="hero">
-
-    <div class="glow"></div>
+  <main class="container">
+    <div class="logo">🧠</div>
 
     <h1>BrainBox Learning</h1>
 
-    <div class="line"></div>
-
-    <p>
-      An inspiring journey for students to learn,
-      explore, and discover.
+    <p class="tagline">
+      An inspiring journey for students to learn, explore, and discover.
     </p>
 
-    <a href="page2.html" class="get-started">
-      Get Started
-    </a>
+    <a href="page2.html" class="get-started">Get Started</a>
 
+    <p class="footer">
+      Learn something new. Explore your world. Discover your potential.
+    </p>
   </main>
-
 </body>
 </html>
+```
