@@ -1,10 +1,10 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrainBox Learning - Sign Up</title>
+  <title>BrainBox Learning - Sign In</title>
 
   <style>
     * {
@@ -14,115 +14,119 @@
     body {
       margin: 0;
       min-height: 100vh;
-      padding: 25px 15px;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #eaf3ff, #e9f8ef);
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
-      color: white;
-      background-color: #050b1b;
-      background-image:
-        linear-gradient(#14234455 1px, transparent 1px),
-        linear-gradient(90deg, #14234455 1px, transparent 1px);
-      background-size: 35px 35px;
+      padding: 20px;
+      color: #24324a;
     }
 
     .container {
+      background: white;
       width: 100%;
-      max-width: 480px;
-      padding: 40px 30px;
+      max-width: 460px;
+      padding: 38px 30px;
+      border-radius: 22px;
+      box-shadow: 0 8px 30px rgba(40, 75, 120, 0.12);
       text-align: center;
-      background: rgba(7, 23, 52, 0.96);
-      border: 1px solid #2864ff;
-      border-radius: 20px;
-      box-shadow: 0 0 30px #1765ff33;
     }
 
     .logo {
-      color: #65a0ff;
-      font-size: 34px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    h1 {
-      font-size: 28px;
+      font-size: 36px;
       margin-bottom: 10px;
     }
 
-    p {
-      color: #c4d0e8;
-      line-height: 1.6;
+    h1 {
+      color: #2d5fa8;
+      font-size: 30px;
+      margin: 0 0 10px;
     }
 
-    .field {
+    .subtitle {
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
       text-align: left;
-      margin-top: 22px;
+      margin-bottom: 18px;
     }
 
     label {
       display: block;
       margin-bottom: 8px;
-      color: #dce7ff;
       font-weight: bold;
+      color: #334155;
     }
 
     input {
-      display: block;
       width: 100%;
       padding: 14px;
-      border: 1px solid #36558c;
-      border-radius: 9px;
-      outline: none;
-      background: #0b1730;
-      color: white;
+      border: 2px solid #d8e4f2;
+      border-radius: 10px;
       font-size: 16px;
+      outline: none;
     }
 
     input:focus {
-      border-color: #65a0ff;
-      box-shadow: 0 0 10px #3478ff55;
+      border-color: #477bc5;
+      box-shadow: 0 0 0 3px rgba(71, 123, 197, 0.12);
     }
 
-    .button {
-      display: block;
+    button {
       width: 100%;
-      margin-top: 25px;
       padding: 14px;
       border: none;
-      border-radius: 9px;
-      background: linear-gradient(90deg, #3478ff, #7155ff);
-      color: white;
+      border-radius: 10px;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s;
     }
 
-    .button:hover {
-      opacity: 0.9;
+    .continue-button {
+      background: #416fc4;
+      color: white;
     }
 
-    .skip,
-    .back {
-      display: block;
-      margin-top: 22px;
-      color: #9dbbff;
-      text-decoration: none;
+    .continue-button:hover {
+      background: #2d55a1;
     }
 
-    .message {
-      margin-top: 15px;
-      color: #ffb4b4;
+    .skip-button {
+      background: #edf3fa;
+      color: #36516f;
+    }
+
+    .skip-button:hover {
+      background: #dce8f6;
+    }
+
+    #message {
+      color: #c0392b;
       font-size: 14px;
+      margin-top: 14px;
+      min-height: 18px;
     }
 
-    @media (max-width: 500px) {
+    .privacy-note {
+      color: #7b8798;
+      font-size: 12px;
+      line-height: 1.5;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 480px) {
       .container {
-        padding: 30px 20px;
+        padding: 30px 22px;
       }
 
-      .logo {
-        font-size: 28px;
+      h1 {
+        font-size: 26px;
       }
     }
   </style>
@@ -130,13 +134,16 @@
 
 <body>
   <main class="container">
-    <div class="logo">BrainBox Learning</div>
+    <div class="logo">🧠</div>
 
-    <h1>Create Your Account</h1>
-    <p>Enter your email and password to continue your learning journey.</p>
+    <h1>BrainBox Learning</h1>
 
-    <form id="signupForm">
-      <div class="field">
+    <p class="subtitle">
+      Enter your email and password to personalize your learning experience!
+    </p>
+
+    <form id="signInForm">
+      <div class="form-group">
         <label for="email">Email Address</label>
         <input
           type="email"
@@ -144,36 +151,43 @@
           name="email"
           placeholder="Enter your email"
           autocomplete="email"
-          required
         >
       </div>
 
-      <div class="field">
+      <div class="form-group">
         <label for="password">Password</label>
         <input
           type="password"
           id="password"
           name="password"
           placeholder="Enter your password"
-          autocomplete="new-password"
-          required
+          autocomplete="current-password"
         >
       </div>
 
-      <button class="button" type="submit">Continue</button>
+      <button type="submit" class="continue-button">
+        Continue
+      </button>
 
-      <div class="message" id="message" role="alert"></div>
+      <button type="button" class="skip-button" id="skipButton">
+        Skip
+      </button>
+
+      <p id="message" role="alert"></p>
     </form>
 
-    <a class="skip" href="page3.html" id="skipLink">Skip for Now</a>
-    <a class="back" href="index.html">← Back to Home</a>
+    <p class="privacy-note">
+      This is a demonstration website. Your details are stored in this
+      browser session and are not sent to an account server.
+    </p>
   </main>
 
   <script>
-    const form = document.getElementById("signupForm");
+    const form = document.getElementById("signInForm");
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
     const message = document.getElementById("message");
+    const skipButton = document.getElementById("skipButton");
 
     form.addEventListener("submit", function(event) {
       event.preventDefault();
@@ -181,31 +195,39 @@
       const email = emailInput.value.trim();
       const password = passwordInput.value;
 
-      message.textContent = "";
-
       if (!email || !password) {
-        message.textContent = "Please enter your email and password.";
+        message.textContent = "Please enter both your email and password.";
         return;
       }
 
-      if (!emailInput.validity.valid) {
+      if (!emailInput.checkValidity()) {
         message.textContent = "Please enter a valid email address.";
         return;
       }
 
-      // DEMO ONLY: Match the keys checked by page3.html.
-      sessionStorage.setItem("brainboxEmail", email);
-      sessionStorage.setItem("brainboxPassword", password);
+      try {
+        // Save using the exact keys read by page6.html.
+        sessionStorage.setItem("brainboxEmail", email);
+        sessionStorage.setItem("brainboxPassword", password);
 
-      // Open Page 3 after saving the values.
-      window.location.href = "page3.html";
+        // Verify that the email was saved.
+        if (sessionStorage.getItem("brainboxEmail") !== email) {
+          message.textContent = "Could not save your email. Please try again.";
+          return;
+        }
+
+        // Keep the saved information while moving through the pages.
+        window.location.href = "page3.html";
+      } catch (error) {
+        message.textContent =
+          "Your browser could not save the information. Please check your browser settings.";
+      }
     });
 
-    document.getElementById("skipLink").addEventListener("click", function() {
-      sessionStorage.removeItem("brainboxEmail");
-      sessionStorage.removeItem("brainboxPassword");
+    skipButton.addEventListener("click", function() {
+      // Skip without saving or deleting existing information.
+      window.location.href = "page3.html";
     });
   </script>
 </body>
 </html>
-```
