@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrainBox Plus</title>
+  <title>BrainBox Learning - BrainBox Plus</title>
 
   <style>
     * {
@@ -14,198 +14,166 @@
     body {
       margin: 0;
       min-height: 100vh;
-      padding: 35px 15px;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-      background-color: #050b1b;
-      background-image:
-        linear-gradient(#14234455 1px, transparent 1px),
-        linear-gradient(90deg, #14234455 1px, transparent 1px);
-      background-size: 35px 35px;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #eaf3ff, #e9f8ef);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #24324a;
     }
 
     .container {
-      width: 90%;
-      max-width: 750px;
-      margin: 30px auto;
-      padding: 50px 35px;
-      background: rgba(7, 23, 52, 0.82);
-      border: 1px solid rgba(41, 168, 255, 0.35);
-      border-radius: 20px;
-      box-shadow: 0 0 35px rgba(0, 110, 255, 0.18);
-      backdrop-filter: blur(12px);
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      padding: 40px 30px;
+      border-radius: 22px;
+      box-shadow: 0 8px 30px rgba(40, 75, 120, 0.12);
+      text-align: center;
     }
 
-    /* MUCH BIGGER BRAINBOX LEARNING */
     .logo {
-      color: #65a0ff;
-      font-size: 56px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      line-height: 1.2;
-      margin-bottom: 40px;
-      text-shadow: 0 0 25px rgba(65, 140, 255, 0.5);
-    }
-
-    /* MUCH BIGGER PREMIUM MEMBERSHIP */
-    .tag {
-      margin-top: 15px;
-      color: #8db5ff;
-      letter-spacing: 6px;
-      font-size: 30px;
-      font-weight: bold;
-      line-height: 1.4;
-      text-shadow: 0 0 18px rgba(65, 140, 255, 0.3);
+      font-size: 50px;
+      margin-bottom: 10px;
     }
 
     h1 {
-      margin: 20px 0;
-      font-size: 46px;
+      color: #2d5fa8;
+      font-size: 34px;
+      margin: 0 0 12px;
     }
 
-    .description {
-      color: #c4d0e8;
-      line-height: 1.7;
+    .subtitle {
+      color: #64748b;
       font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 25px;
     }
 
     .features {
-      margin: 30px 0;
-      padding: 22px;
-      text-align: left;
-      background: rgba(16, 30, 61, 0.65);
-      border: 1px solid rgba(65, 119, 210, 0.2);
+      background: #f3f7fc;
       border-radius: 14px;
+      padding: 20px;
+      margin: 25px 0;
+      text-align: left;
     }
 
     .features h2 {
+      color: #2d5fa8;
+      font-size: 21px;
       text-align: center;
-      font-size: 22px;
+      margin: 0 0 15px;
     }
 
-    .features p {
-      padding: 8px 0;
-      border-bottom: 1px solid #26385e;
+    .features ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    .features p:last-child {
-      border-bottom: none;
+    .features li {
+      font-size: 16px;
+      line-height: 1.8;
+      margin: 8px 0;
     }
 
-    button, .back {
-      display: block;
+    .features li::before {
+      content: "✓ ";
+      color: #2d8a62;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    button {
       width: 100%;
       padding: 14px;
-      margin-top: 14px;
       border: none;
-      border-radius: 9px;
+      border-radius: 10px;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      text-decoration: none;
-      transition: 0.2s;
+      margin-top: 12px;
+      transition: background 0.2s;
     }
 
-    .signup {
-      background: #3478ff;
-      color: white;
-      box-shadow: 0 0 18px rgba(52, 120, 255, 0.25);
-    }
-
-    .signup:hover {
-      background: #5590ff;
-      transform: translateY(-2px);
-    }
-
-    .skip {
-      background: rgba(26, 41, 73, 0.85);
-      color: white;
-      border: 1px solid rgba(100, 150, 230, 0.2);
-    }
-
-    .skip:hover {
-      background: #263b65;
-    }
-
-    .back {
-      color: #9dbbff;
-      background: transparent;
-    }
-
-    .back:hover {
+    .signup-button {
+      background: #416fc4;
       color: white;
     }
 
-    @media (max-width: 600px) {
+    .signup-button:hover {
+      background: #2d55a1;
+    }
+
+    .skip-button {
+      background: #edf3fa;
+      color: #36516f;
+    }
+
+    .skip-button:hover {
+      background: #dce8f6;
+    }
+
+    .note {
+      color: #7b8798;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 22px;
+    }
+
+    @media (max-width: 480px) {
       .container {
-        padding: 35px 20px;
-      }
-
-      .logo {
-        font-size: 38px;
-        letter-spacing: 1px;
-      }
-
-      .tag {
-        font-size: 20px;
-        letter-spacing: 3px;
+        padding: 30px 22px;
       }
 
       h1 {
-        font-size: 36px;
+        font-size: 29px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="logo">BrainBox Learning</div>
+  <main class="container">
+    <div class="logo">⭐</div>
 
-    <div class="tag">PREMIUM MEMBERSHIP</div>
-    <h1>BrainBox Plus</h1>
+    <h1>Discover BrainBox Plus</h1>
 
-    <p class="description">
-      Unlock more lessons, smarter learning, and extra tools
-      to help you learn and discover more.
+    <p class="subtitle">
+      Take your learning journey further with extra tools and learning opportunities!
     </p>
 
-    <div class="features">
-      <h2>What you get with Plus</h2>
-      <p>📘 Extra lessons</p>
-      <p>🤖 AI tutoring</p>
-      <p>🚫 Ad-free courses</p>
-      <p>🧠 Extra learning tools</p>
-    </div>
+    <section class="features">
+      <h2>Explore Plus Features</h2>
+      <ul>
+        <li>Extra lessons</li>
+        <li>AI tutoring</li>
+        <li>Ad-free courses</li>
+        <li>Extra learning tools</li>
+      </ul>
+    </section>
 
-    <button class="signup" id="signupButton" type="button">
-      Sign Up for Plus
+    <button type="button" class="signup-button" id="signupButton">
+      Sign Up for BrainBox Plus
     </button>
 
-    <button class="skip" id="skipButton" type="button">
+    <button type="button" class="skip-button" id="skipButton">
       Skip for Now
     </button>
 
-    <a class="back" href="page2.html">Back</a>
-  </div>
+    <p class="note">
+      You can skip BrainBox Plus and continue to your learning homepage.
+    </p>
+  </main>
 
   <script>
-    document.getElementById("signupButton").addEventListener("click", function () {
-      const email = sessionStorage.getItem("brainboxEmail");
-      const password = sessionStorage.getItem("brainboxPassword");
-
-      if (email && password) {
-        window.location.href = "page4.html";
-      } else {
-        alert("Please enter your email and password first.");
-        window.location.href = "page2.html";
-      }
+    document.getElementById("signupButton").addEventListener("click", function() {
+      window.location.href = "page4.html";
     });
 
-    document.getElementById("skipButton").addEventListener("click", function () {
-      sessionStorage.removeItem("brainboxEmail");
-      sessionStorage.removeItem("brainboxPassword");
+    document.getElementById("skipButton").addEventListener("click", function() {
+      // Keep saved email and password while moving to the next page.
       window.location.href = "page5.html";
     });
   </script>
