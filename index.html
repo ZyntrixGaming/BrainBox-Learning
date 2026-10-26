@@ -1,112 +1,609 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrainBox Learning</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1c">
+<title>BrainBox Learning | Learn Without Limits</title>
+<style>
+:root {
+  --bg: #080d1c;
+  --panel: #111a30;
+  --text: #f5f7ff;
+  --muted: #aab6d1;
+  --blue: #75a9ff;
+  --cyan: #65e6ed;
+  --purple: #ad96ff;
+  --gold: #f7cf78;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, Arial, sans-serif;
+  line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 10% 0%, #1a3260 0%, transparent 38%),
+    radial-gradient(ellipse at 90% 25%, #30204e 0%, transparent 32%),
+    #080d1c;
+}
+.container { width: min(1160px, 92%); margin: auto; }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #eaf3ff, #e9f8ef);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      color: #24324a;
-    }
+nav {
+  min-height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid #ffffff12;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 850;
+  white-space: nowrap;
+}
+.logo-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--cyan), var(--blue), var(--purple));
+  color: #071020;
+  font-size: 23px;
+}
+.logo span:last-child span { color: var(--cyan); }
 
-    .container {
-      background: white;
-      width: 100%;
-      max-width: 750px;
-      padding: 55px 35px;
-      border-radius: 22px;
-      box-shadow: 0 8px 30px rgba(40, 75, 120, 0.12);
-      text-align: center;
-    }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  color: #c1cce2;
+  font-size: .92rem;
+}
+.nav-links a:hover { color: white; }
 
-    .logo {
-      font-size: 65px;
-      margin-bottom: 15px;
-    }
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 13px;
+  border: 1px solid #ffffff20;
+  font-weight: 750;
+  cursor: pointer;
+  transition: .2s;
+}
+.button:hover { transform: translateY(-2px); }
+.primary {
+  background: linear-gradient(110deg, var(--cyan), var(--blue), var(--purple));
+  color: #071020;
+  border: none;
+}
+.secondary { background: #ffffff06; }
+.nav-actions { display: flex; gap: 10px; align-items: center; }
+.menu-button { display: none; background: #ffffff08; color: white; }
 
-    h1 {
-      color: #2d5fa8;
-      font-size: 46px;
-      margin: 0 0 18px;
-    }
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 45px;
+  padding-top: 85px;
+  padding-bottom: 80px;
+  min-height: 610px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 13px;
+  border: 1px solid #65e6ed35;
+  border-radius: 30px;
+  background: #65e6ed0c;
+  color: #a8f5f4;
+  text-transform: uppercase;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+}
+h1 {
+  margin: 25px 0;
+  max-width: 650px;
+  font-size: clamp(3.2rem, 6vw, 5.4rem);
+  line-height: .99;
+  letter-spacing: -.075em;
+}
+.gradient {
+  background: linear-gradient(100deg, var(--cyan), var(--blue), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-description {
+  max-width: 560px;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.85;
+}
+.hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.hero-note { color: #8d9ab6; font-size: .84rem; margin-top: 22px; }
 
-    .tagline {
-      color: #64748b;
-      font-size: 19px;
-      line-height: 1.7;
-      margin: 0 auto 32px;
-      max-width: 550px;
-    }
+.preview {
+  position: relative;
+  padding: 27px;
+  border: 1px solid #a8c1ff30;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #1a2946, #0d1529);
+  box-shadow: 0 30px 90px #0006, 0 0 60px #6c91ff12;
+  transform: rotate(-2deg);
+}
+.preview-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: #9eafd0;
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.status {
+  padding: 5px 9px;
+  color: #8df0d0;
+  background: #4fdcac12;
+  border-radius: 20px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.preview h2 {
+  font-size: 1.7rem;
+  line-height: 1.25;
+  letter-spacing: -.04em;
+  margin: 22px 0 10px;
+}
+.preview p { color: var(--muted); font-size: .9rem; }
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 25px;
+}
+.preview-item {
+  padding: 14px 7px;
+  border: 1px solid #ffffff13;
+  border-radius: 15px;
+  background: #ffffff06;
+  text-align: center;
+}
+.preview-item div { font-size: 1.6rem; }
+.preview-item strong { display: block; font-size: .78rem; }
+.preview-item small { color: #9eafd0; font-size: .68rem; }
+.progress-title {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0 9px;
+  font-size: .8rem;
+}
+.progress {
+  height: 8px;
+  border-radius: 20px;
+  background: #283552;
+  overflow: hidden;
+}
+.progress div {
+  width: 72%;
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue), var(--purple));
+}
+.floating {
+  position: absolute;
+  padding: 12px 15px;
+  border: 1px solid #a8c1ff30;
+  border-radius: 15px;
+  background: #101a30;
+  box-shadow: 0 15px 40px #0004;
+  font-size: .8rem;
+  font-weight: 750;
+}
+.float-top { top: -27px; right: -12px; }
+.float-bottom { bottom: -27px; left: -15px; }
 
-    .get-started {
-      display: inline-block;
-      background: #416fc4;
-      color: white;
-      text-decoration: none;
-      padding: 16px 38px;
-      border-radius: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      transition: background 0.2s, transform 0.2s;
-    }
+section { scroll-margin-top: 25px; }
+.section { padding: 70px 0; }
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+.kicker {
+  color: var(--cyan);
+  font-size: .76rem;
+  font-weight: 850;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.section-heading h2 {
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: -.06em;
+  margin: 10px 0 0;
+}
+.section-heading p { max-width: 430px; color: var(--muted); margin: 0; }
 
-    .get-started:hover {
-      background: #2d55a1;
-      transform: translateY(-2px);
-    }
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.subject {
+  position: relative;
+  overflow: hidden;
+  padding: 23px;
+  min-height: 205px;
+  border: 1px solid #a8c1ff20;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #172440, #10182b);
+  transition: .25s;
+}
+.subject:hover {
+  transform: translateY(-6px);
+  border-color: #65e6ed75;
+  box-shadow: 0 15px 35px #0002;
+}
+.subject-icon {
+  display: grid;
+  place-items: center;
+  width: 49px;
+  height: 49px;
+  margin-bottom: 18px;
+  border-radius: 15px;
+  background: #75a9ff18;
+  font-size: 1.6rem;
+}
+.subject h3 { margin: 0 0 7px; font-size: 1.08rem; }
+.subject p { margin: 0; color: #aab6d1; font-size: .85rem; }
+.arrow { position: absolute; right: 19px; top: 18px; color: #8fa2c8; }
 
-    .footer {
-      color: #8793a4;
-      font-size: 13px;
-      margin-top: 35px;
-    }
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 17px;
+}
+.feature {
+  padding: 27px;
+  border: 1px solid #a8c1ff20;
+  border-radius: 22px;
+  background: #111a2cbb;
+}
+.feature-icon { font-size: 1.7rem; }
+.feature h3 { margin: 12px 0 7px; }
+.feature p { margin: 0; color: var(--muted); font-size: .92rem; }
 
-    @media (max-width: 500px) {
-      .container {
-        padding: 40px 22px;
-      }
+.plus-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 25px;
+  padding: 40px;
+  border: 1px solid #f7cf7840;
+  border-radius: 28px;
+  background: radial-gradient(ellipse at 90% 10%, #f7cf781a, transparent 45%), #191a2b;
+}
+.plus-label {
+  display: inline-block;
+  padding: 6px 11px;
+  border: 1px solid #f7cf7845;
+  border-radius: 30px;
+  color: var(--gold);
+  background: #f7cf780d;
+  font-size: .78rem;
+  font-weight: 850;
+}
+.plus-card h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.2;
+  letter-spacing: -.05em;
+  margin: 16px 0 10px;
+}
+.plus-card p { color: #b5bad0; max-width: 620px; margin: 0; }
+.gold { background: linear-gradient(110deg, #f7df9c, #efbd5b); color: #211807; }
 
-      h1 {
-        font-size: 34px;
-      }
+footer {
+  margin-top: 30px;
+  padding: 30px 0;
+  border-top: 1px solid #ffffff12;
+  color: #8794b0;
+  font-size: .84rem;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
 
-      .tagline {
-        font-size: 17px;
-      }
-    }
-  </style>
+@media (max-width: 900px) {
+  .hero { gap: 25px; }
+  .subject-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav-links { gap: 14px; }
+}
+@media (max-width: 700px) {
+  .container { width: 92%; }
+  nav { min-height: 72px; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 4%;
+    right: 4%;
+    z-index: 10;
+    padding: 18px;
+    border: 1px solid #ffffff20;
+    border-radius: 17px;
+    background: #10182b;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 7px; }
+  .menu-button { display: inline-flex; padding: 9px 12px; }
+  .nav-actions .secondary { display: none; }
+  .logo { font-size: 1rem; }
+  .logo-icon { width: 36px; height: 36px; }
+  .hero { grid-template-columns: 1fr; padding-top: 58px; padding-bottom: 45px; gap: 55px; }
+  h1 { font-size: clamp(3rem, 13vw, 4.6rem); }
+  .hero-description { font-size: 1rem; }
+  .preview { margin: 0 8px; }
+  .section { padding: 50px 0; }
+  .section-heading { align-items: start; flex-direction: column; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .plus-card { grid-template-columns: 1fr; padding: 28px; }
+  .plus-card .button { width: 100%; }
+}
+@media (max-width: 390px) {
+  .nav-actions .primary { padding: 10px 12px; font-size: .82rem; }
+  .subject { padding: 16px; }
+  .preview { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
 </head>
-
 <body>
-  <main class="container">
-    <div class="logo">🧠</div>
+<div class="background"></div>
 
-    <h1>BrainBox Learning</h1>
+<header class="container">
+  <nav>
+    <a class="logo" href="index.html">
+      <span class="logo-icon">✳</span>
+      <span>BrainBox <span>Learning</span></span>
+    </a>
 
-    <p class="tagline">
-      An inspiring journey for students to learn, explore, and discover.
-    </p>
+    <div class="nav-links" id="navLinks">
+      <a href="#explore">Explore</a>
+      <a href="#features">Features</a>
+      <a href="#brainbox-plus">BrainBox Plus</a>
+    </div>
 
-    <a href="page2.html" class="get-started">Get Started</a>
+    <div class="nav-actions">
+      <a class="button secondary" href="page2.html">Log in</a>
+      <a class="button primary" href="page2.html">Get started ↗</a>
+      <button class="button menu-button" id="menuButton"
+        aria-label="Open navigation menu" aria-expanded="false">☰</button>
+    </div>
+  </nav>
+</header>
 
-    <p class="footer">
-      Learn something new. Explore your world. Discover your potential.
-    </p>
-  </main>
+<main>
+  <section class="hero container">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> A smarter way to learn</div>
+      <h1>Curiosity is your <span class="gradient">superpower.</span></h1>
+      <p class="hero-description">
+        An inspiring journey for students to learn, explore, and discover.
+        Find new interests, build understanding, and make every question
+        a starting point.
+      </p>
+      <div class="hero-buttons">
+        <a class="button primary" href="page2.html">Start exploring →</a>
+        <a class="button secondary" href="#explore">Discover subjects ↓</a>
+      </div>
+      <div class="hero-note">✦ Learn at your pace. Follow your curiosity.</div>
+    </div>
+
+    <div class="preview">
+      <div class="preview-top">
+        <span>Your learning space</span>
+        <span class="status">● Ready to explore</span>
+      </div>
+      <h2>One question can change everything.</h2>
+      <p>Choose a subject. Follow an idea. See where it leads.</p>
+
+      <div class="progress-title">
+        <span>Your next discovery</span><strong>100% curiosity</strong>
+      </div>
+      <div class="progress"><div></div></div>
+
+      <div class="preview-grid">
+        <div class="preview-item">
+          <div>🔬</div><strong>Science</strong><small>Experiment</small>
+        </div>
+        <div class="preview-item">
+          <div>🌎</div><strong>Social Studies</strong><small>Discover</small>
+        </div>
+        <div class="preview-item">
+          <div>💡</div><strong>New Ideas</strong><small>Create</small>
+        </div>
+      </div>
+
+      <div class="floating float-top">✨ Think bigger</div>
+      <div class="floating float-bottom">🚀 Learn your way</div>
+    </div>
+  </section>
+
+  <section class="section container" id="explore">
+    <div class="section-heading">
+      <div>
+        <div class="kicker">Your world, expanded</div>
+        <h2>Explore what interests you.</h2>
+      </div>
+      <p>
+        Start with a subject you love or discover something completely new.
+        Your next big interest could be one click away.
+      </p>
+    </div>
+
+    <div class="subject-grid">
+      <a class="subject" href="page5.html">
+        <span class="arrow">↗</span>
+        <div class="subject-icon">🔬</div>
+        <h3>Science</h3>
+        <p>Explore how the world works, from tiny cells to distant galaxies.</p>
+      </a>
+
+      <a class="subject" href="page5.html">
+        <span class="arrow">↗</span>
+        <div class="subject-icon">🌎</div>
+        <h3>Social Studies</h3>
+        <p>Discover people, places, cultures, and the stories that shape us.</p>
+      </a>
+
+      <a class="subject" href="page5.html">
+        <span class="arrow">↗</span>
+        <div class="subject-icon">🧠</div>
+        <h3>Interests</h3>
+        <p>Find new topics to explore and turn curiosity into a passion.</p>
+      </a>
+
+      <a class="subject" href="page5.html">
+        <span class="arrow">↗</span>
+        <div class="subject-icon">🧭</div>
+        <h3>Careers</h3>
+        <p>Imagine your future and explore paths that could get you there.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="section container" id="features">
+    <div class="section-heading">
+      <div>
+        <div class="kicker">Made for learners</div>
+        <h2>Your journey. Your pace.</h2>
+      </div>
+      <p>Learning should feel inviting, useful, and personal—not overwhelming.</p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature">
+        <div class="feature-icon">🪄</div>
+        <h3>Follow your curiosity</h3>
+        <p>Explore topics that spark your interest and discover what you enjoy.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">🧩</div>
+        <h3>Make it your own</h3>
+        <p>Build a student profile and keep your interests in view.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">🌱</div>
+        <h3>Grow one step at a time</h3>
+        <p>Start with a single question and let each discovery lead to another.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">✨</div>
+        <h3>Think about your future</h3>
+        <p>Connect what you learn to the world around you and the future you imagine.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section container" id="brainbox-plus">
+    <div class="plus-card">
+      <div>
+        <span class="plus-label">★ BRAINBOX PLUS</span>
+        <h2>Ready to take your learning further?</h2>
+        <p>
+          Discover the enhanced BrainBox Plus experience and explore
+          the extra learning options available to members.
+        </p>
+      </div>
+      <div>
+        <a class="button gold" href="page2.html">Explore BrainBox Plus →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <a class="logo" href="index.html">
+      <span class="logo-icon">✳</span>
+      <span>BrainBox <span>Learning</span></span>
+    </a>
+    <span>© <span id="year"></span> BrainBox Learning. Keep asking questions.</span>
+    <div class="footer-links">
+      <a href="page2.html">Get started</a>
+      <a href="#explore">Explore</a>
+      <a href="#brainbox-plus">BrainBox Plus</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const menuButton = document.getElementById("menuButton");
+const navLinks = document.getElementById("navLinks");
+
+menuButton.addEventListener("click", function () {
+  const isOpen = navLinks.classList.toggle("open");
+  menuButton.setAttribute("aria-expanded", String(isOpen));
+  menuButton.setAttribute(
+    "aria-label",
+    isOpen ? "Close navigation menu" : "Open navigation menu"
+  );
+  menuButton.textContent = isOpen ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    navLinks.classList.remove("open");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.setAttribute("aria-label", "Open navigation menu");
+    menuButton.textContent = "☰";
+  });
+});
+</script>
 </body>
 </html>
-```
