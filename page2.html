@@ -4,226 +4,328 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrainBox Learning - Sign In</title>
+  <meta name="theme-color" content="#080d20">
+  <title>Choose Your Role | BrainBox Learning</title>
 
   <style>
+    :root {
+      --background: #080d20;
+      --panel: #111a35;
+      --blue: #3985ff;
+      --cyan: #53e2ff;
+      --purple: #9a75ff;
+      --text: #f5f7ff;
+      --muted: #aab6d2;
+      --border: rgba(255, 255, 255, 0.11);
+    }
+
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #eaf3ff, #e9f8ef);
+      padding: 25px;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      color: #24324a;
+      flex-direction: column;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(57, 133, 255, 0.2), transparent 38%),
+        radial-gradient(ellipse at 90% 85%, rgba(154, 117, 255, 0.16), transparent 38%),
+        var(--background);
     }
 
-    .container {
-      background: white;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
       width: 100%;
-      max-width: 460px;
-      padding: 38px 30px;
-      border-radius: 22px;
-      box-shadow: 0 8px 30px rgba(40, 75, 120, 0.12);
-      text-align: center;
+      max-width: 1150px;
+      margin: 0 auto;
     }
 
     .logo {
-      font-size: 36px;
-      margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .logo-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      font-size: 23px;
+    }
+
+    .logo-name {
+      color: var(--cyan);
+    }
+
+    main {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      padding: 55px 0;
+    }
+
+    .selection-container {
+      width: 100%;
+      max-width: 850px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(83, 226, 255, 0.25);
+      border-radius: 999px;
+      background: rgba(83, 226, 255, 0.08);
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
     }
 
     h1 {
-      color: #2d5fa8;
-      font-size: 30px;
-      margin: 0 0 10px;
+      margin-bottom: 17px;
+      font-size: clamp(36px, 6vw, 58px);
+      line-height: 1.12;
+      letter-spacing: -2px;
     }
 
-    .subtitle {
-      color: #64748b;
-      line-height: 1.5;
-      margin-bottom: 28px;
+    .gradient-text {
+      background: linear-gradient(90deg, var(--cyan), #a18aff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .form-group {
-      text-align: left;
-      margin-bottom: 18px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-      color: #334155;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      border: 2px solid #d8e4f2;
-      border-radius: 10px;
+    .intro {
+      max-width: 570px;
+      margin: 0 auto 43px;
+      color: var(--muted);
       font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .role-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      text-align: left;
+    }
+
+    .role-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 295px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 23px;
+      background: linear-gradient(145deg, rgba(22, 34, 65, 0.97), rgba(14, 21, 43, 0.97));
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .role-card:hover,
+    .role-card:focus-visible {
+      transform: translateY(-6px);
+      border-color: rgba(83, 226, 255, 0.55);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
       outline: none;
     }
 
-    input:focus {
-      border-color: #477bc5;
-      box-shadow: 0 0 0 3px rgba(71, 123, 197, 0.12);
+    .role-icon {
+      width: 67px;
+      height: 67px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 23px;
+      border-radius: 20px;
+      background: rgba(57, 133, 255, 0.15);
+      font-size: 34px;
     }
 
-    button {
+    .teacher .role-icon {
+      background: rgba(154, 117, 255, 0.16);
+    }
+
+    .role-card h2 {
+      margin-bottom: 11px;
+      font-size: 25px;
+    }
+
+    .role-card p {
+      margin-bottom: 27px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .role-button {
       width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: bold;
+      margin-top: auto;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), #6859ef);
+      color: white;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 800;
       cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.2s;
+      transition: filter 0.2s;
     }
 
-    .continue-button {
-      background: #416fc4;
+    .teacher .role-button {
+      background: linear-gradient(135deg, #8d6aff, #6859ef);
+    }
+
+    .role-button:hover {
+      filter: brightness(1.13);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .back-link:hover {
       color: white;
     }
 
-    .continue-button:hover {
-      background: #2d55a1;
-    }
-
-    .skip-button {
-      background: #edf3fa;
-      color: #36516f;
-    }
-
-    .skip-button:hover {
-      background: #dce8f6;
-    }
-
-    #message {
-      color: #c0392b;
-      font-size: 14px;
-      margin-top: 14px;
-      min-height: 18px;
-    }
-
-    .privacy-note {
-      color: #7b8798;
+    footer {
+      padding: 20px 0 5px;
+      color: #8794b1;
       font-size: 12px;
-      line-height: 1.5;
-      margin-top: 20px;
+      text-align: center;
     }
 
-    @media (max-width: 480px) {
-      .container {
-        padding: 30px 22px;
+    @media (max-width: 600px) {
+      body {
+        padding: 20px;
+      }
+
+      main {
+        padding: 45px 0;
+      }
+
+      .role-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .role-card {
+        min-height: 265px;
+        padding: 25px;
+      }
+
+      .intro {
+        margin-bottom: 30px;
       }
 
       h1 {
-        font-size: 26px;
+        letter-spacing: -1px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="container">
-    <div class="logo">🧠</div>
 
-    <h1>BrainBox Learning</h1>
+  <header>
+    <a class="logo" href="index.html">
+      <span class="logo-icon">✦</span>
+      <span>BrainBox <span class="logo-name">Learning</span></span>
+    </a>
+  </header>
 
-    <p class="subtitle">
-      Enter your email and password to personalize your learning experience!
-    </p>
+  <main>
+    <div class="selection-container">
 
-    <form id="signInForm">
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-          autocomplete="email"
-        >
+      <div class="eyebrow">Welcome to BrainBox Learning</div>
+
+      <h1>
+        How will you <span class="gradient-text">join us?</span>
+      </h1>
+
+      <p class="intro">
+        Choose the option that best describes you so we can take you
+        to the right learning space.
+      </p>
+
+      <div class="role-cards">
+
+        <!-- STUDENT OPTION -->
+        <a class="role-card student" href="page3.html">
+          <div class="role-icon" aria-hidden="true">🎓</div>
+
+          <h2>I'm a Student</h2>
+
+          <p>
+            Explore courses, discover your interests, learn new skills,
+            and begin your learning adventure.
+          </p>
+
+          <span class="role-button">
+            Continue as Student →
+          </span>
+        </a>
+
+        <!-- TEACHER OPTION -->
+        <a class="role-card teacher" href="page4.html">
+          <div class="role-icon" aria-hidden="true">👩‍🏫</div>
+
+          <h2>I'm a Teacher</h2>
+
+          <p>
+            Continue to the teacher area to explore your teaching
+            and learning tools.
+          </p>
+
+          <span class="role-button">
+            Continue as Teacher →
+          </span>
+        </a>
+
       </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          autocomplete="current-password"
-        >
-      </div>
+      <a class="back-link" href="index.html">
+        ← Back to Home
+      </a>
 
-      <button type="submit" class="continue-button">
-        Continue
-      </button>
-
-      <button type="button" class="skip-button" id="skipButton">
-        Skip
-      </button>
-
-      <p id="message" role="alert"></p>
-    </form>
-
+    </div>
   </main>
 
+  <footer>
+    © <span id="year"></span> BrainBox Learning. Keep exploring.
+  </footer>
+
   <script>
-    const form = document.getElementById("signInForm");
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    const message = document.getElementById("message");
-    const skipButton = document.getElementById("skipButton");
-
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
-
-      const email = emailInput.value.trim();
-      const password = passwordInput.value;
-
-      if (!email || !password) {
-        message.textContent = "Please enter both your email and password.";
-        return;
-      }
-
-      if (!emailInput.checkValidity()) {
-        message.textContent = "Please enter a valid email address.";
-        return;
-      }
-
-      try {
-        // Save using the exact keys read by page6.html.
-        sessionStorage.setItem("brainboxEmail", email);
-        sessionStorage.setItem("brainboxPassword", password);
-
-        // Verify that the email was saved.
-        if (sessionStorage.getItem("brainboxEmail") !== email) {
-          message.textContent = "Could not save your email. Please try again.";
-          return;
-        }
-
-        // Keep the saved information while moving through the pages.
-        window.location.href = "page3.html";
-      } catch (error) {
-        message.textContent =
-          "Your browser could not save the information. Please check your browser settings.";
-      }
-    });
-
-    skipButton.addEventListener("click", function() {
-      // Skip without saving or deleting existing information.
-      window.location.href = "page3.html";
-    });
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
   </script>
+
 </body>
 </html>
