@@ -2,1078 +2,1057 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080d20">
-  <title>Student Dashboard | BrainBox Learning</title>
-
-  <style>
-    :root {
-      --background: #080d20;
-      --panel: #111a35;
-      --panel-light: #172342;
-      --blue: #3985ff;
-      --cyan: #53e2ff;
-      --purple: #9a75ff;
-      --gold: #ffc857;
-      --text: #f5f7ff;
-      --muted: #aab6d2;
-      --border: rgba(255,255,255,0.10);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(ellipse at 10% 0%, rgba(57,133,255,0.14), transparent 35%),
-        radial-gradient(ellipse at 90% 30%, rgba(154,117,255,0.12), transparent 32%),
-        var(--background);
-      color: var(--text);
-    }
-
-    button, input {
-      font: inherit;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    .app {
-      display: flex;
-      min-height: 100vh;
-    }
-
-    /* SIDEBAR */
-
-    .sidebar {
-      width: 255px;
-      flex-shrink: 0;
-      min-height: 100vh;
-      padding: 24px 16px;
-      background: rgba(8,13,32,0.96);
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 19px;
-      font-weight: 800;
-      margin: 0 8px 34px;
-    }
-
-    .brand-icon {
-      width: 40px;
-      height: 40px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: linear-gradient(135deg,var(--blue),var(--purple));
-      box-shadow: 0 0 22px rgba(57,133,255,0.25);
-    }
-
-    .brand-name {
-      background: linear-gradient(90deg,#fff,var(--cyan));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .sidebar-label {
-      margin: 0 12px 12px;
-      color: #7887aa;
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-
-    .nav-button {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 14px;
-      margin-bottom: 6px;
-      border: 1px solid transparent;
-      border-radius: 11px;
-      background: transparent;
-      color: var(--muted);
-      text-align: left;
-      transition: 0.2s;
-    }
-
-    .nav-button:hover {
-      background: rgba(255,255,255,0.04);
-      color: white;
-    }
-
-    .nav-button.active {
-      color: white;
-      background: linear-gradient(100deg,rgba(57,133,255,0.2),rgba(154,117,255,0.12));
-      border-color: rgba(83,226,255,0.17);
-    }
-
-    .nav-icon {
-      width: 23px;
-      text-align: center;
-      font-size: 18px;
-    }
-
-    .sidebar-bottom {
-      margin-top: auto;
-      padding-top: 25px;
-    }
-
-    .upgrade-card {
-      padding: 17px;
-      margin: 0 2px 18px;
-      border: 1px solid rgba(255,200,87,0.2);
-      border-radius: 14px;
-      background: linear-gradient(140deg,rgba(255,200,87,0.10),rgba(154,117,255,0.08));
-    }
-
-    .upgrade-card strong {
-      display: block;
-      margin-bottom: 7px;
-    }
-
-    .upgrade-card p {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: 12px;
-    }
-
-    .upgrade-link {
-      color: var(--gold);
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    .home-link {
-      display: block;
-      padding: 12px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .home-link:hover {
-      color: white;
-    }
-
-    /* MAIN AREA */
-
-    .main {
-      flex: 1;
-      min-width: 0;
-      padding: 30px clamp(18px,4vw,48px) 50px;
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 35px;
-    }
-
-    .breadcrumb {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 7px;
-    }
-
-    .page-title {
-      font-size: clamp(25px,3vw,34px);
-      letter-spacing: -0.8px;
-    }
-
-    .profile-chip {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 13px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: rgba(255,255,255,0.035);
-    }
-
-    .avatar-small {
-      display: grid;
-      place-items: center;
-      width: 39px;
-      height: 39px;
-      border-radius: 12px;
-      background: var(--panel-light);
-      font-size: 22px;
-    }
-
-    .profile-chip strong {
-      display: block;
-      font-size: 13px;
-    }
-
-    .profile-chip small {
-      display: block;
-      color: var(--muted);
-      margin-top: 3px;
-      font-size: 11px;
-    }
-
-    .view {
-      display: none;
-      animation: fadeIn 0.22s ease;
-    }
-
-    .view.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(5px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* WELCOME BANNER */
-
-    .welcome-banner {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(24px,4vw,38px);
-      margin-bottom: 30px;
-      border: 1px solid rgba(83,226,255,0.16);
-      border-radius: 20px;
-      background: linear-gradient(120deg,rgba(57,133,255,0.18),rgba(154,117,255,0.13),rgba(17,26,53,0.9));
-    }
-
-    .welcome-banner::after {
-      content: "✦";
-      position: absolute;
-      right: 35px;
-      top: -28px;
-      font-size: 150px;
-      color: rgba(255,255,255,0.035);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      color: var(--cyan);
-      text-transform: uppercase;
-      letter-spacing: 1.6px;
-      font-size: 11px;
-      font-weight: bold;
-      margin-bottom: 13px;
-    }
-
-    .welcome-banner h2 {
-      font-size: clamp(26px,3.5vw,39px);
-      margin-bottom: 12px;
-      max-width: 650px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg,var(--cyan),#a5aaff,var(--purple));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .welcome-banner p {
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 650px;
-    }
-
-    /* COURSE CARDS */
-
-    .course-grid {
-      display: grid;
-      grid-template-columns: repeat(3,minmax(0,1fr));
-      gap: 17px;
-    }
-
-    .course-card {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 22px;
-      min-height: 220px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: linear-gradient(145deg,rgba(23,35,66,0.94),rgba(13,20,40,0.96));
-      transition: transform 0.2s,border-color 0.2s,box-shadow 0.2s;
-    }
-
-    .course-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(83,226,255,0.35);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.17);
-    }
-
-    .course-icon {
-      width: 49px;
-      height: 49px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      margin-bottom: 18px;
-      font-size: 24px;
-      background: rgba(57,133,255,0.15);
-    }
-
-    .icon-blue {
-      background: rgba(57,133,255,0.15);
-    }
-
-    .icon-purple {
-      background: rgba(154,117,255,0.15);
-    }
-
-    .icon-green {
-      background: rgba(71,220,164,0.13);
-    }
-
-    .icon-orange {
-      background: rgba(255,165,87,0.13);
-    }
-
-    .course-card h3 {
-      font-size: 17px;
-      margin-bottom: 8px;
-    }
-
-    .course-card p {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.65;
-      margin-bottom: 17px;
-    }
-
-    .course-link {
-      margin-top: auto;
-      color: var(--cyan);
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    /* GENERAL PANELS */
-
-    .panel {
-      padding: 25px;
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      background: rgba(17,26,53,0.75);
-      margin-bottom: 20px;
-    }
-
-    .panel h3 {
-      margin-bottom: 10px;
-      font-size: 19px;
-    }
-
-    .panel p {
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 14px;
-    }
-
-    /* STATISTICS */
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3,minmax(0,1fr));
-      gap: 16px;
-      margin-bottom: 25px;
-    }
-
-    .stat-card {
-      padding: 23px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: var(--panel);
-    }
-
-    .stat-card span {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 13px;
-    }
-
-    .stat-card strong {
-      font-size: 30px;
-    }
-
-    .stat-card small {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 7px;
-    }
-
-    /* BUTTONS AND INPUTS */
-
-    .primary-button {
-      display: inline-block;
-      padding: 12px 17px;
-      border: 0;
-      border-radius: 10px;
-      background: linear-gradient(120deg,var(--blue),var(--purple));
-      color: white;
-      font-weight: bold;
-      font-size: 13px;
-    }
-
-    .primary-button:hover {
-      filter: brightness(1.12);
-    }
-
-    .form-input {
-      width: 100%;
-      max-width: 420px;
-      padding: 13px 14px;
-      margin: 10px 0 16px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: #0b132b;
-      color: white;
-      outline: none;
-    }
-
-    .form-input:focus {
-      border-color: var(--cyan);
-    }
-
-    /* AVATAR */
-
-    .avatar-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 20px 0;
-    }
-
-    .avatar-option {
-      width: 57px;
-      height: 57px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--panel-light);
-      font-size: 28px;
-    }
-
-    .avatar-option.selected {
-      border-color: var(--cyan);
-      box-shadow: 0 0 0 2px rgba(83,226,255,0.12);
-    }
-
-    .notice {
-      margin-top: 15px;
-      color: var(--cyan);
-      font-size: 13px;
-    }
-
-    /* BRAINBOX PLUS */
-
-    .plus-banner {
-      padding: 30px;
-      border: 1px solid rgba(255,200,87,0.23);
-      border-radius: 18px;
-      background: linear-gradient(135deg,rgba(255,200,87,0.10),rgba(154,117,255,0.12));
-    }
-
-    .plus-banner h2 {
-      margin-bottom: 12px;
-    }
-
-    .plus-banner p {
-      max-width: 650px;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 20px;
-    }
-
-    footer {
-      padding: 25px 0 10px;
-      color: #7785a5;
-      font-size: 12px;
-      text-align: center;
-    }
-
-    /* MOBILE */
-
-    .mobile-menu {
-      display: none;
-      padding: 9px 12px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      background: var(--panel);
-      color: white;
-    }
-
-    @media (max-width: 1050px) {
-      .course-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-      }
-    }
-
-    @media (max-width: 760px) {
-      .app {
-        display: block;
-      }
-
-      .sidebar {
-        width: 100%;
-        min-height: auto;
-        padding: 15px;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .brand {
-        margin: 0 0 15px;
-      }
-
-      .mobile-menu {
-        display: block;
-        margin-bottom: 12px;
-      }
-
-      .sidebar-nav {
-        display: none;
-      }
-
-      .sidebar-nav.open {
-        display: block;
-      }
-
-      .sidebar-label {
-        margin-top: 12px;
-      }
-
-      .sidebar-bottom {
-        padding-top: 12px;
-      }
-
-      .upgrade-card {
-        margin-bottom: 8px;
-      }
-
-      .main {
-        padding: 22px 16px 35px;
-      }
-
-      .topbar {
-        margin-bottom: 23px;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .course-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-        gap: 12px;
-      }
-
-      .course-card {
-        padding: 16px;
-        min-height: 215px;
-      }
-
-      .profile-chip {
-        padding: 6px;
-      }
-
-      .profile-chip > div:last-child {
-        display: none;
-      }
-    }
-
-    @media (max-width: 430px) {
-      .course-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .course-card {
-        min-height: 190px;
-      }
-
-      .welcome-banner {
-        padding: 22px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard | BrainBox Learning</title>
+
+<style>
+:root {
+  --bg: #080d1c;
+  --panel: #101a31;
+  --panel-light: #172440;
+  --border: rgba(255,255,255,0.1);
+  --text: #f4f7ff;
+  --muted: #9ba9c5;
+  --blue: #4385ff;
+  --purple: #8b5cf6;
+  --gold: #f7c948;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at top right, #192b52 0%, transparent 40%),
+    var(--bg);
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  padding: 27px 18px;
+  background: rgba(8,13,28,0.94);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 10px 35px;
+}
+
+.brand-icon {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.brand-name {
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.brand-name span {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: normal;
+  color: var(--muted);
+}
+
+.nav-label {
+  padding: 0 12px;
+  margin: 8px 0 12px;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.7px;
+  font-weight: bold;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  padding: 13px 14px;
+  margin-bottom: 7px;
+  color: #aab7d0;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  text-align: left;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.nav-button:hover {
+  background: rgba(255,255,255,0.05);
+  color: white;
+}
+
+.nav-button.active {
+  color: white;
+  background: linear-gradient(100deg, rgba(67,133,255,0.24), rgba(139,92,246,0.13));
+  border-color: rgba(88,139,255,0.28);
+}
+
+.nav-icon {
+  width: 22px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.035);
+}
+
+.sidebar-bottom strong {
+  font-size: 13px;
+}
+
+.sidebar-bottom p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* MAIN AREA */
+
+.main {
+  flex: 1;
+  min-width: 0;
+  padding: 30px 38px 50px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.page-heading h1 {
+  margin: 0;
+  font-size: 27px;
+  letter-spacing: -0.6px;
+}
+
+.page-heading p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* LARGER TOP-RIGHT PROFILE */
+
+.profile-chip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+  min-width: 230px;
+  flex-shrink: 0;
+}
+
+.avatar-small {
+  display: grid;
+  place-items: center;
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: var(--panel-light);
+  font-size: 30px;
+}
+
+.profile-chip strong {
+  display: block;
+  font-size: 16px;
+}
+
+.profile-chip small {
+  display: block;
+  color: var(--muted);
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+/* VIEWS */
+
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
+
+/* HOME BANNER */
+
+.welcome-banner {
+  position: relative;
+  overflow: hidden;
+  padding: 35px;
+  min-height: 225px;
+  border: 1px solid rgba(116,145,255,0.22);
+  border-radius: 23px;
+  background:
+    radial-gradient(circle at 85% 25%, rgba(139,92,246,0.3), transparent 35%),
+    linear-gradient(120deg, #15294c, #17213e 65%, #251c4a);
+}
+
+.welcome-banner::after {
+  content: "✦";
+  position: absolute;
+  right: 55px;
+  top: 5px;
+  font-size: 145px;
+  color: rgba(255,255,255,0.08);
+}
+
+.eyebrow {
+  color: #9dbbff;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.welcome-banner h2 {
+  max-width: 570px;
+  margin: 16px 0 12px;
+  font-size: 31px;
+  line-height: 1.25;
+}
+
+.welcome-banner p {
+  max-width: 520px;
+  color: #b6c5e1;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.primary-button {
+  padding: 12px 18px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 10px;
+  background: var(--blue);
+  color: white;
+  font-weight: bold;
+}
+
+.primary-button:hover {
+  filter: brightness(1.12);
+}
+
+/* STATISTICS */
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0 17px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.stat-card {
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  background: rgba(16,26,49,0.85);
+}
+
+.stat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.stat-icon {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  background: rgba(67,133,255,0.13);
+  font-size: 21px;
+}
+
+.stat-number {
+  margin-top: 18px;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.stat-label {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* COURSES */
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.course-card {
+  display: block;
+  padding: 23px;
+  min-height: 180px;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(16,26,49,0.9);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(100,150,255,0.6);
+}
+
+.course-icon {
+  display: grid;
+  place-items: center;
+  width: 49px;
+  height: 49px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  background: rgba(67,133,255,0.14);
+}
+
+.course-card h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.course-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.course-arrow {
+  display: block;
+  margin-top: 15px;
+  color: #8db5ff;
+  font-size: 13px;
+}
+
+/* GENERAL PANELS */
+
+.panel {
+  padding: 25px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(16,26,49,0.9);
+}
+
+.panel h3 {
+  margin: 0 0 12px;
+}
+
+.panel p {
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.progress-track {
+  height: 9px;
+  overflow: hidden;
+  margin: 15px 0;
+  border-radius: 20px;
+  background: #25324c;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+}
+
+.profile-editor {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.big-avatar {
+  display: grid;
+  place-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 25px;
+  background: var(--panel-light);
+  font-size: 55px;
+}
+
+.editor-fields {
+  flex: 1;
+  min-width: 200px;
+}
+
+.editor-fields label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.editor-fields input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  outline: none;
+  color: white;
+  background: #0c1529;
+}
+
+.editor-fields input:focus {
+  border-color: var(--blue);
+}
+
+.avatar-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.avatar-option {
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--panel-light);
+  font-size: 27px;
+}
+
+.avatar-option.selected {
+  border: 2px solid var(--blue);
+  background: rgba(67,133,255,0.18);
+}
+
+.plus-banner {
+  padding: 30px;
+  border: 1px solid rgba(247,201,72,0.28);
+  border-radius: 20px;
+  background: linear-gradient(120deg, #292342, #17213b);
+}
+
+.plus-banner h2 {
+  margin-top: 0;
+  color: var(--gold);
+}
+
+.plus-banner p {
+  color: #c1c8dd;
+  line-height: 1.7;
+}
+
+.plus-feature {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  color: #d8e1f5;
+}
+
+.plus-feature:last-child {
+  border-bottom: none;
+}
+
+.status-message {
+  min-height: 20px;
+  margin-top: 12px;
+  color: #9fc3ff;
+  font-size: 13px;
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1050px) {
+  .sidebar {
+    width: 215px;
+  }
+
+  .main {
+    padding: 25px;
+  }
+
+  .courses-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .app {
+    display: block;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 14px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand {
+    padding: 5px 5px 17px;
+  }
+
+  .nav-label,
+  .sidebar-bottom {
+    display: none;
+  }
+
+  .sidebar nav {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+
+  .nav-button {
+    width: auto;
+    flex-shrink: 0;
+    padding: 10px 12px;
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .nav-icon {
+    font-size: 15px;
+    width: auto;
+  }
+
+  .main {
+    padding: 20px 15px 35px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 17px;
+    margin-bottom: 23px;
+  }
+
+  .page-heading h1 {
+    font-size: 24px;
+  }
+
+  .profile-chip {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 15px;
+  }
+
+  .avatar-small {
+    width: 50px;
+    height: 50px;
+    font-size: 27px;
+  }
+
+  .profile-chip > div:last-child {
+    display: block;
+  }
+
+  .welcome-banner {
+    padding: 25px 20px;
+  }
+
+  .welcome-banner h2 {
+    font-size: 25px;
+  }
+
+  .welcome-banner::after {
+    right: 5px;
+    font-size: 100px;
+  }
+
+  .courses-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+</style>
 </head>
 
 <body>
 <div class="app">
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-    <a href="index.html" class="brand">
-      <span class="brand-icon">✦</span>
-      <span class="brand-name">BrainBox Learning</span>
-    </a>
-
-    <button class="mobile-menu" id="mobileMenu" type="button">
-      ☰ Menu
-    </button>
-
-    <nav class="sidebar-nav" id="sidebarNav">
-      <div class="sidebar-label">Learning space</div>
-
-      <button class="nav-button active" data-view="profile" type="button">
-        <span class="nav-icon">🏠</span> Home
-      </button>
-
-      <button class="nav-button" data-view="courses" type="button">
-        <span class="nav-icon">📚</span> Courses
-      </button>
-
-      <button class="nav-button" data-view="stats" type="button">
-        <span class="nav-icon">📈</span> Learning Stats
-      </button>
-
-      <div class="sidebar-label" style="margin-top:25px">Your account</div>
-
-      <button class="nav-button" data-view="avatar" type="button">
-        <span class="nav-icon">🎨</span> Avatar
-      </button>
-
-      <button class="nav-button" data-view="plus" type="button">
-        <span class="nav-icon">⭐</span> BrainBox Plus
-      </button>
-
-      <div class="sidebar-bottom">
-        <div class="upgrade-card">
-          <strong>⭐ BrainBox Plus</strong>
-          <p>Explore additional learning opportunities and features.</p>
-          <a class="upgrade-link" href="page2.html">Explore Plus →</a>
-        </div>
-
-        <a href="index.html" class="home-link">← Back to main website</a>
-      </div>
-    </nav>
-  </aside>
-
-  <!-- MAIN CONTENT -->
-  <main class="main">
-
-    <div class="topbar">
-      <div>
-        <div class="breadcrumb">BrainBox Learning / Student</div>
-        <h1 class="page-title" id="pageTitle">Your Learning Space</h1>
-      </div>
-
-      <div class="profile-chip">
-        <div class="avatar-small" id="topAvatar">🎓</div>
-        <div>
-          <strong id="topName">Student</strong>
-          <small>Student account</small>
-        </div>
+    <div class="brand">
+      <div class="brand-icon">B</div>
+      <div class="brand-name">
+        BrainBox Learning
+        <span>STUDENT PORTAL</span>
       </div>
     </div>
 
-    <!-- HOME VIEW: COURSE BOXES REMOVED -->
-    <section class="view active" id="view-profile">
+    <div class="nav-label">WORKSPACE</div>
 
+    <nav>
+      <button class="nav-button active" data-view="home">
+        <span class="nav-icon">⌂</span> Home
+      </button>
+
+      <button class="nav-button" data-view="courses">
+        <span class="nav-icon">▤</span> Courses
+      </button>
+
+      <button class="nav-button" data-view="stats">
+        <span class="nav-icon">▥</span> Learning Stats
+      </button>
+
+      <button class="nav-button" data-view="avatar">
+        <span class="nav-icon">☺</span> Avatar
+      </button>
+
+      <button class="nav-button" data-view="plus">
+        <span class="nav-icon">★</span> BrainBox Plus
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <strong>Keep learning!</strong>
+      <p>Explore new subjects, build your skills, and discover what you enjoy.</p>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <header class="topbar">
+      <div class="page-heading">
+        <h1 id="pageTitle">Student Dashboard</h1>
+        <p id="pageSubtitle">Your personal learning space.</p>
+      </div>
+
+      <div class="profile-chip">
+        <div class="avatar-small" id="topAvatar">🧑‍🎓</div>
+        <div>
+          <strong id="topName">Student</strong>
+          <small>Student Account</small>
+        </div>
+      </div>
+    </header>
+
+    <!-- HOME -->
+
+    <section class="view active" id="home">
       <div class="welcome-banner">
-        <div class="eyebrow">✦ Welcome to your learning space</div>
-
-        <h2>
-          Big ideas start here,
-          <span class="gradient-text" id="welcomeName">Student</span>.
-        </h2>
-
+        <div class="eyebrow">YOUR LEARNING JOURNEY</div>
+        <h2>Welcome back, <span id="welcomeName">Student</span>!</h2>
         <p>
-          Explore your courses, discover new interests, build skills,
-          and make every learning day an opportunity to grow.
+          Keep exploring, discovering new ideas, and building your knowledge.
+          Your next great discovery starts here.
         </p>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span>Available courses</span>
-          <strong>7</strong>
-          <small>Explore all seven courses</small>
-        </div>
-
-        <div class="stat-card">
-          <span>Your learning space</span>
-          <strong>✦</strong>
-          <small>Ready for your next discovery</small>
-        </div>
-
-        <div class="stat-card">
-          <span>Your next step</span>
-          <strong>→</strong>
-          <small>Choose a course to begin</small>
-        </div>
-      </div>
-
-      <!-- Science, Social Studies, and Interests boxes are removed. -->
-
-    </section>
-
-    <!-- COURSES VIEW -->
-    <section class="view" id="view-courses">
-
-      <div class="welcome-banner">
-        <div class="eyebrow">Your courses</div>
-
-        <h2>
-          Explore. Learn.
-          <span class="gradient-text">Discover.</span>
-        </h2>
-
-        <p>
-          Choose from seven courses to explore different subjects,
-          develop new skills, and discover what interests you.
-        </p>
-      </div>
-
-      <div class="course-grid">
-
-        <a href="page5.html" class="course-card">
-          <div class="course-icon icon-blue">🔬</div>
-          <h3>Science</h3>
-          <p>Explore the natural world, experiment with ideas, and discover how things work.</p>
-          <span class="course-link">Explore Science →</span>
-        </a>
-
-        <a href="page5.html" class="course-card">
-          <div class="course-icon icon-purple">🌎</div>
-          <h3>Social Studies</h3>
-          <p>Discover history, geography, cultures, and the events that shaped our world.</p>
-          <span class="course-link">Explore Social Studies →</span>
-        </a>
-
-        <a href="page5.html" class="course-card">
-          <div class="course-icon icon-green">💡</div>
-          <h3>Interests</h3>
-          <p>Explore hobbies, uncover new passions, and discover what excites you.</p>
-          <span class="course-link">Discover Interests →</span>
-        </a>
-
-        <a href="page5.html" class="course-card">
-          <div class="course-icon icon-orange">🚀</div>
-          <h3>Careers</h3>
-          <p>Explore professions, discover possibilities, and imagine your future.</p>
-          <span class="course-link">Explore Careers →</span>
-        </a>
-
-        <a href="page5.html" class="course-card">
-          <div class="course-icon icon-blue">➗</div>
-          <h3>Math</h3>
-          <p>Practice problem-solving, explore numbers, and develop mathematical thinking.</p>
-          <span class="course-link">Explore Math →</span>
-        </a>
-
-        <a href="page5.html" class="course-card">
-          <div class="course-icon icon-purple">📚</div>
-          <h3>English</h3>
-          <p>Improve your reading, writing, grammar, and communication skills.</p>
-          <span class="course-link">Explore English →</span>
-        </a>
-
-        <a href="page5.html" class="course-card">
-          <div class="course-icon icon-green">🌐</div>
-          <h3>Language</h3>
-          <p>Discover languages, build vocabulary, and explore how people communicate.</p>
-          <span class="course-link">Explore Language →</span>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- LEARNING STATS VIEW -->
-    <section class="view" id="view-stats">
-
-      <div class="welcome-banner">
-        <div class="eyebrow">Your progress</div>
-
-        <h2>
-          Your learning
-          <span class="gradient-text">stats.</span>
-        </h2>
-
-        <p>
-          This space can be used to track completed lessons,
-          learning time, and progress as those features are added.
-        </p>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span>Available courses</span>
-          <strong>7</strong>
-          <small>Courses to explore</small>
-        </div>
-
-        <div class="stat-card">
-          <span>Lessons completed</span>
-          <strong>0</strong>
-          <small>Completion tracking is not connected yet</small>
-        </div>
-
-        <div class="stat-card">
-          <span>Learning streak</span>
-          <strong>0</strong>
-          <small>Streak tracking is not connected yet</small>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h3>Ready to make progress?</h3>
-
-        <p>
-          Open your courses and choose something to learn.
-          Lesson completion and time tracking will need to be
-          connected before these statistics update automatically.
-        </p>
-
-        <br>
-
-        <button class="primary-button" data-goto="courses" type="button">
-          Browse Courses →
+        <button class="primary-button" onclick="showView('courses')">
+          Explore Courses →
         </button>
       </div>
 
+      <div class="section-heading">
+        <h2>Your Overview</h2>
+        <p>Your learning dashboard</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-top">
+            <span>Courses available</span>
+            <span class="stat-icon">📚</span>
+          </div>
+          <div class="stat-number">7</div>
+          <div class="stat-label">Subjects to explore</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-top">
+            <span>Learning progress</span>
+            <span class="stat-icon">📈</span>
+          </div>
+          <div class="stat-number">0%</div>
+          <div class="stat-label">Progress tracking coming soon</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-top">
+            <span>Learning streak</span>
+            <span class="stat-icon">🔥</span>
+          </div>
+          <div class="stat-number">0 days</div>
+          <div class="stat-label">Start your learning journey</div>
+        </div>
+      </div>
     </section>
 
-    <!-- AVATAR VIEW -->
-    <section class="view" id="view-avatar">
+    <!-- COURSES -->
 
-      <div class="welcome-banner">
-        <div class="eyebrow">Make it yours</div>
+    <section class="view" id="courses">
+      <div class="section-heading">
+        <h2>Explore Your Courses</h2>
+        <p>Choose a subject to get started.</p>
+      </div>
 
-        <h2>
-          Customize your
-          <span class="gradient-text">profile.</span>
-        </h2>
+      <div class="courses-grid">
+        <a class="course-card" href="page5.html">
+          <div class="course-icon">🔬</div>
+          <h3>Science</h3>
+          <p>Discover experiments, nature, space, and how the world works.</p>
+          <span class="course-arrow">Explore subject →</span>
+        </a>
 
-        <p>Choose an avatar and a display name for your learning space.</p>
+        <a class="course-card" href="page5.html">
+          <div class="course-icon">🌎</div>
+          <h3>Social Studies</h3>
+          <p>Explore history, geography, cultures, and communities.</p>
+          <span class="course-arrow">Explore subject →</span>
+        </a>
+
+        <a class="course-card" href="page5.html">
+          <div class="course-icon">💡</div>
+          <h3>Interests</h3>
+          <p>Discover topics and activities that you enjoy.</p>
+          <span class="course-arrow">Explore subject →</span>
+        </a>
+
+        <a class="course-card" href="page5.html">
+          <div class="course-icon">🚀</div>
+          <h3>Careers</h3>
+          <p>Explore future careers and the skills they use.</p>
+          <span class="course-arrow">Explore subject →</span>
+        </a>
+
+        <a class="course-card" href="page5.html">
+          <div class="course-icon">📐</div>
+          <h3>Math</h3>
+          <p>Practice problem-solving, numbers, and mathematical thinking.</p>
+          <span class="course-arrow">Explore subject →</span>
+        </a>
+
+        <a class="course-card" href="page5.html">
+          <div class="course-icon">📖</div>
+          <h3>English</h3>
+          <p>Build reading, writing, vocabulary, and communication skills.</p>
+          <span class="course-arrow">Explore subject →</span>
+        </a>
+
+        <a class="course-card" href="page5.html">
+          <div class="course-icon">🌐</div>
+          <h3>Language</h3>
+          <p>Discover languages and practice communicating in new ways.</p>
+          <span class="course-arrow">Explore subject →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- LEARNING STATS -->
+
+    <section class="view" id="stats">
+      <div class="section-heading">
+        <h2>Learning Stats</h2>
+        <p>Your learning progress at a glance.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📚</div>
+          <div class="stat-number">7</div>
+          <div class="stat-label">Available subjects</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-number">0</div>
+          <div class="stat-label">Completed activities</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-number">0 hrs</div>
+          <div class="stat-label">Learning time recorded</div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:20px">
+        <h3>Overall Learning Progress</h3>
+        <p>Your progress will appear here as learning activities and course tracking are added.</p>
+        <div class="progress-track">
+          <div class="progress-fill" style="width:0%"></div>
+        </div>
+        <p>0% completed</p>
+      </div>
+    </section>
+
+    <!-- AVATAR AND PROFILE -->
+
+    <section class="view" id="avatar">
+      <div class="section-heading">
+        <h2>Your Profile</h2>
+        <p>Personalize your student account.</p>
       </div>
 
       <div class="panel">
-        <h3>Choose your avatar</h3>
-        <p>Select one of the icons below.</p>
+        <div class="profile-editor">
+          <div class="big-avatar" id="bigAvatar">🧑‍🎓</div>
+
+          <div class="editor-fields">
+            <label for="studentName">Your display name</label>
+            <input
+              type="text"
+              id="studentName"
+              maxlength="40"
+              placeholder="Enter your name"
+            >
+            <button class="primary-button" onclick="saveProfile()">
+              Save Profile
+            </button>
+            <div class="status-message" id="profileMessage"></div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:28px">Choose Your Avatar</h3>
+        <p>Select an emoji to represent your profile.</p>
 
         <div class="avatar-options" id="avatarOptions">
-          <button class="avatar-option selected" type="button" data-avatar="🎓" aria-label="Graduation cap">🎓</button>
-          <button class="avatar-option" type="button" data-avatar="🦊" aria-label="Fox">🦊</button>
-          <button class="avatar-option" type="button" data-avatar="🐼" aria-label="Panda">🐼</button>
-          <button class="avatar-option" type="button" data-avatar="🚀" aria-label="Rocket">🚀</button>
-          <button class="avatar-option" type="button" data-avatar="🦉" aria-label="Owl">🦉</button>
-          <button class="avatar-option" type="button" data-avatar="🐯" aria-label="Tiger">🐯</button>
-          <button class="avatar-option" type="button" data-avatar="🤖" aria-label="Robot">🤖</button>
-          <button class="avatar-option" type="button" data-avatar="🌟" aria-label="Star">🌟</button>
+          <button class="avatar-option selected" data-avatar="🧑‍🎓">🧑‍🎓</button>
+          <button class="avatar-option" data-avatar="🧑‍🚀">🧑‍🚀</button>
+          <button class="avatar-option" data-avatar="🦊">🦊</button>
+          <button class="avatar-option" data-avatar="🐼">🐼</button>
+          <button class="avatar-option" data-avatar="🐱">🐱</button>
+          <button class="avatar-option" data-avatar="🦉">🦉</button>
+          <button class="avatar-option" data-avatar="🤖">🤖</button>
+          <button class="avatar-option" data-avatar="🐉">🐉</button>
         </div>
-
-        <h3>Display name</h3>
-
-        <label for="displayName">Your name</label>
-        <br>
-
-        <input
-          class="form-input"
-          id="displayName"
-          type="text"
-          maxlength="35"
-          placeholder="Enter a display name"
-        >
-
-        <br>
-
-        <button class="primary-button" id="saveProfile" type="button">
-          Save Profile
-        </button>
-
-        <p class="notice" id="profileNotice" role="status"></p>
       </div>
-
     </section>
 
-    <!-- BRAINBOX PLUS VIEW -->
-    <section class="view" id="view-plus">
+    <!-- BRAINBOX PLUS -->
 
+    <section class="view" id="plus">
       <div class="plus-banner">
-        <div class="eyebrow">⭐ BrainBox Plus</div>
-
-        <h2>
-          Take your learning
-          <span class="gradient-text">further.</span>
-        </h2>
-
+        <div class="eyebrow">PREMIUM LEARNING</div>
+        <h2>★ BrainBox Plus</h2>
         <p>
-          Explore the BrainBox Plus page for information about
-          additional learning options and special features.
-        </p>
-
-        <a href="page2.html" class="primary-button">
-          Explore BrainBox Plus →
-        </a>
-      </div>
-
-      <div class="panel" style="margin-top:22px">
-        <h3>Keep discovering</h3>
-
-        <p>
-          You can continue using the available courses while exploring
-          the options on the BrainBox Plus page.
+          Unlock a more personalized learning experience with premium
+          learning tools and expanded subject features.
         </p>
       </div>
 
+      <div class="panel" style="margin-top:20px">
+        <h3>BrainBox Plus Features</h3>
+        <div class="plus-feature">★ Expanded learning resources</div>
+        <div class="plus-feature">★ Additional subject activities</div>
+        <div class="plus-feature">★ Personalized learning tools</div>
+        <div class="plus-feature">★ More ways to explore your interests</div>
+        <p>
+          BrainBox Plus access must be connected to your account system
+          before these features can be restricted or unlocked automatically.
+        </p>
+      </div>
     </section>
 
     <footer>
-      BrainBox Learning · Keep exploring, learning, and growing.
+      © 2026 BrainBox Learning · Learn, Explore, Discover
     </footer>
 
   </main>
 </div>
 
 <script>
-  // Switch between dashboard sections without leaving page3.html.
-  const navButtons = document.querySelectorAll(".nav-button");
-  const views = document.querySelectorAll(".view");
-  const pageTitle = document.getElementById("pageTitle");
-  const sidebarNav = document.getElementById("sidebarNav");
-  const mobileMenu = document.getElementById("mobileMenu");
+const pageInfo = {
+  home: {
+    title: "Student Dashboard",
+    subtitle: "Your personal learning space."
+  },
+  courses: {
+    title: "Your Courses",
+    subtitle: "Explore subjects and discover new ideas."
+  },
+  stats: {
+    title: "Learning Stats",
+    subtitle: "See your learning journey at a glance."
+  },
+  avatar: {
+    title: "Your Profile",
+    subtitle: "Make your learning space your own."
+  },
+  plus: {
+    title: "BrainBox Plus",
+    subtitle: "Explore premium learning features."
+  }
+};
 
-  const titles = {
-    profile: "Your Learning Space",
-    courses: "Your Courses",
-    stats: "Learning Stats",
-    avatar: "Customize Your Avatar",
-    plus: "BrainBox Plus"
-  };
+let selectedAvatar =
+  localStorage.getItem("brainboxAvatar") || "🧑‍🎓";
 
-  function showView(viewName) {
-    views.forEach(function(view) {
-      view.classList.toggle(
-        "active",
-        view.id === "view-" + viewName
-      );
-    });
+function showView(viewName) {
+  const target = document.getElementById(viewName);
 
-    navButtons.forEach(function(button) {
-      button.classList.toggle(
-        "active",
-        button.dataset.view === viewName
-      );
-    });
+  if (!target) return;
 
-    pageTitle.textContent =
-      titles[viewName] || "Your Learning Space";
+  document.querySelectorAll(".view").forEach(view => {
+    view.classList.remove("active");
+  });
 
-    sidebarNav.classList.remove("open");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  target.classList.add("active");
+
+  document.querySelectorAll(".nav-button").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.view === viewName
+    );
+  });
+
+  document.getElementById("pageTitle").textContent =
+    pageInfo[viewName].title;
+
+  document.getElementById("pageSubtitle").textContent =
+    pageInfo[viewName].subtitle;
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.querySelectorAll(".nav-button").forEach(button => {
+  button.addEventListener("click", () => {
+    showView(button.dataset.view);
+  });
+});
+
+function updateProfileDisplay() {
+  const savedName =
+    localStorage.getItem("brainboxName") || "Student";
+
+  document.getElementById("topName").textContent = savedName;
+  document.getElementById("welcomeName").textContent = savedName;
+  document.getElementById("topAvatar").textContent = selectedAvatar;
+  document.getElementById("bigAvatar").textContent = selectedAvatar;
+  document.getElementById("studentName").value =
+    savedName === "Student" ? "" : savedName;
+
+  document.querySelectorAll(".avatar-option").forEach(button => {
+    button.classList.toggle(
+      "selected",
+      button.dataset.avatar === selectedAvatar
+    );
+  });
+}
+
+function saveProfile() {
+  const nameInput = document.getElementById("studentName");
+  const name = nameInput.value.trim();
+
+  if (!name) {
+    document.getElementById("profileMessage").textContent =
+      "Please enter a display name first.";
+    return;
   }
 
-  navButtons.forEach(function(button) {
-    button.addEventListener("click", function() {
-      showView(button.dataset.view);
-    });
+  localStorage.setItem("brainboxName", name);
+  localStorage.setItem("brainboxAvatar", selectedAvatar);
+
+  updateProfileDisplay();
+
+  document.getElementById("profileMessage").textContent =
+    "Profile saved successfully!";
+}
+
+document.querySelectorAll(".avatar-option").forEach(button => {
+  button.addEventListener("click", () => {
+    selectedAvatar = button.dataset.avatar;
+    localStorage.setItem("brainboxAvatar", selectedAvatar);
+    updateProfileDisplay();
+
+    document.getElementById("profileMessage").textContent =
+      "Avatar selected. Click Save Profile to save your name and avatar.";
   });
+});
 
-  document.querySelectorAll("[data-goto]").forEach(function(button) {
-    button.addEventListener("click", function() {
-      showView(button.dataset.goto);
-    });
-  });
-
-  mobileMenu.addEventListener("click", function() {
-    sidebarNav.classList.toggle("open");
-  });
-
-  // Load saved profile information.
-  let currentAvatar = "🎓";
-
-  try {
-    currentAvatar = localStorage.getItem("brainboxAvatar") || "🎓";
-
-    const savedName =
-      localStorage.getItem("brainboxName") || "Student";
-
-    document.getElementById("topName").textContent = savedName;
-    document.getElementById("welcomeName").textContent = savedName;
-    document.getElementById("topAvatar").textContent = currentAvatar;
-
-    document.getElementById("displayName").value =
-      savedName === "Student" ? "" : savedName;
-
-  } catch (error) {
-    // The dashboard still works if browser storage is unavailable.
-  }
-
-  function updateSelectedAvatar() {
-    document.querySelectorAll(".avatar-option").forEach(function(button) {
-      button.classList.toggle(
-        "selected",
-        button.dataset.avatar === currentAvatar
-      );
-    });
-  }
-
-  document.querySelectorAll(".avatar-option").forEach(function(button) {
-    button.addEventListener("click", function() {
-      currentAvatar = button.dataset.avatar;
-      updateSelectedAvatar();
-    });
-  });
-
-  document.getElementById("saveProfile").addEventListener("click", function() {
-    const nameInput = document.getElementById("displayName");
-    const savedName = nameInput.value.trim() || "Student";
-    const notice = document.getElementById("profileNotice");
-
-    document.getElementById("topName").textContent = savedName;
-    document.getElementById("welcomeName").textContent = savedName;
-    document.getElementById("topAvatar").textContent = currentAvatar;
-
-    try {
-      localStorage.setItem("brainboxName", savedName);
-      localStorage.setItem("brainboxAvatar", currentAvatar);
-      notice.textContent = "Profile saved!";
-    } catch (error) {
-      notice.textContent =
-        "Profile updated for this session, but browser storage is unavailable.";
-    }
-  });
-
-  updateSelectedAvatar();
+updateProfileDisplay();
 </script>
 
 </body>
