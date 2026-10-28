@@ -246,9 +246,17 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
+    /* WELCOME BANNER */
 
     .welcome-banner {
       position: relative;
@@ -298,31 +306,6 @@
       max-width: 650px;
     }
 
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      margin: 30px 0 17px;
-    }
-
-    .section-header h2 {
-      font-size: 21px;
-    }
-
-    .section-header p {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 5px;
-    }
-
-    .text-link {
-      color: var(--cyan);
-      font-size: 13px;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
     /* COURSE CARDS */
 
     .course-grid {
@@ -361,11 +344,21 @@
       background: rgba(57,133,255,0.15);
     }
 
-    .icon-blue { background: rgba(57,133,255,0.15); }
-    .icon-purple { background: rgba(154,117,255,0.15); }
-    .icon-green { background: rgba(71,220,164,0.13); }
-    .icon-orange { background: rgba(255,165,87,0.13); }
-    .icon-gold { background: rgba(255,200,87,0.13); }
+    .icon-blue {
+      background: rgba(57,133,255,0.15);
+    }
+
+    .icon-purple {
+      background: rgba(154,117,255,0.15);
+    }
+
+    .icon-green {
+      background: rgba(71,220,164,0.13);
+    }
+
+    .icon-orange {
+      background: rgba(255,165,87,0.13);
+    }
 
     .course-card h3 {
       font-size: 17px;
@@ -407,6 +400,8 @@
       font-size: 14px;
     }
 
+    /* STATISTICS */
+
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(3,minmax(0,1fr));
@@ -439,6 +434,8 @@
       margin-top: 7px;
     }
 
+    /* BUTTONS AND INPUTS */
+
     .primary-button {
       display: inline-block;
       padding: 12px 17px;
@@ -452,16 +449,6 @@
 
     .primary-button:hover {
       filter: brightness(1.12);
-    }
-
-    .secondary-button {
-      display: inline-block;
-      padding: 11px 15px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      font-size: 13px;
     }
 
     .form-input {
@@ -479,6 +466,8 @@
     .form-input:focus {
       border-color: var(--cyan);
     }
+
+    /* AVATAR */
 
     .avatar-options {
       display: flex;
@@ -507,6 +496,8 @@
       font-size: 13px;
     }
 
+    /* BRAINBOX PLUS */
+
     .plus-banner {
       padding: 30px;
       border: 1px solid rgba(255,200,87,0.23);
@@ -523,12 +514,6 @@
       color: var(--muted);
       line-height: 1.8;
       margin-bottom: 20px;
-    }
-
-    .empty-note {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
     }
 
     footer {
@@ -640,10 +625,6 @@
       .welcome-banner {
         padding: 22px;
       }
-
-      .section-header {
-        align-items: flex-start;
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -672,25 +653,25 @@
     <nav class="sidebar-nav" id="sidebarNav">
       <div class="sidebar-label">Learning space</div>
 
-      <button class="nav-button active" data-view="profile">
+      <button class="nav-button active" data-view="profile" type="button">
         <span class="nav-icon">🏠</span> Home
       </button>
 
-      <button class="nav-button" data-view="courses">
+      <button class="nav-button" data-view="courses" type="button">
         <span class="nav-icon">📚</span> Courses
       </button>
 
-      <button class="nav-button" data-view="stats">
+      <button class="nav-button" data-view="stats" type="button">
         <span class="nav-icon">📈</span> Learning Stats
       </button>
 
       <div class="sidebar-label" style="margin-top:25px">Your account</div>
 
-      <button class="nav-button" data-view="avatar">
+      <button class="nav-button" data-view="avatar" type="button">
         <span class="nav-icon">🎨</span> Avatar
       </button>
 
-      <button class="nav-button" data-view="plus">
+      <button class="nav-button" data-view="plus" type="button">
         <span class="nav-icon">⭐</span> BrainBox Plus
       </button>
 
@@ -708,6 +689,7 @@
 
   <!-- MAIN CONTENT -->
   <main class="main">
+
     <div class="topbar">
       <div>
         <div class="breadcrumb">BrainBox Learning / Student</div>
@@ -723,11 +705,17 @@
       </div>
     </div>
 
-    <!-- HOME / PROFILE VIEW -->
+    <!-- HOME VIEW: COURSE BOXES REMOVED -->
     <section class="view active" id="view-profile">
+
       <div class="welcome-banner">
         <div class="eyebrow">✦ Welcome to your learning space</div>
-        <h2>Big ideas start here, <span class="gradient-text" id="welcomeName">Student</span>.</h2>
+
+        <h2>
+          Big ideas start here,
+          <span class="gradient-text" id="welcomeName">Student</span>.
+        </h2>
+
         <p>
           Explore your courses, discover new interests, build skills,
           and make every learning day an opportunity to grow.
@@ -754,38 +742,21 @@
         </div>
       </div>
 
-      <div class="section-header">
-        <div>
-          
-      <div class="course-grid">
-        <a href="page5.html" class="course-card">
-          <div class="course-icon icon-blue">🔬</div>
-          <h3>Science</h3>
-          <p>Discover how the natural world works.</p>
-          <span class="course-link">Explore Science →</span>
-        </a>
+      <!-- Science, Social Studies, and Interests boxes are removed. -->
 
-        <a href="page5.html" class="course-card">
-          <div class="course-icon icon-purple">🌎</div>
-          <h3>Social Studies</h3>
-          <p>Explore history, geography, and cultures.</p>
-          <span class="course-link">Explore Social Studies →</span>
-        </a>
-
-        <a href="page5.html" class="course-card">
-          <div class="course-icon icon-green">💡</div>
-          <h3>Interests</h3>
-          <p>Discover hobbies and follow your curiosity.</p>
-          <span class="course-link">Discover Interests →</span>
-        </a>
-      </div>
     </section>
 
     <!-- COURSES VIEW -->
     <section class="view" id="view-courses">
+
       <div class="welcome-banner">
         <div class="eyebrow">Your courses</div>
-        <h2>Explore. Learn. <span class="gradient-text">Discover.</span></h2>
+
+        <h2>
+          Explore. Learn.
+          <span class="gradient-text">Discover.</span>
+        </h2>
+
         <p>
           Choose from seven courses to explore different subjects,
           develop new skills, and discover what interests you.
@@ -793,6 +764,7 @@
       </div>
 
       <div class="course-grid">
+
         <a href="page5.html" class="course-card">
           <div class="course-icon icon-blue">🔬</div>
           <h3>Science</h3>
@@ -841,14 +813,21 @@
           <p>Discover languages, build vocabulary, and explore how people communicate.</p>
           <span class="course-link">Explore Language →</span>
         </a>
+
       </div>
     </section>
 
     <!-- LEARNING STATS VIEW -->
     <section class="view" id="view-stats">
+
       <div class="welcome-banner">
         <div class="eyebrow">Your progress</div>
-        <h2>Your learning <span class="gradient-text">stats.</span></h2>
+
+        <h2>
+          Your learning
+          <span class="gradient-text">stats.</span>
+        </h2>
+
         <p>
           This space can be used to track completed lessons,
           learning time, and progress as those features are added.
@@ -877,23 +856,33 @@
 
       <div class="panel">
         <h3>Ready to make progress?</h3>
+
         <p>
           Open your courses and choose something to learn.
           Lesson completion and time tracking will need to be
           connected before these statistics update automatically.
         </p>
+
         <br>
+
         <button class="primary-button" data-goto="courses" type="button">
           Browse Courses →
         </button>
       </div>
+
     </section>
 
     <!-- AVATAR VIEW -->
     <section class="view" id="view-avatar">
+
       <div class="welcome-banner">
         <div class="eyebrow">Make it yours</div>
-        <h2>Customize your <span class="gradient-text">profile.</span></h2>
+
+        <h2>
+          Customize your
+          <span class="gradient-text">profile.</span>
+        </h2>
+
         <p>Choose an avatar and a display name for your learning space.</p>
       </div>
 
@@ -913,41 +902,65 @@
         </div>
 
         <h3>Display name</h3>
+
         <label for="displayName">Your name</label>
         <br>
-        <input class="form-input" id="displayName" type="text" maxlength="35" placeholder="Enter a display name">
+
+        <input
+          class="form-input"
+          id="displayName"
+          type="text"
+          maxlength="35"
+          placeholder="Enter a display name"
+        >
+
         <br>
+
         <button class="primary-button" id="saveProfile" type="button">
           Save Profile
         </button>
+
         <p class="notice" id="profileNotice" role="status"></p>
       </div>
+
     </section>
 
     <!-- BRAINBOX PLUS VIEW -->
     <section class="view" id="view-plus">
+
       <div class="plus-banner">
         <div class="eyebrow">⭐ BrainBox Plus</div>
-        <h2>Take your learning <span class="gradient-text">further.</span></h2>
+
+        <h2>
+          Take your learning
+          <span class="gradient-text">further.</span>
+        </h2>
+
         <p>
           Explore the BrainBox Plus page for information about
           additional learning options and special features.
         </p>
-        <a href="page2.html" class="primary-button">Explore BrainBox Plus →</a>
+
+        <a href="page2.html" class="primary-button">
+          Explore BrainBox Plus →
+        </a>
       </div>
 
       <div class="panel" style="margin-top:22px">
         <h3>Keep discovering</h3>
+
         <p>
           You can continue using the available courses while exploring
           the options on the BrainBox Plus page.
         </p>
       </div>
+
     </section>
 
     <footer>
       BrainBox Learning · Keep exploring, learning, and growing.
     </footer>
+
   </main>
 </div>
 
@@ -969,16 +982,22 @@
 
   function showView(viewName) {
     views.forEach(function(view) {
-      view.classList.toggle("active", view.id === "view-" + viewName);
+      view.classList.toggle(
+        "active",
+        view.id === "view-" + viewName
+      );
     });
 
     navButtons.forEach(function(button) {
-      button.classList.toggle("active", button.dataset.view === viewName);
+      button.classList.toggle(
+        "active",
+        button.dataset.view === viewName
+      );
     });
 
-    pageTitle.textContent = titles[viewName] || "Your Learning Space";
+    pageTitle.textContent =
+      titles[viewName] || "Your Learning Space";
 
-    // Close the navigation menu after choosing a view on mobile.
     sidebarNav.classList.remove("open");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -1004,13 +1023,17 @@
 
   try {
     currentAvatar = localStorage.getItem("brainboxAvatar") || "🎓";
-    const savedName = localStorage.getItem("brainboxName") || "Student";
+
+    const savedName =
+      localStorage.getItem("brainboxName") || "Student";
 
     document.getElementById("topName").textContent = savedName;
     document.getElementById("welcomeName").textContent = savedName;
     document.getElementById("topAvatar").textContent = currentAvatar;
+
     document.getElementById("displayName").value =
       savedName === "Student" ? "" : savedName;
+
   } catch (error) {
     // The dashboard still works if browser storage is unavailable.
   }
@@ -1045,11 +1068,13 @@
       localStorage.setItem("brainboxAvatar", currentAvatar);
       notice.textContent = "Profile saved!";
     } catch (error) {
-      notice.textContent = "Profile updated for this session, but browser storage is unavailable.";
+      notice.textContent =
+        "Profile updated for this session, but browser storage is unavailable.";
     }
   });
 
   updateSelectedAvatar();
 </script>
+
 </body>
 </html>
