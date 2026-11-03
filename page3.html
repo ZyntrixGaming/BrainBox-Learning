@@ -633,11 +633,176 @@
         transition-duration: 0.01ms !important;
       }
     }
+    .profile-chip {
+  color: var(--text);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.profile-chip:hover {
+  border-color: var(--cyan);
+  background: rgba(255,255,255,0.07);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.profile-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.72);
+}
+
+.profile-modal {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--panel);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.profile-modal h2 {
+  margin-bottom: 8px;
+}
+
+.profile-modal p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.profile-modal label {
+  display: block;
+  margin-top: 15px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.profile-modal input[type="email"],
+.profile-modal input[type="password"] {
+  width: 100%;
+  padding: 13px;
+  margin-top: 7px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: #0b132b;
+  color: white;
+}
+
+.profile-modal .remember-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.profile-modal .remember-row label {
+  margin: 0;
+}
+
+.profile-modal button {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.modal-close {
+  float: right;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: white;
+}
+
+.secondary-button {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: transparent;
+  color: white;
+}
+
+.auth-notice {
+  margin-top: 13px;
+  color: var(--cyan) !important;
+}
   </style>
 </head>
 
 <body>
 <div class="app">
+  <!-- PROFILE LOGIN POPUP -->
+<div class="profile-modal-backdrop" id="profileModal" hidden>
+  <div class="profile-modal" role="dialog"
+       aria-modal="true" aria-labelledby="profileModalTitle">
+
+    <button class="modal-close" id="closeProfileModal"
+            type="button">✕</button>
+
+    <h2 id="profileModalTitle">My Profile</h2>
+    <p id="profileDescription">Sign in to your BrainBox account.</p>
+
+    <!-- SIGNED OUT -->
+    <div id="signedOutPanel">
+
+      <form id="loginForm">
+
+        <label for="loginEmail">Email address</label>
+        <input id="loginEmail" type="email"
+               placeholder="Enter your email"
+               autocomplete="email" required>
+
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password"
+               placeholder="Enter your password"
+               autocomplete="current-password" required>
+
+        <div class="remember-row">
+          <input type="checkbox" id="rememberMe" checked>
+          <label for="rememberMe">Remember me</label>
+        </div>
+
+        <button class="primary-button" type="submit">
+          Sign In
+        </button>
+
+      </form>
+
+      <button class="secondary-button" id="createAccountButton"
+              type="button">
+        Create Account
+      </button>
+
+    </div>
+
+    <!-- SIGNED IN -->
+    <div id="signedInPanel" hidden>
+      <p>You're signed in with:</p>
+      <p id="signedInEmail"
+         style="color:var(--cyan);font-weight:bold;margin-top:10px">
+      </p>
+
+      <button class="primary-button" id="signOutButton"
+              type="button">
+        Sign Out
+      </button>
+    </div>
+
+    <p class="auth-notice" id="authNotice" role="status"></p>
+
+  </div>
+</div>
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
@@ -696,13 +861,14 @@
         <h1 class="page-title" id="pageTitle">Your Learning Space</h1>
       </div>
 
-      <div class="profile-chip">
-        <div class="avatar-small" id="topAvatar">🎓</div>
-        <div>
-          <strong id="topName">Student</strong>
-          <small>Student account</small>
-        </div>
-      </div>
+<button class="profile-chip" id="profileButton"
+        type="button" aria-haspopup="dialog">
+  <div class="avatar-small" id="topAvatar">🎓</div>
+  <div>
+    <strong id="topName">Student</strong>
+    <small id="topAccountStatus">Sign in</small>
+  </div>
+</button>
     </div>
 
     <!-- HOME VIEW: COURSE BOXES REMOVED -->
@@ -1075,6 +1241,185 @@
 
   updateSelectedAvatar();
 </script>
+<script type="module">
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 
+  import {
+    getAuth,
+    setPersistence,
+    browserLocalPersistence,
+    browserSessionPersistence,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+
+  // YOUR FIREBASE CONFIGURATION
+  const firebaseConfig = {
+    apiKey: "AIzaSyAtqhlgP8F-zgT7Iz-25Ksf5UmkGfUWtDU",
+    authDomain: "brainbox-learning.firebaseapp.com",
+    projectId: "brainbox-learning",
+    storageBucket: "brainbox-learning.firebasestorage.app",
+    messagingSenderId: "482393119256",
+    appId: "1:482393119256:web:330df83a9ac13f468a016d",
+    measurementId: "G-88ZV3NEZBW"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+
+  // HTML ELEMENTS
+  const profileButton = document.getElementById("profileButton");
+  const profileModal = document.getElementById("profileModal");
+  const closeProfileModal = document.getElementById("closeProfileModal");
+
+  const signedOutPanel = document.getElementById("signedOutPanel");
+  const signedInPanel = document.getElementById("signedInPanel");
+
+  const loginForm = document.getElementById("loginForm");
+  const loginEmail = document.getElementById("loginEmail");
+  const loginPassword = document.getElementById("loginPassword");
+
+  const rememberMe = document.getElementById("rememberMe");
+  const authNotice = document.getElementById("authNotice");
+
+  const signedInEmail = document.getElementById("signedInEmail");
+  const signOutButton = document.getElementById("signOutButton");
+  const createAccountButton =
+    document.getElementById("createAccountButton");
+
+
+  // OPEN AND CLOSE PROFILE
+  profileButton.addEventListener("click", function() {
+    profileModal.hidden = false;
+    authNotice.textContent = "";
+  });
+
+  closeProfileModal.addEventListener("click", function() {
+    profileModal.hidden = true;
+  });
+
+  profileModal.addEventListener("click", function(event) {
+    if (event.target === profileModal) {
+      profileModal.hidden = true;
+    }
+  });
+
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      profileModal.hidden = true;
+    }
+  });
+
+
+  // REMEMBER ME SETTING
+  async function applyPersistence() {
+    const persistence = rememberMe.checked
+      ? browserLocalPersistence
+      : browserSessionPersistence;
+
+    await setPersistence(auth, persistence);
+  }
+
+
+  // SIGN IN
+  loginForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    authNotice.textContent = "Signing in...";
+
+    try {
+      await applyPersistence();
+
+      await signInWithEmailAndPassword(
+        auth,
+        loginEmail.value.trim(),
+        loginPassword.value
+      );
+
+      loginPassword.value = "";
+      authNotice.textContent = "Successfully signed in!";
+
+    } catch (error) {
+      authNotice.textContent = error.message;
+    }
+  });
+
+
+  // CREATE ACCOUNT
+  createAccountButton.addEventListener("click", async function() {
+    if (!loginEmail.value.trim() || !loginPassword.value) {
+      authNotice.textContent =
+        "Enter an email and password first.";
+      return;
+    }
+
+    authNotice.textContent = "Creating your account...";
+
+    try {
+      await applyPersistence();
+
+      await createUserWithEmailAndPassword(
+        auth,
+        loginEmail.value.trim(),
+        loginPassword.value
+      );
+
+      loginPassword.value = "";
+      authNotice.textContent = "Your account was created!";
+
+    } catch (error) {
+      authNotice.textContent = error.message;
+    }
+  });
+
+
+  // SIGN OUT
+  signOutButton.addEventListener("click", async function() {
+    try {
+      await signOut(auth);
+      authNotice.textContent = "You have signed out.";
+    } catch (error) {
+      authNotice.textContent = error.message;
+    }
+  });
+
+
+  // AUTOMATICALLY CHECK LOGIN STATUS
+  onAuthStateChanged(auth, function(user) {
+
+    if (user) {
+
+      signedOutPanel.hidden = true;
+      signedInPanel.hidden = false;
+
+      signedInEmail.textContent = user.email || "";
+
+      document.getElementById("topName").textContent =
+        user.email ? user.email.split("@")[0] : "Student";
+
+      document.getElementById("topAccountStatus").textContent =
+        "Signed in";
+
+    } else {
+
+      signedOutPanel.hidden = false;
+      signedInPanel.hidden = true;
+
+      document.getElementById("topName").textContent =
+        localStorage.getItem("brainboxName") || "Student";
+
+      document.getElementById("topAccountStatus").textContent =
+        "Sign in";
+
+    }
+
+  });
+
+</script>
 </body>
 </html>
